@@ -76,6 +76,7 @@ $MOD_FOLDERGALLERY['THUMB_NOT_NEW']			= 'Dont recreat thumbnails';
 $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Changing <strong>thumb size</strong> or <strong>thumb ratio</strong> will delete (and recreate) all thumbs.';
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronize file system with database...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Settings are stored...';
+$MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sort images';
 
 
 // Tooltips

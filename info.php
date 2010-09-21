@@ -150,7 +150,7 @@ $thumbdir1 = 'fg-thumbs';
 $pages = substr(PAGES_DIRECTORY, 1);
 
 /**
- * Diese Zeilen nur ändern wenn du genau weisst was du tust!
+ * Diese Zeilen nur ändern wenn du genau weisst was du tust! 
  * '.' und '..' dürfen nicht entfernt werden!
  * Weitere invisibleFileNames können direkt im Backend der Foldergallery definiert werden.
  */

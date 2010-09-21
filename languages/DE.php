@@ -78,6 +78,7 @@ $MOD_FOLDERGALLERY['THUMB_NOT_NEW']			= 'Keine neuen Thumbnails erzeugen';
 $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail größe</strong> oder <strong>Thumbnail verhältniss</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.';
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Einstellungen werden gespeichert...';
+$MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Bilder sortieren';
 
 
 // Tooltips

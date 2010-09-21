@@ -127,7 +127,7 @@ $t->set_var(array(
 	'MODIFY_CAT_STRING'		=> $MOD_FOLDERGALLERY['MODIFY_CAT'],
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
 	'FOLDER_IN_FS_VALUE'	=> htmlentities($cat_path),
-	'CAT_ACTIVE_CHECKED'		=> $cat_active_checked,
+	'CAT_ACTIVE_CHECKED'	=> $cat_active_checked,
 	'CAT_NAME_STRING'		=> $MOD_FOLDERGALLERY['CAT_NAME'],
 	'CAT_NAME_VALUE'		=> $categorie['cat_name'],
 	'CAT_DESCRIPTION_STRING'=> $MOD_FOLDERGALLERY['CAT_DESCRIPTION'],
@@ -139,6 +139,7 @@ $t->set_var(array(
 	'IMAGE_ACTION_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
 	'SAVE_STRING'			=> $TEXT['SAVE'],
 	'CANCEL_STRING'			=> $TEXT['CANCEL'],
+	'SORT_IMAGE_STRING'		=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
 	// Section und Page ID
 	'SECTION_ID_VALUE'		=> $section_id,
 	'PAGE_ID_VALUE'			=> $page_id,
@@ -163,7 +164,7 @@ foreach($bilder as $bild) {
 		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
 		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
 		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie die ausgew&auml;hlte Seite l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);
