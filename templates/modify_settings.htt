@@ -1,0 +1,107 @@
+<!-- BEGIN CommentDoc -->
+<!--
+This is a phplib-template for modify_settings.php
+-->
+<!-- END CommentDoc -->
+<h2>{SETTINGS_STRING}</h2>
+<form action="{MODIFY_SETTINGS_LINK}" method="post">
+	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}" />
+	<input type="hidden" name="page_id" value="PAGE_ID_VALUE" />
+	<table cellpadding="2" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td>
+				<p class="ttlink" onmouseover="showWMTT('1');" onmouseout="hideWMTT();">{ROOT_FOLDER_STRING}:</p>
+				<div class="tooltip" id="1">{ROOT_FOLDER_STRING_TT}</div>
+			</td>
+			<td>				
+				<select name="root_dir">
+					<!-- BEGIN ordner_select -->
+					<option value="{ORDNER}" {SELECTED} >{ORDNER}</option>
+					<!-- END ordner_select -->
+				</select> 				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p class="ttlink" onmouseover="showWMTT('2');" onmouseout="hideWMTT();">{EXTENSIONS_STRING}:</p>
+				<div class="tooltip" id="2">{EXTENSIONS_STRING_TT}</div>
+			</td>
+			<td>
+				<input name="extensions" type="text" size="40" value="{EXTENSIONS_VALUE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p class="ttlink" onmouseover="showWMTT('3');" onmouseout="hideWMTT();" >{INVISIBLE_STRING}:</p>
+				<div class="tooltip" id="3">{INVISIBLE_STRING_TT}</div>
+			</td>
+			<td>
+				<input name="invisible" type="text" size="40" value="{INVISIBLE_VALUE}" >
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{PICS_PP_STRING}:
+			</td>
+			<td>
+				<input name="pics_pp" type="text" size="40" value="{PICS_PP_VALUE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{THUMB_SIZE_STRING}:
+			</td>
+			<td>
+				<input name="thumb_size" type="text" size="40" value="{THUMBSIZE}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{THUMB_RATIO_STRING}:				
+			</td>
+			<td>
+				<select name="ratio">
+					<!-- BEGIN ratio_select -->
+					<option value="{RATIO_VALUE}" {SELECTED} >{RATIO}</option>
+					<!-- END ratio_select -->
+				</select>
+			</td>
+	 	</tr>
+	 	<tr>
+	 		<td>&nbsp;</td>
+	 		<td>{CHANGING_INFO_STRING}</td>
+	 	</tr>
+	 	<tr>
+	 		<td>&nbsp;</td>
+	 		<td><input type="checkbox" name="noNew"> {THUMB_NOT_NEW_STRING}</td>
+	 	</tr>
+	 	<tr>
+	 		<td>&nbsp;</td>
+	 		<td>&nbsp;</td>
+	 	</tr>
+		<tr>
+			<td>Overview-Pic:</td>
+			<td>
+				{CATPIC_VALUE}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{LIGHTBOX_STRING}:
+			</td>
+			<td>
+				{LIGHTBOX_VALUE}
+			</td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td align="left">
+				<input name="save" type="submit" value="{SAVE_STRING}" style="width: 100px; margin-top: 5px;" />
+			</td>
+			<td align="right">
+				<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 5px;" />
+			</td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,57 @@
+<!-- Jquery Lightbox-->
+<link rel="stylesheet" href="{WB_URL}/modules/foldergallery/scripts/jqlightbox/css/jquery.lightbox-0.5.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqlightbox/js/jquery.lightbox-0.5.pack.js"></script>
+
+<script type="text/javascript">
+$(function() {
+   $('#lightbox a').lightBox({
+	imageLoading: '{WB_URL}/modules/foldergallery/scripts/jqlightbox/images/lightbox-ico-loading.gif',
+	imageBtnClose: '{WB_URL}/modules/foldergallery/scripts/jqlightbox/images/lightbox-btn-close.gif',
+	imageBtnPrev: '{WB_URL}/modules/foldergallery/scripts/jqlightbox/images/lightbox-btn-prev.gif',
+	imageBtnNext: '{WB_URL}/modules/foldergallery/scripts/jqlightbox/images/lightbox-btn-next.gif',
+	imageBlank:	'{WB_URL}/modules/foldergallery/scripts/jqlightbox/images/lightbox-blank.gif',
+	txtImage: 'Bild',
+	txtOf: 'von'
+   });
+});
+</script>
+
+<!-- END Jquery Lightbox -->
+
+<div class="gallery">
+  <div class="gallerytitel">
+    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  </div>
+</div>
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<ul class="categories">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+	<li>
+		<a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/><br />
+		{CAT_CAPTION}</a>
+	</li>
+<!-- END show_categories -->
+<!-- END categories -->
+</ul>
+
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul class="photostyle" id="lightbox">
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]"><img src="{THUMB}" alt="{CAPTION}"/></a>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>

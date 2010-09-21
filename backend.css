@@ -1,0 +1,60 @@
+body {
+	cursor : default;
+}
+.tooltip {
+	position: absolute;
+	display: none;
+	background-color: #FFFFFF;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	padding: 2px;
+	width : 200px;
+}
+
+p.ttlink{
+	cursor : help;
+	text-decoration: underline;
+}
+
+tr.title{
+	font-weight: bold;
+}
+
+table.list {
+	background-color: #d3dcdc;
+}
+
+.cat_table {
+	background-color: #ECF3F7;
+	width: 100%;
+}
+
+.cat_subelem {
+	display:none;
+}
+
+.cat_list {
+	display:block;
+}
+
+ul {
+   list-style-type:none;
+   margin:0;
+   padding:0;
+}
+ul li {
+   margin:0;
+   padding:0;
+} 
+
+li {
+	margin: 0;
+	padding: 0;
+}
+
+#dragableTable {text-align:center;}
+#dragableTable li {float:left; margin: 4px; }
+#dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
+
+

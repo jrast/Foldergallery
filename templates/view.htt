@@ -1,0 +1,44 @@
+{INCLUDE_PRESENTATION_JS}
+<div class="gallery">
+  <div class="gallerytitel">
+    <h1>{VIEW_TITLE} <span class="titel">{CATEGORIES_TITLE} {CAT_DESCRIPTION}&nbsp;</span></h1>
+  </div>
+<!--
+  <div class="backlink">
+    <a href="{BACK_LINK}" {HIDDEN}>{BACK_STRING}</a>
+  </div>
+-->
+</div>
+<!-- BEGIN error -->
+{FRONT_END_ERROR_STRING}<br />
+<!-- END error -->
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+<div class="catthumbwrapper">
+  <table class="thumbnail" cellspacing="0" ><tr><td>span glass="pretty"><a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/></a></span></td></tr></table>
+  <div class="cat-caption"><a href="{CAT_LINK}"><span >{CAT_CAPTION}</a></div>
+</div>
+<!-- END show_categories -->
+<!-- END categories -->
+
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul {ULOPT}>
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" {LINKOPT}><img src="{THUMB}" alt="{CAPTION}"/></a>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>

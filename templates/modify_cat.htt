@@ -1,0 +1,85 @@
+<!-- BEGIN CommentDoc -->
+<!--
+This is a phplib-template for modify_cat.php
+-->
+<!-- END CommentDoc -->
+<script type="text/javascript">
+	var settingsRatio = 1
+</script
+<h2>{MODIFY_CAT_TITLE}</h2><br />
+<h3>{MODIFY_CAT_STRING}</h3>
+<form action="{SAVE_CAT_LINK}" method="post">
+	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}">
+	<input type="hidden" name="page_id" value="{PAGE_ID_VALUE}">
+	<input type="hidden" name="cat_id" value="{CAT_ID_VALUE}">
+	<table width="100%">
+		<tr>
+			<td>{FOLDER_IN_FS_STRING}</td>
+			<td>{FOLDER_IN_FS_VALUE}</td>
+		</tr>
+		<tr>
+			<td>{CAT_NAME_STRING}</td>
+			<td><input name='cat_name' type='text' size='80' value='{CAT_NAME_VALUE}'></td>
+		</tr>
+		<tr>
+			<td>active:</td>
+			<td><input name="active" type="checkbox" value="1" {CAT_ACTIVE_CHECKED}></td>
+		</tr>
+		<tr>
+			<td>{CAT_DESCRIPTION_STRING}</td>
+			<td><textarea cols="78" rows="3" name="cat_description">{CAT_DESCRIPTION_VALUE}</textarea></td>
+		</tr>	
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td align="left">
+				<input name="save" type="submit" value="{SAVE_STRING}" style="width: 100px; margin-top: 5px;" />
+			</td>
+			<td align="right">
+				<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 5px;" />
+			</td>
+		</tr>
+	</table>
+</form><br />
+<h3>{MODIFY_IMG_STRING} | <a href="modify_cat_sort.php?page_id={PAGE_ID_VALUE}&section_id={SECTION_ID_VALUE}&cat_id={CAT_ID_VALUE}">Sort Images</a></h3>
+<form action="{SAVE_FILES_LINK}" method="post" >
+	<table width="100%" class="list">
+		<tr class="title">
+			<td align="center">{IMAGE_STRING}</td>
+			<td>{IMAGE_NAME_STRING}</td>
+			<td>{IMAGE_CAPTION_STRING}</td>
+			<td colspan="2">{IMAGE_ACTION_STRING}</span></td>
+		</tr>
+		<!-- BEGIN file_loop -->
+		<tr>
+			<input type="hidden" name="id[{COUNTER}]" value="{ID_VALUE}" alt="Thumb">
+			<td align="center">
+				<a href='{THUMB_EDIT_LINK}'><img src="{IMAGE_VALUE}"></a>
+			</td>
+			<td>
+				{IMAGE_NAME_VALUE}
+			</td>
+			<td>
+				<textarea cols="40" rows="3"  name="caption[{COUNTER}]" >{CAPTION_VALUE}</textarea>
+			</td>
+			<td align="center" width="20px">
+				<a href='{THUMB_EDIT_LINK}'><img src='{EDIT_THUMB_SOURCE}' border="0" alt="Resize Thumb"></a>
+			</td>
+			<td align="center" width="20px">
+				<a href='{IMAGE_DELETE_LINK}'><img src='{DELETE_IMG_SOURCE}' border="0" alt="X"></a>
+			</td>
+		</tr>
+		<!-- END file_loop -->
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td align="left">
+				<input name="save" type="submit" value="{SAVE_STRING}" style="width: 100px; margin-top: 10px;" />
+			</td>
+			<td align="right">
+				<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 10px;" />
+			</td>
+		</tr>
+	</table>
+</form>
+

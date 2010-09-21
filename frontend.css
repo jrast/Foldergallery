@@ -1,0 +1,120 @@
+/* Dieser Eintrag entfernt den gepunkteten Rahmen um Links beim anklicken. */
+a:focus {
+	outline: none;
+}
+
+ul.fg_pages_nav {
+	display: inline;
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+ul.fg_pages_nav li {
+  	display: inline;
+	padding-right: 10px;
+  	padding-left: 15px;
+  	background: url(./images/crumbs.png) no-repeat left center;
+}
+
+ul.fg_pages_nav li a.current {
+  font-weight: bold;
+}
+
+body {
+  height: 100%;
+}
+
+#fullSize {
+	display: none;
+}
+
+.view_title {
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.categories_title {
+	font-size: 110%;
+	font-style: Italic;
+	line-height: 45px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+	ADDS BY PUMPI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+ul.photostyle {
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 0;	
+}
+	
+ul.photostyle li {
+	float: left;
+	margin: 3px;
+	padding: 0px;
+}
+
+.photostyle {
+	display: block;
+	margin: 3px;
+	padding: 0;
+}
+
+.photostyle img {
+	padding: 2px;
+	border: 2px #9db2b9 solid;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.photostyle img:hover { 
+	border: 2px #313739 solid; 
+}
+
+ul.categories {
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 0;	
+}
+	
+ul.categories li {
+	margin: 3px;
+	float: left;
+	text-align: center;
+	border: 2px #9db2b9 solid;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+ul.categories li a {
+	/* width und height verändern fals ihnen der Rahmen um das Thumb der Ordnerübersicht zu groß ist*/
+	width: 160px;
+	height: 180px;
+	display: block;
+	margin: 3px;
+	padding: 10px;
+}
+
+.categories li:hover { 
+	border: 2px #313739 solid; 
+}
+
+.categories {
+	display: block;
+	margin: 3px;
+	padding: 0;
+}
+
+.categories img {
+	margin: 3px;
+	padding: 0px;
+	border: 2px #000 solid;
+}
+
+.clear {
+	clear: left;
+	padding-top: 15px;
+	border: 0px  solid #000;
+	border-bottom: 1px  solid #000;
+}						

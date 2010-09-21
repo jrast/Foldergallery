@@ -1,0 +1,82 @@
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/highslide/highslide-full.packed.js"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery/scripts/highslide/highslide-ie6.css", "css")</script>
+<![endif]-->
+
+<script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery/scripts/highslide/highslide.css", "css")</script>
+<script type="text/javascript">
+	hs.graphicsDir = '{WB_URL}/modules/foldergallery/scripts/highslide/graphics/';
+	hs.showCredits = false;
+	hs.align = 'center';
+	hs.transitions = ['expand', 'crossfade'];
+	hs.fadeInOut = true;
+	hs.dimmingOpacity = 0.8;
+	hs.wrapperClassName = 'borderless floating-caption';
+	hs.captionEval = 'this.thumb.alt';
+	hs.marginLeft = 100; // make room for the thumbstrip
+	hs.marginBottom = 80 // make room for the controls and the floating caption
+	hs.numberPosition = 'caption';
+	hs.lang.number = '%1 von %2';
+
+	// Add the slideshow providing the controlbar and the thumbstrip
+	hs.addSlideshow({
+		//slideshowGroup: 'group1',
+		interval: 5000,
+		repeat: false,
+		useControls: true,
+		overlayOptions: {
+			className: 'text-controls',
+			position: 'bottom center',
+			relativeTo: 'viewport',
+			offsetX: 50,
+			offsetY: -5
+
+		},
+		thumbstrip: {
+			position: 'middle left',
+			mode: 'vertical',
+			relativeTo: 'viewport'
+		}
+	});
+
+</script>
+<div class="gallery">
+  <div class="gallerytitel">
+    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  </div>
+</div>
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<ul class="categories">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+	<li>
+		<a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/><br />
+		{CAT_CAPTION}</a>
+	</li>
+<!-- END show_categories -->
+<!-- END categories -->
+</ul>
+
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul class="photostyle">
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="highslide" onclick="return hs.expand(this)"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<div class='highslide-caption'>
+   			{CAPTION}
+		</div>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>

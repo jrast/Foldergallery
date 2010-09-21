@@ -1,0 +1,52 @@
+<script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery/scripts/shutter/shutter.css", "css")</script>
+<script type="text/javascript">
+	// Hier sind Einstellungen für die Bildanzeige möglich!
+	shutterSettings = {
+		imgDir : "{WB_URL}/modules/foldergallery/scripts/shutter/images/",
+		imageCount : 0,
+		textBtns : 0
+	},
+
+	shutterOnload = function(){
+		shutterReloaded.Init();
+	}
+</script>
+<script src="{WB_URL}/modules/foldergallery/scripts/shutter/shutter.js" type="text/javascript"></script>
+
+<div class="gallery">
+  <div class="gallerytitel">
+    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  </div>
+</div>
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<ul class="categories">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+	<li>
+		<a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/><br />
+		{CAT_CAPTION}</a>
+	</li>
+<!-- END show_categories -->
+<!-- END categories -->
+</ul>
+
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul class="photostyle">
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="shutterset"><img src="{THUMB}" alt="{CAPTION}"/></a>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>

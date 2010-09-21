@@ -1,0 +1,57 @@
+<!-- Jquery Fancybox -->
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.1.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.1.css" media="screen" />
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("a[rel=fancybox]").fancybox({
+			'transitionIn'	: 'elastic',
+			'transitionOut'	: 'elastic',
+			'titlePosition' 	: 'outside',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-wrap"><span id="fancybox-title-left"></span><span id="fancybox-title-main">Bild ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span><span id="fancybox-title-right"></span></span>';
+			}
+		});
+	});
+</script>
+
+
+<!-- END Jquery Fancybox -->
+
+<div class="gallery">
+  <div class="gallerytitel">
+    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  </div>
+</div>
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<ul class="categories">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+	<li>
+		<a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/><br />
+		{CAT_CAPTION}</a>
+	</li>
+<!-- END show_categories -->
+<!-- END categories -->
+</ul>
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul class="photostyle" id="lightbox">
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="fancybox"><img src="{THUMB}" alt="{CAPTION}"/></a>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>

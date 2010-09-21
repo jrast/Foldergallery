@@ -1,0 +1,56 @@
+<!-- Jquery Lightbox-->
+<link href="{WB_URL}/modules/foldergallery/scripts/pirobox/css_pirobox/demo5/style.css" class="piro_style" media="screen" title="white" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/pirobox/js/pirobox.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$().piroBox({
+			my_speed: 400, //animation speed
+			bg_alpha: 0.1, //background opacity
+			slideShow : true, // true == slideshow on, false == slideshow off
+			slideSpeed : 4, //slideshow duration in seconds(3 to 6 Recommended)
+			close_all : '.piro_close,.piro_overlay'// add class .piro_overlay(with comma)if you want overlay click close piroBox
+
+	});
+});
+</script>
+
+<!-- END Jquery Lightbox -->
+
+<div class="gallery">
+  <div class="gallerytitel">
+    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  </div>
+</div>
+<div class="pagenav" style="text-align: left">{CATBREAD}</div>
+<div class="foldergallery-wrapper">
+<ul class="categories">
+<!-- BEGIN categories -->
+<!-- BEGIN show_categories -->
+	<li>
+		<a href="{CAT_LINK}"><img src="{THUMB_LINK}" alt=""/><br />
+		{CAT_CAPTION}</a>
+	</li>
+<!-- END show_categories -->
+<!-- END categories -->
+</ul>
+
+<!-- BEGIN hr -->
+<hr class="clear" />
+<!-- END hr -->
+
+<ul class="photostyle">
+<!-- BEGIN images -->
+<!-- BEGIN thumbnails -->
+	<li>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox"><img src="{THUMB}" alt="{CAPTION}"/></a>
+	</li>
+<!-- END thumbnails -->
+<!-- END images -->
+</ul>
+
+<br style="clear:both" />
+<!-- BEGIN pagenav -->
+<div class="fgpagenav">{PAGE}:&nbsp;{PAGE_NAV}</div>
+<!-- END pagenav -->
+</div>
