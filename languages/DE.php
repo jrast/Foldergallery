@@ -72,10 +72,10 @@ $MOD_FOLDERGALLERY['NO_CATEGORIES'] 			= 'Keine Kategorien (=Unterverzeichnisse)
 $MOD_FOLDERGALLERY['EDIT_THUMB'] 			= 'Thumbnail bearbeiten';
 $MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION']		= '<strong>Bitte neuen Bildausschnitt wählen</strong>';
 $MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON']			= 'Thumbnail erstellen';
-$MOD_FOLDERGALLERY['THUMB_SIZE']			= 'Thumbnail größe';
-$MOD_FOLDERGALLERY['THUMB_RATIO']			= 'Thumbnail verhältniss';
+$MOD_FOLDERGALLERY['THUMB_SIZE']			= 'Thumbnail Größe';
+$MOD_FOLDERGALLERY['THUMB_RATIO']			= 'Thumbnail Verhältniss';
 $MOD_FOLDERGALLERY['THUMB_NOT_NEW']			= 'Keine neuen Thumbnails erzeugen';
-$MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail größe</strong> oder <strong>Thumbnail verhältniss</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.';
+$MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail Größe</strong> oder <strong>Thumbnail Verhältniss</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.';
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Einstellungen werden gespeichert...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Bilder sortieren';
