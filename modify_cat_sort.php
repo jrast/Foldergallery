@@ -65,7 +65,7 @@ $urlToFolder = $url.$folder.'/';
 $urlToThumb = $url.$folder.$thumbdir.'/';
 
 //echo '<h3>'.$pathToFolder.'</h3>'; 
-echo '<h3><a href="modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'">back</a></h3>';
+echo '<h3><a href="modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'">'.$MOD_FOLDERGALLERY['BACK'].'</a></h3>';
 
 $bilder= array();
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';

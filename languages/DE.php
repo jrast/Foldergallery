@@ -29,14 +29,16 @@ $MOD_FOLDERGALLERY['VIEW_TITLE']		= 'Bildergalerie';
 $MOD_FOLDERGALLERY['CATEGORIES_TITLE']	= 'Kategorien';
 $MOD_FOLDERGALLERY['BACK_STRING']		= 'Zur &Uuml;bersicht';
 $MOD_FOLDERGALLERY['FRONT_END_ERROR']	= 'Diese Kategorie existiert nicht oder enth&auml;lt keine Bilder und Unterkategorien!';
-$MOD_FOLDERGALLERY['PAGE']            = 'Seite';
+$MOD_FOLDERGALLERY['PAGE']            	= 'Seite';
 
 
 
 
 //Variables for the Backend
-$MOD_FOLDERGALLERY['PICS_PP'] = 'Bilder pro Seite';
-$MOD_FOLDERGALLERY['LIGHTBOX'] = 'Lightbox';
+$MOD_FOLDERGALLERY['PICS_PP'] 				= 'Bilder pro Seite';
+$MOD_FOLDERGALLERY['LIGHTBOX'] 				= 'Lightbox';
+$MOD_FOLDERGALLERY['BACK'] 					= 'Zur&uuml;ck';
+
 
 $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE']		= 'Kategorie und Bilddetailes bearbeiten';
 $MOD_FOLDERGALLERY['MODIFY_CAT']			= 'Kategoriedetailes bearbeiten:';
@@ -50,28 +52,28 @@ $MOD_FOLDERGALLERY['IMG_CAPTION']			= 'Bildbeschrieb';
 
 $MOD_FOLDERGALLERY['REDIRECT']  			= 'Sie m&uuml;ssen zuerst die Grundeinstellungen vornehmen.'
 											. ' Sie werden in zwei Sekunden weitergeleitet! (Funktioniert nur wenn JavaScript aktiviert!';
-$MOD_FOLDERGALLERY['TITEL_BACKEND'] 			= 'Foldergallery Verwaltung';
+$MOD_FOLDERGALLERY['TITEL_BACKEND'] 		= 'Foldergallery Verwaltung';
 $MOD_FOLDERGALLERY['TITEL_MODIFY'] 			= 'Kategorien und Bilder bearbeiten:';
 $MOD_FOLDERGALLERY['SETTINGS'] 				= 'Allgemeine Einstellungen';
 $MOD_FOLDERGALLERY['ROOT_DIR'] 				= 'Stammverzeichnis';
 $MOD_FOLDERGALLERY['EXTENSIONS']			= 'Erlaubte Dateien';
 $MOD_FOLDERGALLERY['INVISIBLE']				= 'Unsichtbare Ordner';
-$MOD_FOLDERGALLERY['NEW_SCANN_INFO']			= 'Durch diese Aktion wurden erst die Datenbankeintr&auml;ge erstellt. Die Vorschaubilder werden automatisch beim ersten Aufruf der Kategorie erzeugt!';
+$MOD_FOLDERGALLERY['NEW_SCANN_INFO']		= 'Durch diese Aktion wurden erst die Datenbankeintr&auml;ge erstellt. Die Vorschaubilder werden automatisch beim ersten Aufruf der Kategorie erzeugt!';
 $MOD_FOLDERGALLERY['FOLDER_NAME']			= 'Ordnername im Dateisystem';
 $MOD_FOLDERGALLERY['DELETE']				= 'L&ouml;schen?';
 $MOD_FOLDERGALLERY['ERROR_MESSAGE']			= 'Keine Daten zum verarbeiten Erhalten!';
 $MOD_FOLDERGALLERY['DB_ERROR']				= 'Datenbank Fehler!';
 $MOD_FOLDERGALLERY['FS_ERROR']				= 'Fehler beim l&ouml;schen des Ordners!';
-$MOD_FOLDERGALLERY['NO_FILES_IN_CAT']			= 'Diese Kategorie enth&auml;lt keine Bilder!';
-$MOD_FOLDERGALLERY['SYNC']				= 'Datenbank mit Filesystem synchronisieren';
+$MOD_FOLDERGALLERY['NO_FILES_IN_CAT']		= 'Diese Kategorie enth&auml;lt keine Bilder!';
+$MOD_FOLDERGALLERY['SYNC']					= 'Datenbank mit Filesystem synchronisieren';
 $MOD_FOLDERGALLERY['EDIT_CSS']				= 'CSS bearbeiten';
 $MOD_FOLDERGALLERY['FOLDER_IN_FS']			= 'Ordner im Dateisystem:';
 $MOD_FOLDERGALLERY['CAT_TITLE']				= 'Kategorietitel:';
 $MOD_FOLDERGALLERY['ACTION']				= 'Aktionen:';
-$MOD_FOLDERGALLERY['NO_CATEGORIES'] 			= 'Keine Kategorien (=Unterverzeichnisse) vorhanden.<br /><br />Die Galerie funktioniert trotzdem, zeigt aber keine Kategorien an.';
+$MOD_FOLDERGALLERY['NO_CATEGORIES'] 		= 'Keine Kategorien (=Unterverzeichnisse) vorhanden.<br /><br />Die Galerie funktioniert trotzdem, zeigt aber keine Kategorien an.';
 $MOD_FOLDERGALLERY['EDIT_THUMB'] 			= 'Thumbnail bearbeiten';
-$MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION']		= '<strong>Bitte neuen Bildausschnitt wählen</strong>';
-$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON']			= 'Thumbnail erstellen';
+$MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION']= '<strong>Bitte neuen Bildausschnitt wählen</strong>';
+$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON']		= 'Thumbnail erstellen';
 $MOD_FOLDERGALLERY['THUMB_SIZE']			= 'Thumbnail Größe';
 $MOD_FOLDERGALLERY['THUMB_RATIO']			= 'Thumbnail Verhältniss';
 $MOD_FOLDERGALLERY['THUMB_NOT_NEW']			= 'Keine neuen Thumbnails erzeugen';

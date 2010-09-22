@@ -30,6 +30,7 @@ $MOD_FOLDERGALLERY['CATEGORIES_TITLE']	= 'Categories';
 $MOD_FOLDERGALLERY['BACK_STRING']		= 'Back to overview';
 $MOD_FOLDERGALLERY['FRONT_END_ERROR']	= 'This category does not exist or does not contain Images and/or Subcategories!';
 $MOD_FOLDERGALLERY['PAGE']            = 'Page';
+$MOD_FOLDERGALLERY['BACK'] 					= 'Zur&uumlck';
 
 
 //Variables for the Backend
