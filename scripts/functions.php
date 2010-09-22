@@ -25,7 +25,7 @@ function getSettings($section_id){
  * @param string $positionW Position W von jCrop ansonsten 0
  * @param string $positionH Position H von jCrop ansonsten 0
  */
-function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = '', $positionY = '', $positionW = '', $positionH = '' ){
+function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
 
 	//Von Chio eingef�gt:
 	global $megapixel_limit;
