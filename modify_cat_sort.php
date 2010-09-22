@@ -60,9 +60,9 @@ if ($categorie['active'] == 1) {$cat_active_checked = 'checked="checked"';} else
 
 $folder = $root_dir.$parent;
 $pathToFolder = $path.$folder.'/';	
-$pathToThumb = $path.$folder.$thumbdir.'/thumb.';
+$pathToThumb = $path.$folder.$thumbdir.'/';
 $urlToFolder = $url.$folder.'/';		
-$urlToThumb = $url.$folder.$thumbdir.'/thumb.';
+$urlToThumb = $url.$folder.$thumbdir.'/';
 
 //echo '<h3>'.$pathToFolder.'</h3>'; 
 echo '<h3><a href="modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'">back</a></h3>';
