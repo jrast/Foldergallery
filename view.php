@@ -62,7 +62,7 @@ $link = WB_URL.PAGES_DIRECTORY.$page['link'].PAGE_EXTENSION;
 
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
-$bilder = array(); // hier kommen alle Bilder rein
+$bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
 $error = false;
 $title = PAGE_TITLE;
 
@@ -114,8 +114,6 @@ while($ergebnis = $query->fetchRow()){
 	// Es gibt also folgende Kategorien mit Inhalt in dieser Kategorie
 	$ergebnisse[] = $ergebnis;	
 }
-
-
 
 
 if(count($ergebnisse) == 0) {
@@ -263,7 +261,7 @@ $t->set_block('categories', 'show_categories', 'SHOW_CATEGORIES');
 $t->set_block('view', 'images', 'IMAGES');
 $t->set_block('images', 'thumbnails', 'THUMBNAILS');
 $t->set_block('view', 'hr', 'HR');
-$t->set_block('view', 'error', 'ERROR');
+$t->set_block('view', 'error', 'ERROR');  // Dieser Fehler wird nicht ausgegeben, BUG
 $t->set_block('view', 'pagenav', 'PAGE_NAV' );
 
 if($error) {

@@ -99,7 +99,7 @@
   
   V1.10 (Pumpi, September 2010)
   + Änderung der Ordnungsmethode zur WB Core Funktion class.order.php
-  + EinfÜgen der DragTable Funktion von jQuery für Sortierung mit Drag & Drop
+  + Einfügen der DragTable Funktion von jQuery für Sortierung mit Drag & Drop
   + Aufräumen des Scriptordners für kleinere zipgröße
   + Css Datei bearbeiten button hinzugefügt
   + Thumbnails können nun individuell mittels Javascript (jCrop) nachbearbeitet werden
@@ -123,7 +123,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.14';
+$module_version 	= '1.16';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';
