@@ -207,12 +207,12 @@ if(count($bilder) != 0) {
 	$titel = $result['cat_name'];
 	$description = $result['description'];
 	
-	if(!empty($result['categorie'])) $folder = $root_dir.$result['parent'].'/'.$result['categorie'].'/';
-	else $folder = $root_dir.$result['parent'].'/';
+	if(!empty($result['categorie'])) $folder = $root_dir.$result['parent'].'/'.$result['categorie'];
+	else $folder = $root_dir.$result['parent'];
 	$pathToFolder = $path.$folder.'/';	
 	$pathToThumb = $path.$folder.$thumbdir.'/';
 	
-	$urlToFolder = $url.$folder;		
+	$urlToFolder = $url.$folder.'/';		
 	$urlToThumb = $url.$folder.$thumbdir.'/';
 	
 }

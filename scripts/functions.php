@@ -24,7 +24,6 @@ function getSettings($section_id){
  * @param string $positionY Position Y von jCrop ansonsten 0
  * @param string $positionW Position W von jCrop ansonsten 0
  * @param string $positionH Position H von jCrop ansonsten 0
- * BOM FREE BY PUMPI 22.09.2010
  */
 function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
 
