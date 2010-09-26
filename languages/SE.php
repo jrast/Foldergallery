@@ -77,6 +77,8 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= '&Auml;ndrar <strong>tumnaglarnas storle
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synkronisera databas med filsystem...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Inst&auml;llningarna sparas...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sortera bilder';
+$MOD_FOLDERGALLERY['BACK']					= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
 
 
 // Tooltips

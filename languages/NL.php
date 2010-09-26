@@ -76,6 +76,8 @@ $MOD_FOLDERGALLERY['THUMB_NOT_NEW']			= 'Geen thumbnails genereren';
 $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Grootte of Verhouding aanpassen van de thumbnails, verwijderd de huidige thumnails en wordt opnieuw gegenereerd.';
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchroniseer bestanden met database...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Veranderingen zijn opgeslagen...';
+$MOD_FOLDERGALLERY['BACK']					= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
 
 
 // Tooltips

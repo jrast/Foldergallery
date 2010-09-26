@@ -79,6 +79,8 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail Grö�
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Einstellungen werden gespeichert...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Bilder sortieren';
+$MOD_FOLDERGALLERY['BACK']					= 'Zur&uuml;ck';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Der Erfolg der Neuanordnung wird hier angezeigt.';
 
 
 // Tooltips

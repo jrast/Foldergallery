@@ -77,6 +77,9 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Changing <strong>thumb size</strong> or
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronize file system with database...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Settings are stored...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sort images';
+$MOD_FOLDERGALLERY['BACK']					= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+
 
 
 // Tooltips
