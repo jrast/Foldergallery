@@ -64,34 +64,60 @@ $pathToThumb = $path.$folder.$thumbdir.'/';
 $urlToFolder = $url.$folder.'/';		
 $urlToThumb = $url.$folder.$thumbdir.'/';
 
-//echo '<h3>'.$pathToFolder.'</h3>'; 
-echo '<h3><a href="modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'">'.$MOD_FOLDERGALLERY['BACK'].'</a></h3>';
 
 $bilder= array();
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
 
-echo '<script type="text/javascript">
-			var the_parent_id = '.$parent_id.';			
-			var WB_URL = "'.WB_URL.'";
-			</script>
-			';
-			
-echo '<div id="dragableTable"><ul>';
-if($query->numRows()){
+
+$t = new Template(dirname(__FILE__).'/templates', 'remove');
+$t->set_file('modify_cat_sort', 'modify_cat_sort.htt');
+// clear the comment-block, if present
+$t->set_block('modify_cat_sort', 'CommentDoc');
+$t->clear_var('CommentDoc');
+// Get the Blocks
+$t->set_block('modify_cat_sort', 'image_loop', 'IMAGE_LOOP');
+
+// Replace Language Strings
+$t->set_var(array(
+	'REORDER_IMAGES_STRING' 	=> 'Bilder sortieren',
+	'CANCEL_STRING'		=> 'Abbrechen',
+	'QUICK_SORT_STRING'		=> 'Bilder nach Dateiname sortiern',
+	'QUICK_ASC_STRING'		=> 'Dateiname aufsteigend',
+	'QUICK_DESC_STRING'		=> 'Dateiname absteigend',
+	'MANUAL_SORT'			=> 'Frei sortieren'	
+));
+
+// Links Parsen
+$t->set_var(array(
+	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
+	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
+));
+
+// JS Werte Parsen
+$t->set_var(array(
+	'PARENT_ID_VALUE'		=> $parent_id,
+	'WB_URL_VALUE'			=> WB_URL
+));
+
+// Bilder parsen
+if($query->numRows()) {
 	while($result = $query->fetchRow()) {
-	
-	$bildfilename = $result['file_name'];
-	$thumb = $pathToThumb.$bildfilename;	
-		
-	echo '<li id="recordsArray_'.$result['id'].'" style="width:'.$thumb_size.'px; height:'.$thumb_size.'px; "><table cellpadding="0" cellspacing="0" border="0" width="100%" class="sortgroup">
-			<tr><td style="width:'.$thumb_size.'px; height:'.$thumb_size.'px;  "><img src="' . $urlToThumb.$bildfilename.'" title="'.$result['position'].': '.$bildfilename. '" /></td></tr>
-			</table></li>
-			';
+		$bildfilename = $result['file_name'];
+		$thumb = $pathToThumb.$bildfilename;
+		$t->set_var(array(
+			'RESULT_ID_VALUE'		=> $result['id'],
+			'THUMB_SIZE_VALUE'		=> $thumb_size,
+			'THUMB_URL'				=> $urlToThumb.$bildfilename,
+			'TITLE_VALUE'			=> $result['position'].': '.$bildfilename
+		));
+		$t->parse('IMAGE_LOOP', 'image_loop', true);
 	}
 }
-echo '</ul></div>';
-echo '<div id="dragableResult" style="clear:left;">	<p>Reorder result will be displayed here.&nbsp; </p>		</div>';
+
+
+$t->pparse('output', 'modify_cat_sort');
 
 $admin->print_footer();
 ?>

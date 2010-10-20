@@ -1,0 +1,37 @@
+<!-- BEGIN CommentDoc -->
+<!--
+This is a phplib-template for modify_cat_sort.php
+-->
+<!-- END CommentDoc -->
+<h2>{REORDER_IMAGES_STRING}</h2>
+<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 5px;" />
+
+<h3>{QUICK_SORT_STRING}</h3>
+<input type="button" value="{QUICK_ASC_STRING}" onclick="{QUICK_ASC_ONCLICK}" style="width: 150px; margin-top:5px;" />
+<input type="button" value="{QUICK_DESC_STRING}" onclick="{QUICK_DESC_ONCLICK}" style="width: 150px; margin-top: 5px;" />
+
+<h3>{MANUAL_SORT}</h3>
+
+<script type="text/javascript">
+	var the_parent_id = {PARENT_ID_VALUE};
+	var WB_URL = "{WB_URL_VALUE}";
+</script>
+
+<div id="dragableTable">
+	<ul>
+<!-- BEGIN image_loop -->
+		<li id="recordsArray_{RESULT_ID_VALUE}" style="width:{THUMB_SIZE_VALUE}px; height:{THUMB_SIZE_VALUE}px; ">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="sortgroup">
+				<tr>
+					<td style="width:{THUMB_SIZE_VALUE}px; height:{THUMB_SIZE_VALUE}px; ">
+						<img src="{THUMB_URL}" title="{TITLE_VALUE}" />
+	</td></tr></table></li>
+	
+<!-- END image_loop -->
+</ul>
+</div>
+
+
+<div id="dragableResult" style="clear:left;">
+	<p>Reordered result will be displayed here.&nbsp; </p>
+</div>
