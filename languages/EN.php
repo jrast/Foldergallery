@@ -30,7 +30,6 @@ $MOD_FOLDERGALLERY['CATEGORIES_TITLE']	= 'Categories';
 $MOD_FOLDERGALLERY['BACK_STRING']		= 'Back to overview';
 $MOD_FOLDERGALLERY['FRONT_END_ERROR']	= 'This category does not exist or does not contain Images and/or Subcategories!';
 $MOD_FOLDERGALLERY['PAGE']            = 'Page';
-$MOD_FOLDERGALLERY['BACK'] 					= 'Zur&uumlck';
 
 
 //Variables for the Backend
@@ -78,6 +77,9 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Changing <strong>thumb size</strong> or
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronize file system with database...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Settings are stored...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sort images';
+$MOD_FOLDERGALLERY['BACK']					= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+
 
 
 // Tooltips
