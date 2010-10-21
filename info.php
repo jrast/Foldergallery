@@ -115,6 +115,11 @@
   
   V1.14 (Pumpi)
   + Behbet einen Thumbbug aus dem Release von 1.10
+  
+  
+  V1.18 (Juerg Rast)
+  + Bilder können nun nach Dateiname aufsteigend/absteigend sortiert werden
+  + Bilder sortieren überarbeitet (template erstellt)
 
  -------------------------------------------------------------------------------
 **/
@@ -123,7 +128,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.16';
+$module_version 	= '1.18';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';
