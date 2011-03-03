@@ -55,18 +55,6 @@ $aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat'])) ?
 				$_GET['cat'] : '';
 $aktuelleKat = htmlspecialchars($aktuelleKat);
 
-//Funktioniert das hier ?berhaupt?:
-// Seitentitel
-/*
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="-1" LIMIT 1';
-$query = $database->query($sql);
-if ( $query->numRows() > 0 ) {
-    $root = $query->fetchRow();
-    if ( strcasecmp( $root['cat_name'], 'Root' ) ) {
-        $title = $root['cat_name'];
-    }
-}
-*/
 
 //Die id der aktuellen Kategorie herausfinden:
 $aktuelleKat_id = 0;
@@ -80,8 +68,6 @@ while($ergebnis = $query->fetchRow()){
 		break;	
 	}
 }
-
-//echo '<h1>'.$aktuelleKat_id.'</h1>';
 
 
 //Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
