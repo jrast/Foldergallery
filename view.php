@@ -42,6 +42,7 @@ if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JAV
 	echo '<script type="text/javascript" src="'.WB_URL.'/modules/foldergallery/frontend.js"></script>';
 } 
 
+
 $generatethumbscounter = 0;
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
@@ -53,6 +54,7 @@ $thumb_size = $settings['thumb_size']; //Chio
 $root_dir = $settings['root_dir']; //Chio
 $catpic = (int) $settings['catpic']; //Chio
 $ratio = $settings['ratio']; //Pumpi
+
 
 // Einstellungen
 // Link zur Seite

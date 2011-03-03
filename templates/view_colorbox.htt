@@ -1,3 +1,4 @@
+
 <link type="text/css" media="screen" rel="stylesheet" href="{WB_URL}/modules/foldergallery/scripts/colorbox/colorbox.css" />
 <style type="text/css">
 	/*
@@ -19,6 +20,8 @@
 	.cboxIE #cboxMiddleLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src={WB_URL}/modules/foldergallery/scripts/colorbox/images/internet_explorer/borderMiddleLeft.png, sizingMethod='scale');}
 	.cboxIE #cboxMiddleRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src={WB_URL}/modules/foldergallery/scripts/colorbox/images/internet_explorer/borderMiddleRight.png, sizingMethod='scale');}
 </style>
+
+
 
 <script src="{WB_URL}/modules/foldergallery/scripts/colorbox/jquery.colorbox.js" type="text/javascript"></script>
 
