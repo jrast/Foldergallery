@@ -136,7 +136,7 @@ if(count($ergebnisse) == 0) {
 		
 		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //WB_URL.$bildLinks['thumb_link'];
 		// Eventuell wird die Gallerie zum ersten mal betrachtet
-		// Es gibt also noch kein Thumb. Also pr?fen und erstellen
+		// Es gibt also noch kein Thumb. Also prüfen und erstellen
 		
 		
 		if ($bildfilename == '') { //Leer oder ein Ordner
