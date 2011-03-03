@@ -2,24 +2,6 @@
 // Direkter Zugriff verhindern
 if (!defined('WB_PATH')) die (header('Location: index.php'));
 
-/*
-    IMPORTANT!
-    
-    You will have to install Highslide or NyroModal by yourself! They are NOT
-    included with Foldergallery!
-    
-    If you don't put them into your modules-Subfolder, you will also have to
-    modify the paths in the include-Files.
-    
-    templates/include_highslide.htt - for Highslide
-    templates/include_nyromodal.htt - for NyroModal
-    
-    To include other presentation JavaScript, create a include_XX.htt which
-    contains all that has to be done for inclusion. Then, add a case-statement
-    below to include this file and set the $gallary variable to the case you
-    wish to be used.
-*/
-
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 	// no module language file exists for the language set by the user, include default module language file DE.php
@@ -213,7 +195,7 @@ if(count($bilder) != 0) {
 	$pathToThumb = $path.$folder.$thumbdir.'/';
 	
 	$urlToFolder = $url.$folder;		
-	$urlToThumb = $url.$folder.$thumbdir.'/';
+	$urlToThumb = $url.$folder.$thumbdir1.'/';
 	
 }
 
