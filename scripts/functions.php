@@ -175,4 +175,12 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 		}
 	}
 }
+
+function FG_cleanCat($cat) {
+    if(is_string($cat)) {
+        return htmlspecialchars($cat);
+    } else {
+        return '';
+    }
+}
 ?>

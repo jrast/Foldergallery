@@ -51,9 +51,9 @@ $error = false;
 $title = PAGE_TITLE;
 
 // Wo sind wir?
-$aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat'])) ?
-				$_GET['cat'] : '';
-$aktuelleKat = htmlspecialchars($aktuelleKat);
+if(isset($GET['cat'])) {
+    $aktuelleKat = FG_cleanCat($GET['cat']);
+}
 
 
 //Die id der aktuellen Kategorie herausfinden:
