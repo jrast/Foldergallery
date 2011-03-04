@@ -17,6 +17,7 @@
         }
     }
 
+
     var filesadded="" //list of files already added
 
     function checkloadjscssfile(filename, filetype){

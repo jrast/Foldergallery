@@ -1,6 +1,6 @@
 <script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery/scripts/shutter/shutter.css", "css")</script>
 <script type="text/javascript">
-	// Hier sind Einstellungen für die Bildanzeige möglich!
+	// Hier sind Einstellungen fï¿½r die Bildanzeige mï¿½glich!
 	shutterSettings = {
 		imgDir : "{WB_URL}/modules/foldergallery/scripts/shutter/images/",
 		imageCount : 0,

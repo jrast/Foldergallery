@@ -16,6 +16,7 @@ require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
 
 //get the CSS
+// Very dirty version of including a file into the header!
 echo '<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
 
