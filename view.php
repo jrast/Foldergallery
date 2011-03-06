@@ -50,33 +50,26 @@ $bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
 $error = false;
 $title = PAGE_TITLE;
 
-// Wo sind wir?
-if(isset($GET['cat'])) {
-    $aktuelleKat = FG_cleanCat($GET['cat']);
-}
-
-
-//Die id der aktuellen Kategorie herausfinden:
-$aktuelleKat_id = 0;
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND is_empty=0 AND active=1 ORDER BY position DESC';
-$query = $database->query($sql);
-while($ergebnis = $query->fetchRow()){
-	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
-	if ($ergebnis['parent'] == '-1') {$p = '';}
-	if ($p == $aktuelleKat) {
-		$aktuelleKat_id = $ergebnis['id'];
-		break;	
-	}
-}
-
-
-//Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
-if(!$aktuelleKat){
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
+// Ist die angegebene Kategorie gültig? (erlaubter String)
+if(isset($_GET['cat'])) {
+    $aktuelleKat = FG_cleanCat($_GET['cat']);
 } else {
-	$where = 'WHERE section_id='.$section_id.' AND parent="'.$aktuelleKat.'" AND is_empty=0 AND active=1'; 
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories '.$where.' ORDER BY position DESC';
+    $aktuelleKat = '';
 }
+
+// Die Kategorie ID wird erst für die Bilder gebraucht!
+// Jedoch lässt sich so einfach feststellen ob eine Kategorie vorhanden ist
+try {
+    $aktuelleKat_id = FG_getCatId($section_id, $aktuelleKat);
+} catch (Exception $e) {
+    $aktuelleKat = '';
+    $aktuelleKat_id = FG_getCatId($section_id, $aktuelleKat);
+}
+
+//SQL für die Kategorien
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE '
+        .'section_id='.$section_id.' AND parent="'.$aktuelleKat.'" AND is_empty=0 AND active=1'
+        .' ORDER BY position DESC';
 
 // OK, Angaben aus DB holen
 $query = $database->query($sql);
