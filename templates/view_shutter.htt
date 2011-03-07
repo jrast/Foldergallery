@@ -37,11 +37,21 @@
 
 <ul class="photostyle">
 <!-- BEGIN images -->
+<!-- BEGIN invisiblePre -->
+    <li style="display:none;" >
+        <a href="{ORIGINAL}" title="{CAPTION}" class="shutterset" ></a>
+    </li>
+<!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
 		<a href="{ORIGINAL}" title="{CAPTION}" class="shutterset"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
+<!-- BEGIN invisiblePost -->
+    <li style="display:none;">
+        <a href="{ORIGINAL}" title="{CAPTION}" class="shutterset" ></a>
+    </li>
+<!-- END invisiblePost -->
 <!-- END images -->
 </ul>
 

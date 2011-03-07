@@ -71,11 +71,21 @@
 
 <ul class="photostyle">
 <!-- BEGIN images -->
+<!-- BEGIN invisiblePre -->
+	<li style="display:none;">
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="cslide"></a>
+	</li>
+<!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
 		<a href="{ORIGINAL}" title="{CAPTION}" rel="cslide"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
+<!-- BEGIN invisiblePost -->
+	<li style="display:none;">
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="cslide"></a>
+	</li>
+<!-- END invisiblePost -->
 <!-- END images -->
 </ul>
 

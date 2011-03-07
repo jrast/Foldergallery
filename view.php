@@ -239,6 +239,8 @@ $t->set_block('view', 'categories', 'CATEGORIES');
 $t->set_block('categories', 'show_categories', 'SHOW_CATEGORIES');
 $t->set_block('view', 'images', 'IMAGES');
 $t->set_block('images', 'thumbnails', 'THUMBNAILS');
+$t->set_block('images', 'invisiblePre', 'INVISIBLEPRE'); // Für weitere Bilder
+$t->set_block('images', 'invisiblePost', 'INVISIBLEPOST');
 $t->set_block('view', 'hr', 'HR');
 $t->set_block('view', 'error', 'ERROR');  // Dieser Fehler wird nicht ausgegeben, BUG
 $t->set_block('view', 'pagenav', 'PAGE_NAV');
@@ -319,18 +321,13 @@ if ($bilder) {
         );
         $t->parse('PAGE_NAV', 'pagenav');
     }
-    else
+    else {
         $t->clear_var('pagenav');
+    }
 
+    
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
-
-    for ($i = $offset; $i < ( $offset + $settings['pics_pp'] ); $i++) {
-
-
-        if ($i >= count($bilder)) {
-            break;
-        }
-
+    for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
         $thumb = $pathToThumb . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
@@ -358,14 +355,25 @@ if ($bilder) {
             'THUMB' => $tumburl . '?t=' . time(),
             'CAPTION' => $bilder[$i]['caption']
         ));
-        $t->parse('THUMBNAILS', 'thumbnails', true);
+
+        // Bild sichtbar oder unsichtbar?
+        if( $i < $offset) {
+            $t->parse('INVISIBLEPRE', 'invisiblePre', true);
+        } elseif ($i > ($offset + $settings['pics_pp'] - 1)) {
+            $t->parse('INVISIBLEPOST', 'invisiblePost', true);
+        } else {
+            $t->parse('THUMBNAILS', 'thumbnails', true);
+        }
     }
     $t->parse('IMAGES', 'images', true);
+
 } else {
     $t->clear_var('thumbnails');
     $t->clear_var('images');
 }
 
+
+// Kategorien
 if ($bilder && $unterKats) {
     $t->parse('HR', 'hr', true);
 } else {

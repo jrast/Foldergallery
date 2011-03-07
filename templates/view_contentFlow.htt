@@ -1,3 +1,7 @@
+<!-- BEGIN CommentDoc -->
+<!-- Template für contentFlow. Bei Content Flow macht es absolut keinen Sinn   -->
+<!-- mehrere Seiten anzulegen, dahher werden auch immer alle Bilder angezeigt! -->
+<!-- END CommentDoc -->
 <link href="{WB_URL}/modules/foldergallery/scripts/ContentFlow/contentflow.css" rel="stylesheet" type="text/css" media="screen" />
 
 <script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/ContentFlow/contentflow.js" load="lightbox white"></script>
@@ -39,12 +43,24 @@
 	<div class="loadIndicator"><div class="indicator"></div></div>
 		<div class="flow">
 <!-- BEGIN images -->
+<!-- BEGIN invisiblePre -->
+			<div class="item" >
+				<img class="content" src="{ORIGINAL}"/>
+				<div class="caption">{CAPTION}</div>
+			</div>
+<!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 			<div class="item">
 				<img class="content" src="{ORIGINAL}"/>
 				<div class="caption">{CAPTION}</div>
 			</div>
 <!-- END thumbnails -->
+<!-- BEGIN invisiblePost -->
+			<div class="item">
+				<img class="content" src="{ORIGINAL}"/>
+				<div class="caption">{CAPTION}</div>
+			</div>
+<!-- END invisiblePost -->
 <!-- END images -->
 		</div>
 		<div class="globalCaption"></div>
