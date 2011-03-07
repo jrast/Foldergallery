@@ -358,9 +358,9 @@ if($bilder && $unterKats){
 	$t->clear_var('hr');
 }
 
-// get current cat path
-if ( isset( $_GET['cat'] ) ) {
-    $path  = explode( '/', $_GET['cat'] );
+
+if ($aktuelleKat != '') {
+    $path  = explode( '/', $aktuelleKat );
     $bread = '<ul class="fg_pages_nav">'
            . '<li><a href="'
            . $link
