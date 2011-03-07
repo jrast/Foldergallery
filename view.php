@@ -82,10 +82,20 @@ while($ergebnis = $query->fetchRow()){
 if(count($ergebnisse) == 0) {
 	$error = true;
 } else {
-	// Dann k�nnen wir nun die Angaben f�r die Kategorien erstellen
-	$catpicstring = 'RAND()';
-	if ($catpic == 1)  $catpicstring = 'position';
-	if ($catpic == 2)  $catpicstring = 'position DESC';
+    // Vorschaubild auswählen:
+    switch ($catpic) {
+        case 0:
+            $catpicstring = 'RAND()';
+            break;
+        case 1:
+            $catpicstring = 'position ASC';
+            break;
+        case 2:
+            $catpicstring = 'position DESC';
+            break;
+        default :
+            $catpicstring = 'RAND()';
+    }
 	
 	for($i = 0; $i <= count($ergebnisse)-1; $i++){
 		$cat = $ergebnisse[$i]['parent'].'/'.$ergebnisse[$i]['categorie'];
@@ -102,7 +112,7 @@ if(count($ergebnisse) == 0) {
 			// Vorschaubild suchen
 			$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id = '.$parent_id.' ORDER BY '.$catpicstring.' LIMIT 1;';						
 			$query = $database->query($sql);			
-			if ($query->numRows() < 1) {					
+			if ($query->numRows() == 0) {
 				$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id IN ('.$parent_id.$ergebnisse[$i]['childs'].') ORDER BY '.$catpicstring.' LIMIT 1;';						
 				$query = $database->query($sql);
 			}
