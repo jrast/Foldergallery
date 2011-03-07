@@ -273,19 +273,20 @@ if($unterKats){
 
 // Bilder anzeigen
 if($bilder){
+    $anzahlBilder = count($bilder);
+    if($anzahlBilder > $settings['pics_pp']) {
+        $pages = ceil($anzahlBilder/$settings['pics_pp']);
+    }
 
-	/*$folder = $root_dir.$result['parent'].'/'.$result['categorie'];
-	$pathToFolder = $path.$folder;	
-	$pathToThumb = $pathToFolder.$thumbdir.'/thumb.';
-*/
-  //figure out how many pages are needed to display all the thumbs
-  if ( count( $bilder ) > $settings['pics_pp'] ) {
-    $pages = ceil( count( $bilder ) / $settings['pics_pp'] );
-  }
-  
-  $current_page = ( isset( $_GET['p'] ) && is_numeric( $_GET['p'] ) )
-                ? $_GET['p']
-                : 1;
+    if(isset($_GET['p']) && is_numeric($_GET['p'])) {
+        if($_GET['p'] <= $pages) {
+            $current_page = $_GET['p'];
+        } else {
+            $current_page = 1;
+        }
+    } else {
+        $current_page = 1;
+    }
 
 	$t->set_var('CAT_TITLE', $titel);
 	$t->set_var('CAT_DESCRIPTION', $description);
