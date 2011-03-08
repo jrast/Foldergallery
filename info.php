@@ -121,6 +121,12 @@
   + Bilder können nun nach Dateiname aufsteigend/absteigend sortiert werden
   + Bilder sortieren überarbeitet (template erstellt)
 
+
+  V1.20 (Juerg Rast)
+  + Bugs behoben beim Aufrufen von nichtvorhandenen Seiten/Kategorien
+  + Falls es mehrere Seiten für eine Kategorie gibt werden in der Lightbox jetzt alle Bilder angezeigt.
+  + Dateien aufgeräumt
+
  -------------------------------------------------------------------------------
 **/
 
@@ -128,7 +134,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.19';
+$module_version 	= '1.20';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';

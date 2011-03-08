@@ -28,13 +28,8 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 	 
 		$listingCounter = 1;
 		$output = "";
-		foreach ($updateRecordsArray as $recordIDValue) {
-			
-			//$database->query("UPDATE `".TABLE_PREFIX."mod_members` SET `position` = ".$listingCounter." WHERE `member_id` = ".$recordIDValue." AND `group_id` = ".$group_id." ");
+		foreach ($updateRecordsArray as $recordIDValue) {			
 			$database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position = ".$listingCounter." WHERE `id` = ".$recordIDValue);
-			//$output .= "p".$recordIDValue. ' p'.$listingCounter. ' g'."\n";
-
-
 			$listingCounter ++;
 		}
 	 

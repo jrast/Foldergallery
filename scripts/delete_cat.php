@@ -46,7 +46,6 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 		// Dateien löschen
 		$settings = getSettings($section_id);
 		$delete_path = $path.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
-		//deleteFolder($delete_path);
 		// DB Einträge löschen
 		rek_db_delete($cat_id);
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);

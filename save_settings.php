@@ -100,11 +100,6 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 	$newSettings['lightbox'] = '';
 }
 
-//Debuganzeige die ab 1.1 auskommentiert wird
-//echo "<textarea cols=\"100\" rows=\"20\" style=\"width: 100%;\">";
-//var_export( $newSettings );
-//echo "</textarea>";
-//ENDE Debug
 echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
 //die('hier3');
@@ -136,10 +131,7 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
 	deleteFolder($pathToFolder);
 	
-}	
-
-///Chio verändert: Orig: // Ok, Ordner hat gewechselt, also alte Thumbs löschen
-//Wieso thumbs löschen, wenn sich root-dir geändert hat? Die Thumbs sind bei den Bildern - egal wo.
+}
 	
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
 	

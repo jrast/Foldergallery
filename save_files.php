@@ -99,7 +99,6 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 		for($i = 0; $i < $anzahlUpdates; $i++) {
 			$updateSQLNew = $updateSQL." caption='".$updateArray[$i]['caption']."' WHERE id=".$updateArray[$i]['id'].";";
 			$database->query($updateSQLNew);
-			//echo $updateSQLNew."<br />";
 		}
 	}
 	

@@ -227,13 +227,6 @@ function FG_getCatId($sectionID, $kategorie) {
     if(!$ergebnis) {
         throw new Exception('Kategorie nicht vorhanden!', 001);
     }
-//    if(!$ergebnis) {
-//        $sql = "SELECT id FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE ".
-//                "section_id = ".$sectionID." AND is_empty = 0 AND active = 1 ".
-//                "AND parent = '-1'";
-//        $query = $database->query($sql);
-//        $ergebnis = $query->fetchRow();
-//    }
     $katID = $ergebnis['id'];
     return $katID;
 }
