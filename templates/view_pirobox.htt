@@ -41,11 +41,21 @@ $(document).ready(function() {
 
 <ul class="photostyle">
 <!-- BEGIN images -->
+<!-- BEGIN invisiblePre -->
+	<li style="display:none;">
+		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox"></a>
+	</li>
+<!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
 		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
+<!-- BEGIN invisiblePost -->
+	<li style="display:none;">
+		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox"></a>
+	</li>
+<!-- END invisiblePost -->
 <!-- END images -->
 </ul>
 
