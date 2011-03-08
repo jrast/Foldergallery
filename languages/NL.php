@@ -78,6 +78,12 @@ $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchroniseer bestanden met database...
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Veranderingen zijn opgeslagen...';
 $MOD_FOLDERGALLERY['BACK']					= 'Back';
 $MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY['REORDER_INFO_SUCESS']   = 'Saved new order sucessfully!';
+$MOD_FOLDERGALLERY['REORDER_IMAGES']                    = 'Sort Images';
+$MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Sort images by filename';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'filename ascending';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'filename descending';
+$MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Free sort (Drag & Drop)';
 
 
 // Tooltips

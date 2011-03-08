@@ -33,5 +33,5 @@ This is a phplib-template for modify_cat_sort.php
 
 
 <div id="dragableResult" style="clear:left;">
-	<p>Reordered result will be displayed here.&nbsp; </p>
+	<p>{FEEDBACK_MAN_SORT}</p>
 </div>

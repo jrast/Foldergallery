@@ -77,8 +77,14 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= '&Auml;ndrar <strong>tumnaglarnas storle
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synkronisera databas med filsystem...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Inst&auml;llningarna sparas...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sortera bilder';
-$MOD_FOLDERGALLERY['BACK']					= 'Back';
-$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY['BACK']				= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']               = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY['REORDER_INFO_SUCESS']               = 'Saved new order sucessfully!';
+$MOD_FOLDERGALLERY['REORDER_IMAGES']                    = 'Sort Images';
+$MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Sort images by filename';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'filename ascending';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'filename descending';
+$MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Free sort (Drag & Drop)';
 
 
 // Tooltips

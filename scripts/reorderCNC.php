@@ -2,6 +2,15 @@
 require('../../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 
+// check if module language file exists for the language set by the user (e.g. DE, EN)
+if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
+    // no module language file exists for the language set by the user, include default module language file DE.php
+    require_once(WB_PATH . '/modules/foldergallery/languages/DE.php');
+} else {
+    // a module language file exists for the language defined by the user, load it
+    require_once(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
+}
+
 // First we prevent direct access and check for variables
 if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 	// now we redirect to index, if you are in subfolder use ../index.php
@@ -33,7 +42,8 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
                         $listingCounter ++;
 		}
 	 
-		echo '<img src="'.WB_URL.'/modules/jsadmin/images/success.gif" style="vertical-align:middle;"/> <span style="font-size: 80%">Sucessfully reorderd</span>';
+		echo '<img src="'.WB_URL.'/modules/jsadmin/images/success.gif" style="vertical-align:middle;"/> <span style="font-size: 80%">'
+                    .$MOD_FOLDERGALLERY['REORDER_INFO_SUCESS'].'</span>';
 
 	}
 } // this ends else statement from the top of the page

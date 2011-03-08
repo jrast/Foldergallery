@@ -80,12 +80,13 @@ $t->set_block('modify_cat_sort', 'image_loop', 'IMAGE_LOOP');
 
 // Replace Language Strings
 $t->set_var(array(
-	'REORDER_IMAGES_STRING' 	=> 'Bilder sortieren',
-	'CANCEL_STRING'		=> 'Abbrechen',
-	'QUICK_SORT_STRING'		=> 'Bilder nach Dateiname sortiern',
-	'QUICK_ASC_STRING'		=> 'Dateiname aufsteigend',
-	'QUICK_DESC_STRING'		=> 'Dateiname absteigend',
-	'MANUAL_SORT'			=> 'Frei sortieren'	
+	'REORDER_IMAGES_STRING' 	=> $MOD_FOLDERGALLERY['REORDER_IMAGES'],
+	'CANCEL_STRING'                 => $TEXT['CANCEL'],
+	'QUICK_SORT_STRING'		=> $MOD_FOLDERGALLERY['SORT_BY_NAME'],
+	'QUICK_ASC_STRING'		=> $MOD_FOLDERGALLERY['SORT_BY_NAME_ASC'],
+	'QUICK_DESC_STRING'		=> $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC'],
+	'MANUAL_SORT'			=> $MOD_FOLDERGALLERY['SORT_FREEHAND'],
+        'FEEDBACK_MAN_SORT'             => $MOD_FOLDERGALLERY['REORDER_INFO_STRING'] 
 ));
 
 // Links Parsen

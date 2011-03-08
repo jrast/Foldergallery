@@ -79,8 +79,14 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail Grö�
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Einstellungen werden gespeichert...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Bilder sortieren';
-$MOD_FOLDERGALLERY['BACK']					= 'Zur&uuml;ck';
-$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Der Erfolg der Neuanordnung wird hier angezeigt.';
+$MOD_FOLDERGALLERY['BACK']				= 'Zur&uuml;ck';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']               = 'Status: Ordnen sie die Elemente nun neu an.';
+$MOD_FOLDERGALLERY['REORDER_INFO_SUCESS']               = 'Status: Die neue Anordnung wurde erfolgreich gespeichert!';
+$MOD_FOLDERGALLERY['REORDER_IMAGES']                    = 'Bilder sortieren';
+$MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Bilder nach Dateiname sortiern';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'Dateiname aufsteigend';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'Dateiname absteigend';
+$MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Frei sortieren (Drag & Drop)';
 
 
 // Tooltips

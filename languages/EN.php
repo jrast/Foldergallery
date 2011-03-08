@@ -77,8 +77,14 @@ $MOD_FOLDERGALLERY['CHANGING_INFO']			= 'Changing <strong>thumb size</strong> or
 $MOD_FOLDERGALLERY['SYNC_DATABASE']			= 'Synchronize file system with database...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']			= 'Settings are stored...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']			= 'Sort images';
-$MOD_FOLDERGALLERY['BACK']					= 'Back';
-$MOD_FOLDERGALLERY['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY['BACK']				= 'Back';
+$MOD_FOLDERGALLERY['REORDER_INFO_STRING']               = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY['REORDER_INFO_SUCESS']               = 'Saved new order sucessfully!';
+$MOD_FOLDERGALLERY['REORDER_IMAGES']                    = 'Sort Images';
+$MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Sort images by filename';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'filename ascending';
+$MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'filename descending';
+$MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Free sort (Drag & Drop)';
 
 
 
