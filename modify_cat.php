@@ -153,7 +153,17 @@ $t->set_var(array(
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 
-// Files parsen
+
+// parse Images
+// Static values
+$t->set_var(array(
+    'IMAGE_DELETE_ALT'      => $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'],
+    'THUMB_EDIT_ALT'        => $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'],
+    'EDIT_THUMB_SOURCE'     => THEME_URL.'/images/resize_16.png',
+    'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png'
+));
+
+// Dynamic values
 $counter = 0;
 foreach($bilder as $bild) {
 	$t->set_var(array(
@@ -161,10 +171,6 @@ foreach($bilder as $bild) {
 		'IMAGE_VALUE'		=> $bild['thumb_link'].'?t='.time(),
 		'IMAGE_NAME_VALUE'	=> $bild['file_name'],
 		'CAPTION_VALUE'		=> $bild['caption'],
-		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
-                'THUMB_EDIT_ALT'        => $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'],
-		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
-                'IMAGE_DELETE_ALT'      => $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'],
 		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
 		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'		=> $counter
