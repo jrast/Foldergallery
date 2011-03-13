@@ -1,5 +1,5 @@
 ##Changelog
-V1.20 (Juerg Rast, 09.03.2011)
+###V1.20 (Juerg Rast, 09.03.2011)
 + Bugs behoben beim Aufrufen von nichtvorhandenen Seiten/Kategorien
 + Falls es mehrere Seiten für eine Kategorie gibt werden in der Lightbox jetzt alle Bilder angezeigt.
 + Dateien aufgeräumt
