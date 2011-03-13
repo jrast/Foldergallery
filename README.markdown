@@ -1,3 +1,19 @@
+#Foldergallery
+## Description
+Foldergallery is a module for Websitebaker CMS. It's a imagegallery to handle many images
+in different categorie. Categories are based on the folderstructure on the server, so they are created
+automaticly if you sync the filesystem with the databese in the foldergallery backend.
+
+##Licence
+This module is free software. You can redistribute it and/or modify it under
+the terms of the GNU General Public License - version 2 or later, as published
+by the Free Software Foundation: http://www.gnu.org/licenses/gpl.html.
+
+This module is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
 ##Changelog
 ###V1.20 (Juerg Rast, 09.03.2011)
 + Bugs behoben beim Aufrufen von nichtvorhandenen Seiten/Kategorien
