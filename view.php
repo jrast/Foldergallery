@@ -75,7 +75,6 @@ $sql = 'SELECT * FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE '
 // OK, Angaben aus DB holen
 $query = $database->query($sql);
 while ($ergebnis = $query->fetchRow()) {
-    // Es gibt also folgende Kategorien mit Inhalt in dieser Kategorie
     $ergebnisse[] = $ergebnis;
 }
 

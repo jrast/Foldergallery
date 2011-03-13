@@ -18,8 +18,8 @@ echo "</script>";
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
-// no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery/languages/DE.php');
+// no module language file exists for the language set by the user, include default module language file EN.php
+require_once(WB_PATH .'/modules/foldergallery/languages/EN.php');
 } else {
 // a module language file exists for the language defined by the user, load it
 require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
@@ -70,8 +70,6 @@ $pathToThumb = $path.$folder.$thumbdir.'/';
 $urlToFolder = $url.$folder.'/';		
 $urlToThumb = $url.$folder.$thumbdir.'/';
 
-//echo '<h3>'.$parent_id.'</h3>'; 
-
 $bilder= array();
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
@@ -117,33 +115,36 @@ $t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->set_file('modify_cat', 'modify_cat.htt');
 // clear the comment-block, if present
 $t->set_block('modify_cat', 'CommentDoc'); $t->clear_var('CommentDoc');
+// set other blocks
 $t->set_block('modify_cat', 'file_loop', 'FILE_LOOP');
-
-$MOD_FOLDERGALLERY;
 
 // Textvariablen parsen
 $t->set_var(array(
-	'MODIFY_CAT_TITLE'		=> $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE'],
-	'MODIFY_CAT_STRING'		=> $MOD_FOLDERGALLERY['MODIFY_CAT'],
+	'MODIFY_CAT_TITLE'	=> $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE'],
+	'MODIFY_CAT_STRING'	=> $MOD_FOLDERGALLERY['MODIFY_CAT'],
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
 	'FOLDER_IN_FS_VALUE'	=> htmlentities($cat_path),
 	'CAT_ACTIVE_CHECKED'	=> $cat_active_checked,
-	'CAT_NAME_STRING'		=> $MOD_FOLDERGALLERY['CAT_NAME'],
-	'CAT_NAME_VALUE'		=> $categorie['cat_name'],
+	'CAT_NAME_STRING'	=> $MOD_FOLDERGALLERY['CAT_NAME'],
+	'CAT_NAME_VALUE'	=> $categorie['cat_name'],
 	'CAT_DESCRIPTION_STRING'=> $MOD_FOLDERGALLERY['CAT_DESCRIPTION'],
 	'CAT_DESCRIPTION_VALUE'	=> $categorie['description'],
-	'MODIFY_IMG_STRING'		=> $MOD_FOLDERGALLERY['MODIFY_IMG'],
-	'IMAGE_STRING'			=> $MOD_FOLDERGALLERY['IMAGE'],
-	'IMAGE_NAME_STRING'		=> $MOD_FOLDERGALLERY['IMAGE_NAME'],
+	'MODIFY_IMG_STRING'	=> $MOD_FOLDERGALLERY['MODIFY_IMG'],
+	'IMAGE_STRING'		=> $MOD_FOLDERGALLERY['IMAGE'],
+	'IMAGE_NAME_STRING'	=> $MOD_FOLDERGALLERY['IMAGE_NAME'],
 	'IMAGE_CAPTION_STRING'	=> $MOD_FOLDERGALLERY['IMG_CAPTION'],
 	'IMAGE_ACTION_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
-	'SAVE_STRING'			=> $TEXT['SAVE'],
-	'CANCEL_STRING'			=> $TEXT['CANCEL'],
-	'SORT_IMAGE_STRING'		=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
+	'SAVE_STRING'		=> $TEXT['SAVE'],
+	'CANCEL_STRING'		=> $TEXT['CANCEL'],
+	'SORT_IMAGE_STRING'	=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
 	// Section und Page ID
-	'SECTION_ID_VALUE'		=> $section_id,
-	'PAGE_ID_VALUE'			=> $page_id,
-	'CAT_ID_VALUE'			=> $cat_id
+	'SECTION_ID_VALUE'	=> $section_id,
+	'PAGE_ID_VALUE'		=> $page_id,
+	'CAT_ID_VALUE'		=> $cat_id,
+        'IMAGE_DELETE_ALT'      => $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'],
+        'THUMB_EDIT_ALT'        => $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'],
+        'EDIT_THUMB_SOURCE'     => THEME_URL.'/images/resize_16.png',
+        'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png'
 ));
 
 // Links parsen
@@ -155,15 +156,6 @@ $t->set_var(array(
 
 
 // parse Images
-// Static values
-$t->set_var(array(
-    'IMAGE_DELETE_ALT'      => $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'],
-    'THUMB_EDIT_ALT'        => $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'],
-    'EDIT_THUMB_SOURCE'     => THEME_URL.'/images/resize_16.png',
-    'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png'
-));
-
-// Dynamic values
 $counter = 0;
 foreach($bilder as $bild) {
 	$t->set_var(array(
@@ -179,12 +171,6 @@ foreach($bilder as $bild) {
 	$counter++;
 }
 
-
 $t->pparse('output', 'modify_cat');
-
 $admin->print_footer();
-
-
-
-
 ?>
