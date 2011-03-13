@@ -85,6 +85,8 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Sort images by filena
 $MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'filename ascending';
 $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'filename descending';
 $MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Free sort (Drag & Drop)';
+$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Edit Thumbnail';
+$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Delete Image';
 
 
 

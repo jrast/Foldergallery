@@ -63,10 +63,10 @@ This is a phplib-template for modify_cat.php
 				<textarea cols="40" rows="3"  name="caption[{COUNTER}]" >{CAPTION_VALUE}</textarea>
 			</td>
 			<td align="center" width="20px">
-				<a href='{THUMB_EDIT_LINK}'><img src='{EDIT_THUMB_SOURCE}' border="0" alt="Resize Thumb"></a>
+				<a href='{THUMB_EDIT_LINK}' title="{THUMB_EDIT_ALT}"><img src='{EDIT_THUMB_SOURCE}' border="0" alt="{THUMB_EDIT_ALT}"></a>
 			</td>
 			<td align="center" width="20px">
-				<a href='{IMAGE_DELETE_LINK}'><img src='{DELETE_IMG_SOURCE}' border="0" alt="X"></a>
+				<a href='{IMAGE_DELETE_LINK}' title="{IMAGE_DELETE_ALT}"><img src='{DELETE_IMG_SOURCE}' border="0" alt="{IMAGE_DELETE_ALT}"></a>
 			</td>
 		</tr>
 		<!-- END file_loop -->

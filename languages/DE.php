@@ -87,6 +87,8 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME']                      = 'Bilder nach Dateiname
 $MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']                  = 'Dateiname aufsteigend';
 $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'Dateiname absteigend';
 $MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Frei sortieren (Drag & Drop)';
+$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Vorschaubild bearbeiten';
+$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Bild löschen';
 
 
 // Tooltips
