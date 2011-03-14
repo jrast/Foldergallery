@@ -1,5 +1,4 @@
 <?PHP
-
 // Direkter Zugriff verhindern
 if (!defined('WB_PATH'))
     die(header('Location: index.php'));
