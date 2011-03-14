@@ -14,6 +14,8 @@ while ($row = $query->fetchRow()) {
     $settings[] = $row;
 }
 
+print_r($settings);
+
 // Delete the old Settings Table
 $database->query("DROP TABLE IF EXISTS `" . TABLE_PREFIX . "mod_foldergallery_settings`;");
 
@@ -30,7 +32,8 @@ foreach($settings as $value) {
     foreach($value as $key => $val) {
         $section_id = $value['section_id'];
         $sql = "INSERT INTO `".TABLE_PREFIX."mod_foldergallery_settings` (`id`, `section_id`, `s_name`, `s_value`) VALUES "
-            ."(null, \'".$section_id."\', \'".$key."\', \'".$val."\');";
+            ."(null, ".$section_id.", \'".$key."\', \'".$val."\');";
+        echo $sql.'<br>';
         $database->query($sql);
     }
 }
