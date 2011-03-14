@@ -102,21 +102,21 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 
 echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
-//die('hier3');
-$settingsTable = TABLE_PREFIX.'mod_foldergallery_settings';
+
+//SQL wich is used for all updates
+$rawUpdtSQL = "UPDATE `".TABLE_PREFIX."mod_foldergallery_settings` SET `s_value` = '%s' WHERE "
+    ."`section_id` = '".$section_id."' AND `s_name` = '%s';";
 // SQL eintragen
-$database->query("
-	UPDATE `".$settingsTable."` 
-	SET `root_dir` = '".$newSettings['root_dir']."', 
-	`extensions` = '".$newSettings['extensions']."', 
-	`invisible` = '".$newSettings['invisible']."',
-	`pics_pp` = '".$newSettings['pics_pp']."',
-	`thumb_size` = '".$newSettings['thumb_size']."',
-	`ratio` = '".$newSettings['ratio']."',
-	`catpic` = '".$newSettings['catpic']."',
-	`lightbox` = '".$newSettings['lightbox']."'
-	WHERE `section_id` = '".$section_id."'"
-);
+$database->query(sprintf($rawUpdtSQL, $newSettings['root_dir'], 'root_dir'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['extensions'], 'extensions'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['invisible'], 'invisible'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['pics_pp'], 'pics_pp'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['thumb_size'], 'thumb_size'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['ratio'], 'ratio'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['catpic'], 'catpic'));
+$database->query(sprintf($rawUpdtSQL, $newSettings['lightbox'], 'lightbox'));
+
+
 
 if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ratio'] != $newSettings['ratio']) && !isset($_POST['noNew'])){
 	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
