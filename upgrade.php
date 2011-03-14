@@ -28,6 +28,9 @@ $database->query($sql);
 
 foreach($settings as $value) {
     foreach($value as $key => $val) {
+        if(is_numeric($key)) {
+            continue;
+        }
         $section_id = $value['section_id'];
         $sql = "INSERT INTO `".TABLE_PREFIX."mod_foldergallery_settings` (`id`, `section_id`, `s_name`, `s_value`) VALUES "
             ."(null, '".$section_id."', '".$key."', '".$val."');";
