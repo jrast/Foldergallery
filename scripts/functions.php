@@ -1,16 +1,18 @@
 <?PHP
-
 // Direkter Zugriff verhindern
 if (!defined('WB_PATH'))
     die(header('Location: index.php'));
 
 function getSettings($section_id) {
     global $database;
-    $sql = 'SELECT * FROM ' . TABLE_PREFIX . 'mod_foldergallery_settings WHERE '
-            . 'section_id = ' . $section_id;
+    $sql = 'SELECT `s_name`, `s_value` FROM ' . TABLE_PREFIX . 'mod_foldergallery_settings WHERE '
+            . '`section_id` = ' . $section_id;
     $query = $database->query($sql);
-    $result = $query->fetchRow();
-    return $result;
+    while($row = $query->fetchRow()){
+        $settings[$row['s_name']] = $row['s_value'];
+    }
+    $settings['section_id'] = $section_id;
+    return $settings;
 }
 
 /**
