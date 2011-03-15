@@ -71,4 +71,13 @@ if ($oldFormat) {
  */
 
 
+/**
+ * alter categories Table to allow more than 255 characters as categoriedescription
+ */
+$sql = "ALTER TABLE `".TABLE_PREFIX."mod_foldergallery_categories` CHANGE `description` `description` TEXT NOT NULL DEFAULT '';";
+$database->query($sql);
+/**
+ * END alter categories Table
+ */
+
 ?>
