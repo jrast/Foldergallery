@@ -87,6 +87,10 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'filename descending';
 $MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Free sort (Drag & Drop)';
 $MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Edit Thumbnail';
 $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Delete Image';
+$MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Edit Categorie';
+$MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Expand/Colapse';
+$MOD_FOLDERGALLERY['MOVE_UP']                           = 'Move up';
+$MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Move down';
 
 
 // Tooltips

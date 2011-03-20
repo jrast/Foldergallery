@@ -45,7 +45,7 @@ $MOD_FOLDERGALLERY['CAT_DESCRIPTION']		= 'Kategoriebeschrieb:';
 $MOD_FOLDERGALLERY['MODIFY_IMG']			= 'Bilder bearbeiten:';
 $MOD_FOLDERGALLERY['IMAGE']					= 'Bild';
 $MOD_FOLDERGALLERY['IMAGE_NAME']			= 'Bildname';
-$MOD_FOLDERGALLERY['IMG_CAPTION']			= 'Bildbeschrieb';
+$MOD_FOLDERGALLERY['IMG_CAPTION']			= 'Bildbeschreibung';
 
 
 $MOD_FOLDERGALLERY['REDIRECT']  			= 'Sie m&uuml;ssen zuerst die Grundeinstellungen vornehmen.'
@@ -89,6 +89,10 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']                 = 'Dateiname absteigend'
 $MOD_FOLDERGALLERY['SORT_FREEHAND']                     = 'Frei sortieren (Drag & Drop)';
 $MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Vorschaubild bearbeiten';
 $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Bild löschen';
+$MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Kategorie bearbeiten';
+$MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Erweitern/Reduzieren';
+$MOD_FOLDERGALLERY['MOVE_UP']                           = 'Aufw&auml;rts verschieben';
+$MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Abw&auml;rts verschieben';
 
 
 // Tooltips

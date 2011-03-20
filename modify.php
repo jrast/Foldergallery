@@ -77,23 +77,24 @@ $t->clear_var('ListElement'); // Löschen, da dies über untenstehende Funktion 
 
 // Links im Template setzen
 $t->set_var(array(
-	'SETTINGS_ONCLICK' 		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
-	'SYNC_ONKLICK'			=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
-	'EDIT_PAGE'			=> $page_id,
-	'EDIT_SECTION'			=> $section_id,
-	'WB_URL'			=> WB_URL
+	'SETTINGS_ONCLICK'  => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SYNC_ONKLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'EDIT_PAGE'         => $page_id,
+	'EDIT_SECTION'      => $section_id,
+	'WB_URL'            => WB_URL
 ));
 
 // Text im Template setzten
 $t->set_var(array(
 	'TITEL_BACKEND_STRING' 	=> $MOD_FOLDERGALLERY['TITEL_BACKEND'],
-	'TITEL_MODIFY' 			=> $MOD_FOLDERGALLERY['TITEL_MODIFY'],
-	'SETTINGS_STRING' 		=> $MOD_FOLDERGALLERY['SETTINGS'],
+	'TITEL_MODIFY' 		=> $MOD_FOLDERGALLERY['TITEL_MODIFY'],
+	'SETTINGS_STRING' 	=> $MOD_FOLDERGALLERY['SETTINGS'],
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
-	'CAT_TITLE_STRING'		=> $MOD_FOLDERGALLERY['CAT_TITLE'],
-	'ACTIONS_STRING'		=> $MOD_FOLDERGALLERY['ACTION'],
-	'SYNC_STRING'			=> $MOD_FOLDERGALLERY['SYNC'],
-	'EDIT_CSS_STRING'		=> $MOD_FOLDERGALLERY['EDIT_CSS'],
+	'CAT_TITLE_STRING'	=> $MOD_FOLDERGALLERY['CAT_TITLE'],
+	'ACTIONS_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
+	'SYNC_STRING'		=> $MOD_FOLDERGALLERY['SYNC'],
+	'EDIT_CSS_STRING'	=> $MOD_FOLDERGALLERY['EDIT_CSS'],
+        'EXPAND_COLAPSE_STRING' => $MOD_FOLDERGALLERY['EXPAND_COLAPSE']
 ));
 
 // Template ausgeben
@@ -111,6 +112,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	global $database;
 	global $url;
 	global $page_id;
+        global $MOD_FOLDERGALLERY;
 	$list = "\n";
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
 	$query = $database->query($sql);
@@ -132,11 +134,11 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 		if($result['has_child']){
 			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
-					."<table width='720' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+					."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'>\n"
 					// Pluszeichen Darsellen
-					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="Erweitern/Reduzieren">'
+					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="'.$MOD_FOLDERGALLERY['EXPAND_COLAPSE'].'">'
 					.'<img src="'.THEME_URL.'/images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
 					.'</a>'
 					// Pluszeichen Ende
@@ -144,10 +146,10 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 
 					// Zeile Mit allen Angaben
-					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					."<td width='".(300-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
 					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
-					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
+					."<td align='left'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
 					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
@@ -155,13 +157,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -181,26 +183,26 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 			$list .= "</ul></li>\n ";
 		} else {
 			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
-					."<table width='720' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+					."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
 					// Zeile Mit allen Angaben
-					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					."<td width='".(300-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
 					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
-					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
+					."<td align='left'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
 					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -227,7 +229,6 @@ echo '<script type="text/javascript">
 		var the_parent_id = "0";			
 		var WB_URL = "'.WB_URL.'";
 	</script>
-<div style="display: block; width: 90%; height: 15px; padding: 5px;"><div id="dragableResult"> </div></div>
 	<ul>
 		'.display_categories(-1, $section_id).'
 	</ul>
@@ -236,6 +237,7 @@ echo '<script type="text/javascript">
 		'.display_categories(0, $section_id).'
 	</ul>
 </div>
+<div style="display: block; width: 90%; height: 15px; padding: 5px;"><div id="dragableResult"> </div></div><hr>
 ';
 
 
