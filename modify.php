@@ -79,6 +79,7 @@ $t->clear_var('ListElement'); // Löschen, da dies über untenstehende Funktion 
 $t->set_var(array(
 	'SETTINGS_ONCLICK'  => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'SYNC_ONKLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+        'HELP_ONCLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/help.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'EDIT_PAGE'         => $page_id,
 	'EDIT_SECTION'      => $section_id,
 	'WB_URL'            => WB_URL
@@ -94,7 +95,8 @@ $t->set_var(array(
 	'ACTIONS_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
 	'SYNC_STRING'		=> $MOD_FOLDERGALLERY['SYNC'],
 	'EDIT_CSS_STRING'	=> $MOD_FOLDERGALLERY['EDIT_CSS'],
-        'EXPAND_COLAPSE_STRING' => $MOD_FOLDERGALLERY['EXPAND_COLAPSE']
+        'EXPAND_COLAPSE_STRING' => $MOD_FOLDERGALLERY['EXPAND_COLAPSE'],
+        'HELP_STRING'           => $MOD_FOLDERGALLERY['HELP_INFORMATION']
 ));
 
 // Template ausgeben

@@ -91,6 +91,7 @@ $MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Edit Categorie';
 $MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Expand/Colapse';
 $MOD_FOLDERGALLERY['MOVE_UP']                           = 'Move up';
 $MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Move down';
+$MOD_FOLDERGALLERY['HELP_INFORMATION']                  = 'Help/Info';
 
 
 // Tooltips

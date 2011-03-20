@@ -63,3 +63,8 @@ li {
     padding: 5px;
 }
 
+.FG_error {
+    color: red;
+    font-weight: bold;
+}
+

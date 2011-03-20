@@ -23,7 +23,7 @@
 		</form>
         </td>
         <td width="33%">
-            <input type="button" value="Hilfe/Info" class="FG_button">
+            <input type="button" value="{HELP_STRING}" class="FG_button" onclick="{HELP_ONCLICK}">
         </td>
     </tr>
 </table>

@@ -93,6 +93,7 @@ $MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Kategorie bearbeiten'
 $MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Erweitern/Reduzieren';
 $MOD_FOLDERGALLERY['MOVE_UP']                           = 'Aufw&auml;rts verschieben';
 $MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Abw&auml;rts verschieben';
+$MOD_FOLDERGALLERY['HELP_INFORMATION']                  = 'Hilfe/Info';
 
 
 // Tooltips

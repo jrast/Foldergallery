@@ -1,0 +1,12 @@
+<!-- BEGIN CommentDoc -->
+<!-- This is the template for the Foldergallery help and info page -->
+<!-- END CommentDoc -->
+<h2>{TITLE}</h2>
+<h3>{VERSION}</h3>
+<!-- BEGINN VersionError -->
+<p class="FG_error">{VERSION_ERROR}</p>
+<!-- END VersionError -->
+<p>{VERSION_COMPARE}</p>
+<p>{VERSION_TEXT}</p>
+<h3>Homepage</h3>
+<p>{HOMEPAGE_TEXT}</p>
