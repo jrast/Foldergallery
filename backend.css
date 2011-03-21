@@ -28,6 +28,7 @@ table.list {
 .cat_table {
 	background-color: #ECF3F7;
 	width: 100%;
+        border: 0;
 }
 
 .cat_subelem {

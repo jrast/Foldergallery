@@ -60,11 +60,6 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 	echo $MOD_FOLDERGALLERY['REDIRECT'];
 } else {
 
-echo '
-<script type="text/javascript">
-var theme_url = "'.THEME_URL.'";
-</script>
-';
 
 // Template
 $t = new Template(dirname(__FILE__).'/templates', 'remove');
@@ -131,12 +126,12 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 		if ($counter > 1) {$arrup = true;}
 		if ($counter == $zagl) {$arrdown = false;}
 		
-		if ($parent_id != "-1") $cursor = ' cursor: move;';
+		if ($parent_id != "-1") $cursor = 'cursor: move;';
 		else $cursor = '';
 
 		if($result['has_child']){
-			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
-					."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px; ".$cursor."'>\n"
+					."<table cellpadding='0' cellspacing='0' class='cat_table'>\n"
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'>\n"
 					// Pluszeichen Darsellen
@@ -184,8 +179,8 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 			$list .= display_categories($result['id'], $section_id, $tiefe+1);
 			$list .= "</ul></li>\n ";
 		} else {
-			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
-					."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px; ".$cursor."'>\n"
+					."<table cellpadding='0' cellspacing='0' class='cat_table'>\n"
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
 					// Zeile Mit allen Angaben
@@ -229,7 +224,6 @@ $url = array(
 
 echo '<script type="text/javascript">
 		var the_parent_id = "0";			
-		var WB_URL = "'.WB_URL.'";
 	</script>
 	<ul>
 		'.display_categories(-1, $section_id).'
