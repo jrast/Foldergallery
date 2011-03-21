@@ -61,8 +61,9 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
         return -1;
 
     $tgone = time() - $thumbsstarttime;
-    if (time() - $thumbsstarttime > 50)
+    if (time() - $thumbsstarttime > 50) {
         die('<h3>timeout.. press F5 to reload</h3>');
+    }
 
     //if ($showmessage==1) {echo "<br/>creating thumb: ".$file;}
     // ENDE Chio
@@ -70,7 +71,6 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
     $jpg = '\.jpg$|\.jpeg$';
     $gif = '\.gif$';
     $png = '\.png$';
-    //$thumb_size = 140;
     $fontSize = 2;
     $bg = "D1F6FF";
 
@@ -88,7 +88,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 
     // Thumb erstellen
     if (!is_file($thumb)) {
-        //checken, ob megapixel �ber 5:
+        //checken, ob megapixel über 5:
         if (function_exists('getimagesize')) {
             list($width, $height, $type, $attr) = getimagesize($file);
             $fl = ceil(($width * $height) / 1000000);

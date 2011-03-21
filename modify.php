@@ -118,7 +118,6 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	
 	$arrup = false;
 	$arrdown = true;
-	if ($zagl > 1) {}
 	
 	$counter = 0;	
 	while($result = $query->fetchRow()){

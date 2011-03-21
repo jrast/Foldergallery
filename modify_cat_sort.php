@@ -30,8 +30,6 @@ require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
 
 $settings = getSettings($section_id);
-$thumb_size = $settings['thumb_size']; //Chio
-$root_dir = $settings['root_dir']; //Chio
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
@@ -58,7 +56,7 @@ if ( is_array( $categorie ) ) {
 $parent_id = $categorie['id'];
 if ($categorie['active'] == 1) {$cat_active_checked = 'checked="checked"';} else {$cat_active_checked = '';}
 
-$folder = $root_dir.$parent;
+$folder = $settings['root_dir'].$parent;
 $pathToFolder = $path.$folder.'/';	
 $pathToThumb = $path.$folder.$thumbdir.'/';
 $urlToFolder = $url.$folder.'/';		
@@ -91,8 +89,8 @@ $t->set_var(array(
 
 // Links Parsen
 $t->set_var(array(
-	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
-	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'CANCEL_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
+	'QUICK_ASC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
 	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
 ));
 
@@ -108,10 +106,10 @@ if($query->numRows()) {
 		$bildfilename = $result['file_name'];
 		$thumb = $pathToThumb.$bildfilename;
 		$t->set_var(array(
-			'RESULT_ID_VALUE'		=> $result['id'],
-			'THUMB_SIZE_VALUE'		=> $thumb_size,
-			'THUMB_URL'				=> $urlToThumb.$bildfilename,
-			'TITLE_VALUE'			=> $result['position'].': '.$bildfilename
+			'RESULT_ID_VALUE'   => $result['id'],
+			'THUMB_SIZE_VALUE'  => $settings['thumb_size'],
+			'THUMB_URL'         => $urlToThumb.$bildfilename,
+			'TITLE_VALUE'       => $result['position'].': '.$bildfilename
 		));
 		$t->parse('IMAGE_LOOP', 'image_loop', true);
 	}
