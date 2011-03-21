@@ -7,6 +7,16 @@
 <p class="FG_error">{VERSION_ERROR}</p>
 <!-- END VersionError -->
 <p>{VERSION_COMPARE}</p>
-<p>{VERSION_TEXT}</p>
+<p>
+    {YOUR_VERSION_TEXT} {NEWER_VERSION_TEXT} <br />
+    {VERSION_TEXT}
+</p>
 <h3>Homepage</h3>
 <p>{HOMEPAGE_TEXT}</p>
+<h3>{HELP_TITLE}</h3>
+<p>{HELP_TEXT}</p>
+<h3>{BUG_TITLE}</h3>
+<p>{BUG_TEXT}</p>
+<div style="width:150px;">
+    <input type="button" value="{BACK_STRING}" onclick="{BACK_ONCLICK}" class="FG_button" />
+</div>
