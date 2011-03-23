@@ -48,14 +48,14 @@ $link = WB_URL . PAGES_DIRECTORY . $page['link'] . PAGE_EXTENSION;
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
 $bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
-$error = false;
-$title = PAGE_TITLE;
+$title = PAGE_TITLE; // Page title of the actual page (WB Core)
 
 // Ist die angegebene Kategorie gültig? (erlaubter String)
 if (isset($_GET['cat'])) {
     $aktuelleKat = FG_cleanCat($_GET['cat']);
 } else {
     $aktuelleKat = '';
+    $FG_Error['CatNotValid'] = true;
 }
 
 // Die Kategorie ID wird erst für die Bilder gebraucht!
@@ -65,6 +65,7 @@ try {
 } catch (Exception $e) {
     $aktuelleKat = '';
     $aktuelleKat_id = FG_getCatId($section_id, $aktuelleKat);
+    $FG_Error['CatNotValid'] = true;
 }
 
 //SQL für die Kategorien
@@ -80,7 +81,7 @@ while ($ergebnis = $query->fetchRow()) {
 
 
 if (count($ergebnisse) == 0) {
-    $error = true;
+    $error['NoImages'] = true;
 } else {
     // Vorschaubild auswählen:
     switch ($catpic) {
@@ -210,17 +211,13 @@ if ($aktuelleKat) {
 // Template
 if (file_exists(dirname(__FILE__) . '/templates/view_' . $settings['lightbox'] . '.htt')) {
     $viewTemplate = 'view_' . $settings['lightbox'] . '.htt';
-// --- added by WebBird, 29.07.2010 ---
     $t = new Template(dirname(__FILE__) . '/templates', 'remove');
-// --- end added by WebBird, 29.07.2010 ---
 }
-// --- added by WebBird, 29.07.2010 ---
 elseif (file_exists(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'] . '/foldergallery_template.htt')) {
     $viewTemplate = 'foldergallery_template.htt';
     $t = new Template(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'], 'remove');
     echo "[[jQueryInclude?plugin=" . $settings['lightbox'] . "]]";
 }
-// --- end added by WebBird, 29.07.2010 ---
 else {
     $viewTemplate = 'view.htt';
 // --- added by WebBird, 29.07.2010 ---
@@ -229,7 +226,6 @@ else {
 }
 
 // --- commented by WebBird, 29.07.2010 ---
-//$t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->halt_on_error = 'no';
 $t->set_file('view', $viewTemplate);
 $t->set_block('view', 'CommentDoc');
@@ -429,9 +425,5 @@ ul.categories li a {
 }
 </style>';
 
-ob_start();
-$t->pparse('output', 'js');
-$t->set_file('view', $viewTemplate);
-$t->set_var('INCLUDE_PRESENTATION_JS', ob_get_clean());
 $t->pparse('output', 'view');
 ?>
