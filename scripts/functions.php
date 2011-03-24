@@ -198,7 +198,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 
 function FG_cleanCat($string) {
     if (is_string($string)) {
-        if (!preg_match('~^(/(([a-zA-Z0-9_-]|\.)/{0,1})*[^/])$~', $string)) {
+        if (!preg_match('~^(/([.a-zA-Z0-9_-]/{0,1})*[^/])$~', $string)) {
             return '';
         } else {
             return $string;
