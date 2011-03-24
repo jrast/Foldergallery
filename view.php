@@ -35,11 +35,9 @@ require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);
-$thumb_size = $settings['thumb_size']; //Chio
 $root_dir = $settings['root_dir']; //Chio
 $catpic = (int) $settings['catpic']; //Chio
-$ratio = $settings['ratio']; //Pumpi
-// Einstellungen
+// Einstellungen 
 // Link zur Seite
 $query_pages = $database->query("SELECT link FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id' LIMIT 1");
 $page = $query_pages->fetchRow();
@@ -151,7 +149,7 @@ if (count($ergebnisse) == 0) {
             $thumb = $pathToThumb . $bildfilename;
             if (!is_file($thumb)) {
                 $file = $pathToFolder . $bildfilename;
-                $terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
+                $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio']);
                 if ($terg < 0)
                     $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
             }
@@ -335,7 +333,7 @@ if ($bilder) {
         }
         if (!is_file($thumb)) {
             $file = $pathToFolder . $bildfilename;
-            $terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
+            $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio']);
             if ($terg < 0)
                 $tumburl = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
         }
