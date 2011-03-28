@@ -72,7 +72,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
     $gif = '\.gif$';
     $png = '\.png$';
     $fontSize = 2;
-    $bg = "D1F6FF";
+    $bg = "999999";
 
     $thumbFolder = dirname($thumb);
 
@@ -115,42 +115,92 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
             } else {
                 continue;
             }
-            if ($width >= $height && $width > $thumb_size) {
-                //#########
-                //Thumbnail verarbeitung ver�ndert um einen Ausschnitt der Gr��e der $thumbnail_size
-                //zu erhalten um ein gleichm��iges erscheinungsbild im Frontend zu gew�hrleisten
-                //by Pumpi
-                //#########
-                //$smallwidth = $thumb_size;
-                //$smallheight = floor($height / ($width / $smallwidth));
-                $smallwidth = intval($width * $thumb_size / $height);
-                $smallheight = $thumb_size;
-                $ofx = 0;
-                $ofy = floor(($thumb_size - $thumb_size) / 2);
-            } elseif ($width <= $height && $height > $thumb_size) {
-                //$smallheight = $thumb_size;
-                //$smallwidth = floor($width / ($height / $smallheight));
-                $smallheight = intval($height * $thumb_size / $width);
-                $smallwidth = $thumb_size;
-                $ofx = floor(($thumb_size - $thumb_size) / 2);
-                $ofy = 0;
-            } else {
-                $smallheight = $height;
-                $smallwidth = $width;
-                $ofx = floor(($thumb_size - $thumb_size) / 2);
-                $ofy = floor(($thumb_size - $thumb_size) / 2);
-            }
+
+
+			//------------------------------------------------------------//
+			//Werte berechnen:
+
+			if (!isset($fullpercent)) {$fullpercent = 100;}
+
+			//$thumb_size ist IMMER die Breite:
+			$newwidth = $thumb_size;
+			$newheight = $thumb_size/$ratio;
+
+			if ($ratio < 1) {
+			//portrait format:
+				$newwidth = $thumb_size*$ratio;
+				$newheight = $thumb_size;
+			}
+
+
+			$pic_ratio = $width / $height;
+			if ($pic_ratio > $ratio) {
+				//Bild ist breiter als der Rahmen erlaubt
+				//echo '<p>breiter: ' .$pic_ratio.' '.$file.'</p>';
+
+				$smallheight = $newheight;
+				$smallwidth = $smallheight * $pic_ratio;
+				$ofx = ($newwidth - $smallwidth) / 2;
+				$ofy = 0;
+
+				//values without crop:
+				$smallwidth2 = $newwidth;
+				$smallheight2 = $smallwidth2 / $pic_ratio;
+				$ofx2 = 0;
+				$ofy2 = ($newheight - $smallheight2) / 2;
+
+			} else {
+				//Bild ist hoeher als der Rahmen erlaubt
+				//echo '<p>hoeher: ' .$pic_ratio.' '.$file.'</p>';
+
+				$smallwidth = $newwidth;
+				$smallheight = $smallwidth / $pic_ratio;
+				$ofx = 0;
+				$ofy = ($newheight - $smallheight) / 3; //Eher oberen Teil, dh /3
+
+				//values without crop:
+				$smallheight2 = $newheight;
+				$smallwidth2 = $smallheight2 * $pic_ratio;
+				$ofy2 = 0;
+				$ofx2 = ($newwidth - $smallwidth2) / 2;
+			}
+
+
+			//mix crped and non-cropped values by percent:
+			$f1 = 0.01 * $fullpercent;
+			$f2 = 1.0 - $f1;
+			$smallwidth = floor(($f1 * $smallwidth) + ($f2 * $smallwidth2));
+			$smallheight = floor(($f1 * $smallheight) + ($f2 * $smallheight2));
+			$ofx = floor(($f1 * $ofx) + ($f2 * $ofx2));
+			$ofy = floor(($f1 * $ofy) + ($f2 * $ofy2));
+
+
+
+			$newwidth = floor($newwidth);
+			$newheight = floor($newheight);
+
+			//Ausnahme: Bild ist kleiner als thumb
+			if ($width <  $smallwidth AND $height <  $smallheight) {
+				echo $smallwidth;
+				$ofx = 0; $ofy = 0; $smallwidth = $width;  $smallheight = $height;
+				$ofx = floor(($newwidth - $width) / 2);
+				$ofy = floor(($newheight - $height) / 2);
+			}
+
+			//Ausnahme: Bild wird gecropt
+			if (!empty($positionW) && !empty($positionH)) {
+				$ofy = 0;
+				$ofx = 0;
+			}
+
 
             if (function_exists('imagecreatetruecolor')) {
-                if ($height > $thumb_size && $width > $thumb_size) {
-                    if ($ratio > 1)
-                        $small = imagecreatetruecolor($thumb_size, $thumb_size / $ratio);
-                    else
-                        $small = imagecreatetruecolor($thumb_size * $ratio, $thumb_size);
+                if ($ratio > 1) {
+                	$small = imagecreatetruecolor($thumb_size, $thumb_size / $ratio);
+               	} else {
+                   	$small = imagecreatetruecolor($thumb_size * $ratio, $thumb_size);
                 }
-                else {
-                    $small = imagecreatetruecolor($smallwidth, $smallheight);
-                }
+
             } else {
                 $small = imagecreate($smallwidth, $smallheight);
             }
@@ -165,6 +215,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 
                     //wenn ein Ratio eingestellt ist werden die small Atribute des Thumbs angepasst
                     //die ist allerdings nur bei JCrop nötig normal wird die größe vom 0Punkt aus errechnet
+
                     if ($ratio > 1) {
                         $smallwidth = $thumb_size;
                         $smallheight = $thumb_size / $ratio;
@@ -172,6 +223,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
                         $smallwidth = $thumb_size * $ratio;
                         $smallheight = $thumb_size;
                     }
+
                 }
 
                 if (function_exists('imagecopyresampled')) {

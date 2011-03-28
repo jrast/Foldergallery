@@ -1,8 +1,7 @@
 <?php
 
 // Direkter Zugriff verhindern
-if (!defined('WB_PATH'))
-    die(header('Location: index.php'));
+if (!defined('WB_PATH')) die (header('Location: index.php'));
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
@@ -37,6 +36,7 @@ require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
 $settings = getSettings($section_id);
 $root_dir = $settings['root_dir']; //Chio
 $catpic = (int) $settings['catpic']; //Chio
+
 // Einstellungen 
 // Link zur Seite
 $query_pages = $database->query("SELECT link FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id' LIMIT 1");
@@ -211,10 +211,18 @@ if (file_exists(dirname(__FILE__) . '/templates/view_' . $settings['lightbox'] .
     $viewTemplate = 'view_' . $settings['lightbox'] . '.htt';
     $t = new Template(dirname(__FILE__) . '/templates', 'remove');
 }
-elseif (file_exists(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'] . '/foldergallery_template.htt')) {
-    $viewTemplate = 'foldergallery_template.htt';
-    $t = new Template(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'], 'remove');
-    echo "[[jQueryInclude?plugin=" . $settings['lightbox'] . "]]";
+elseif( file_exists( WB_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+{
+  $viewTemplate = 'foldergallery_template.htt';
+	$t = new Template(WB_PATH.'/modules/'.$settings['lightbox'], 'remove');
+	$parts = split( '/', $settings['lightbox'] );
+	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
+}
+elseif( file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+{
+  $viewTemplate = 'foldergallery_template.htt';
+	$t = new Template(WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
+	echo "[[jQueryInclude?plugin=".$settings['lightbox']."]]";
 }
 else {
     $viewTemplate = 'view.htt';
@@ -318,7 +326,7 @@ if ($bilder) {
         $t->clear_var('pagenav');
     }
 
-    
+
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
     for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
