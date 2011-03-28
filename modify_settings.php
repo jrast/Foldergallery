@@ -3,7 +3,7 @@
 // Admin Backend erstellen
 require('../../config.php');
 require(WB_PATH.'/modules/admin.php');
-	
+
 // check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery/backend.css")) {
 echo '<style type="text/css">';
@@ -30,14 +30,17 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
 
-// --- added by WebBird, 29.07.2010 ---
-// check if jQueryAdmin is installed
+// --- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 ---
 $jqa_lightboxes = array();
-if ( file_exists( WB_PATH.'/modules/jqueryadmin/foldergallery_include.php' ) ) {
+if ( file_exists( WB_PATH.'/modules/libraryadmin/foldergallery_include.php' ) ) {
+    include_once WB_PATH.'/modules/libraryadmin/foldergallery_include.php';
+    $jqa_lightboxes = get_lightboxes();
+}
+elseif ( file_exists( WB_PATH.'/modules/jqueryadmin/foldergallery_include.php' ) ) {
     include_once WB_PATH.'/modules/jqueryadmin/foldergallery_include.php';
     $jqa_lightboxes = get_lightboxes();
 }
-// --- end added by WebBird, 29.07.2010 ---
+// --- end jQueryAdmin / LibraryAdmin Integration ---
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -71,19 +74,32 @@ if ( $dh = opendir(dirname(__FILE__).'/templates') ) {
     closedir($dh);
 }
 
-// --- added by WebBird, 29.07.2010 ---
+// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
 if ( count( $jqa_lightboxes ) > 0 ) {
-    foreach ( $jqa_lightboxes as $lb ) {
-        $lightbox_select .= '<option value="'.$lb.'"';
-        if ( $lb == $settings['lightbox'] ) {
-            $lightbox_select .= ' selected="selected"';
+    foreach ( $jqa_lightboxes as $i => $lb ) {
+        if ( is_array( $lb ) ) {
+            foreach( $lb as $item ) {
+                $lightbox_select .= '<option value="'.$i.'/plugins/'.$item.'"';
+                if ( $i.'/plugins/'.$item == $settings['lightbox'] ) {
+                    $lightbox_select .= ' selected="selected"';
+                }
+                $lightbox_select .= '> ' . $i . ': '
+                                 .  $item
+                                 .  '</option>';
+            }
         }
-        $lightbox_select .= '> jQueryAdmin: '
-                         .  $lb
-                         .  '</option>';
+        else {
+            $lightbox_select .= '<option value="'.$lb.'"';
+            if ( $lb == $settings['lightbox'] ) {
+                $lightbox_select .= ' selected="selected"';
+            }
+            $lightbox_select .= '> jQueryAdmin: '
+                             .  $lb
+                             .  '</option>';
+        }
     }
 }
-// --- end added by WebBird, 29.07.2010 ---
+// ----- end jQueryAdmin / LibraryAdmin Integration -----
 
 $lightbox_select .= '</select>';
 

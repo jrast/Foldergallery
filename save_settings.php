@@ -92,23 +92,30 @@ if (isset($_POST['ratio'])) {
 
 if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
-// --- added by WebBird, 29.07.2010 ---
+// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
+} elseif( isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
+	$newSettings['lightbox'] = $_POST['lightbox'];
 } elseif( isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
-// --- end added by WebBird, 29.07.2010 ---
+// ----- end jQueryAdmin / LibraryAdmin Integration -----
 } else {
 	$newSettings['lightbox'] = '';
 }
 
+//Debuganzeige die ab 1.1 auskommentiert wird
+//echo "<textarea cols=\"100\" rows=\"20\" style=\"width: 100%;\">";
+//var_export( $newSettings );
+//echo "</textarea>";
+//ENDE Debug
 echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
 //die('hier3');
 $settingsTable = TABLE_PREFIX.'mod_foldergallery_settings';
 // SQL eintragen
 $database->query("
-	UPDATE `".$settingsTable."` 
-	SET `root_dir` = '".$newSettings['root_dir']."', 
-	`extensions` = '".$newSettings['extensions']."', 
+	UPDATE `".$settingsTable."`
+	SET `root_dir` = '".$newSettings['root_dir']."',
+	`extensions` = '".$newSettings['extensions']."',
 	`invisible` = '".$newSettings['invisible']."',
 	`pics_pp` = '".$newSettings['pics_pp']."',
 	`thumb_size` = '".$newSettings['thumb_size']."',
@@ -130,11 +137,14 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 	$pathToFolder = $path.$oldSettings['root_dir'].$thumbdir;
 	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
 	deleteFolder($pathToFolder);
-	
+
 }
-	
+
+///Chio verändert: Orig: // Ok, Ordner hat gewechselt, also alte Thumbs löschen
+//Wieso thumbs löschen, wenn sich root-dir geändert hat? Die Thumbs sind bei den Bildern - egal wo.
+
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
-	
+
 	// Und jetzt noch alte DB Einträge
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$query = $database->query($sql);
@@ -142,8 +152,8 @@ if($oldSettings['root_dir'] != $newSettings['root_dir']){
 		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id='.$cat['parent'];
 		$database->query($sql);
 	}
-	
-	
+
+
 	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$database->query($sql);
   // Root als Kategorie eintragen

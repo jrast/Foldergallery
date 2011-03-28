@@ -1,8 +1,25 @@
 <?php
 
 // Direkter Zugriff verhindern
-if (!defined('WB_PATH'))
-    die(header('Location: index.php'));
+if (!defined('WB_PATH')) die (header('Location: index.php'));
+
+/*
+    IMPORTANT!
+
+    You will have to install Highslide or NyroModal by yourself! They are NOT
+    included with Foldergallery!
+
+    If you don't put them into your modules-Subfolder, you will also have to
+    modify the paths in the include-Files.
+
+    templates/include_highslide.htt - for Highslide
+    templates/include_nyromodal.htt - for NyroModal
+
+    To include other presentation JavaScript, create a include_XX.htt which
+    contains all that has to be done for inclusion. Then, add a case-statement
+    below to include this file and set the $gallary variable to the case you
+    wish to be used.
+*/
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
@@ -39,6 +56,7 @@ $thumb_size = $settings['thumb_size']; //Chio
 $root_dir = $settings['root_dir']; //Chio
 $catpic = (int) $settings['catpic']; //Chio
 $ratio = $settings['ratio']; //Pumpi
+
 // Einstellungen
 // Link zur Seite
 $query_pages = $database->query("SELECT link FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id' LIMIT 1");
@@ -215,11 +233,19 @@ if (file_exists(dirname(__FILE__) . '/templates/view_' . $settings['lightbox'] .
     $t = new Template(dirname(__FILE__) . '/templates', 'remove');
 // --- end added by WebBird, 29.07.2010 ---
 }
-// --- added by WebBird, 29.07.2010 ---
-elseif (file_exists(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'] . '/foldergallery_template.htt')) {
-    $viewTemplate = 'foldergallery_template.htt';
-    $t = new Template(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'], 'remove');
-    echo "[[jQueryInclude?plugin=" . $settings['lightbox'] . "]]";
+// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
+elseif( file_exists( WB_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+{
+  $viewTemplate = 'foldergallery_template.htt';
+	$t = new Template(WB_PATH.'/modules/'.$settings['lightbox'], 'remove');
+	$parts = split( '/', $settings['lightbox'] );
+	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
+}
+elseif( file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+{
+  $viewTemplate = 'foldergallery_template.htt';
+	$t = new Template(WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
+	echo "[[jQueryInclude?plugin=".$settings['lightbox']."]]";
 }
 // --- end added by WebBird, 29.07.2010 ---
 else {
@@ -325,7 +351,7 @@ if ($bilder) {
         $t->clear_var('pagenav');
     }
 
-    
+
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
     for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
