@@ -144,7 +144,7 @@ $module_platform 	= '2.80';
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';
 $module_license 	= 'GNU General Public License';
 $module_description = 'Bildergalerie anhand der Ordnerstruktur erstellen';
-$module_home		= 'http://wb.pumpi-hosting.de';
+$module_home		= 'http://foldergallery.ch';
 $module_guid		= 'C716E2D6-10C2-4D20-97AC-EFF428EADCAE';
 
 /**
