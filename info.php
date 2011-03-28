@@ -127,6 +127,10 @@
   + Falls es mehrere Seiten für eine Kategorie gibt werden in der Lightbox jetzt alle Bilder angezeigt.
   + Dateien aufgeräumt
 
+  V1.21 (Juerg Rast)
+  + fiexed a lot of bugs
+  + repaired libraryAdmin integration
+
  -------------------------------------------------------------------------------
 **/
 
@@ -134,7 +138,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.20';
+$module_version 	= '1.21';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';
