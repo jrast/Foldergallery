@@ -57,7 +57,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 			window.setTimeout("Weiterleitung()", 2000); // in msecs 1000 => eine Sekunde
 		</script>
 	<?php
-	echo $MOD_FOLDERGALLERY['REDIRECT'];
+	echo "<div class=\"info\">".$MOD_FOLDERGALLERY['REDIRECT']."\n</div>\n";
 } else {
 
 echo '

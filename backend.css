@@ -57,4 +57,10 @@ li {
 #dragableTable li {float:left; margin: 4px; }
 #dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
 
-
+div.info {
+  border: 1px solid #000;
+  padding: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+}

@@ -220,7 +220,7 @@ elseif( file_exists( WB_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_t
 {
   $viewTemplate = 'foldergallery_template.htt';
 	$t = new Template(WB_PATH.'/modules/'.$settings['lightbox'], 'remove');
-	$parts = split( '/', $settings['lightbox'] );
+	$parts = explode( '/', $settings['lightbox'] );
 	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
 }
 elseif( file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
@@ -361,7 +361,8 @@ if ($bilder) {
         $t->set_var(array(
             'ORIGINAL' => $urlToFolder . $bildfilename . $timeadd,
             'THUMB' => $tumburl . '?t=' . time(),
-            'CAPTION' => $bilder[$i]['caption']
+            'CAPTION' => $bilder[$i]['caption'],
+            'NUMBER' => $i
         ));
 
         // Bild sichtbar oder unsichtbar?
