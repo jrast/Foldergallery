@@ -58,9 +58,12 @@ li {
 #dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
 
 div.info {
-  border: 1px solid #000;
-  padding: 15px;
-  font-weight: bold;
-  margin-top: 15px;
-  text-align: center;
+    background: #DBFFBF url(./images/info.png) no-repeat 5px center;
+    border: 1px solid #83C750;
+    border-radius: 5px;
+    -mox-border-radius: 5px;
+    padding: 15px 5px 15px 60px;
+    font-weight: bold;
+    margin-top: 15px;
+    min-height: 20px;
 }
