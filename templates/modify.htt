@@ -1,7 +1,7 @@
 <!-- BEGIN CommentDoc -->
 <!-- This is a phplib-template for modify.php -->
 <!-- END CommentDoc -->
-
+<hr />
 <h2>{TITEL_BACKEND_STRING}</h2>
 <table cellpadding="5px" cellspacing="0" border="0" width="100%">
     <tr>
@@ -12,14 +12,14 @@
             <input type="button" value="{SYNC_STRING}" onclick="{SYNC_ONKLICK}" style="width: 100%"/>
         </td>
         <td width="33%" align="right">
-        	<form name="edit_module_file" action="{WB_URL}/modules/edit_module_files.php?page_id={EDIT_PAGE}" method="post" style="margin: 0pt;">
-			<input name="page_id" value="{EDIT_PAGE}" type="hidden">
-			<input name="section_id" value="{EDIT_SECTION}" type="hidden">
-			<input name="mod_dir" value="foldergallery" type="hidden">
-			<input name="edit_file" value="frontend.css" type="hidden">
-			<input name="action" value="edit" type="hidden">
-			<input value="{EDIT_CSS_STRING}" style="width: 100%" type="submit">
-		</form>
+            <form name="edit_module_file" action="{WB_URL}/modules/edit_module_files.php?page_id={EDIT_PAGE}" method="post" style="margin: 0pt;">
+                <input name="page_id" value="{EDIT_PAGE}" type="hidden">
+                <input name="section_id" value="{EDIT_SECTION}" type="hidden">
+                <input name="mod_dir" value="foldergallery" type="hidden">
+                <input name="edit_file" value="frontend.css" type="hidden">
+                <input name="action" value="edit" type="hidden">
+                <input value="{EDIT_CSS_STRING}" style="width: 100%" type="submit">
+            </form>
         </td>
     </tr>
 </table><h3>{TITEL_MODIFY}</h3>
@@ -40,24 +40,24 @@
             </td>
         </tr>
     </table>
-	
-<!-- Liste erstellen -->
-<!-- BEGIN ListElement -->
-	<div id="dragableTable">
-	<ul id="p{COUNTER}">
-		<li style="padding: 1px 0px 1px 0px;">
-			<table cellpadding="1" cellspacing="0" border="0" class="cat_table">
-				<tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
-					<td width="20" style="padding-left: 0px;">
-                        <a href="javascript: toggle_visibility('p{NCOUNTER}');" title="Erweitern/Reduzieren">
-							<img src="../images/plus_16.png" onclick="toggle_plus_minus('{NCOUNTER}');" name="plus_minus_{NCOUNTER}" border="0" alt="+" />
-						</a>
-                    </td>
-					<td>{FOLDER_VALUE}</td>
-				</tr>
-			</table>
-		</li>
+
+    <!-- Liste erstellen -->
+    <!-- BEGIN ListElement -->
+    <div id="dragableTable">
+        <ul id="p{COUNTER}">
+            <li style="padding: 1px 0px 1px 0px;">
+                <table cellpadding="1" cellspacing="0" border="0" class="cat_table">
+                    <tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
+                        <td width="20" style="padding-left: 0px;">
+                            <a href="javascript: toggle_visibility('p{NCOUNTER}');" title="Erweitern/Reduzieren">
+                                <img src="../images/plus_16.png" onclick="toggle_plus_minus('{NCOUNTER}');" name="plus_minus_{NCOUNTER}" border="0" alt="+" />
+                            </a>
+                        </td>
+                        <td>{FOLDER_VALUE}</td>
+                    </tr>
+                </table>
+            </li>
 		{SUBELEM}
-	</ul>
-<!-- END ListElement -->
-</div>
+        </ul>
+        <!-- END ListElement -->
+    </div>

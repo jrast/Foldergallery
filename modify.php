@@ -236,6 +236,7 @@ echo '<script type="text/javascript">
 		'.display_categories(0, $section_id).'
 	</ul>
 </div>
+<br/><hr />
 ';
 
 
