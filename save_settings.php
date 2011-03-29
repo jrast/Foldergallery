@@ -107,7 +107,7 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 //var_export( $newSettings );
 //echo "</textarea>";
 //ENDE Debug
-echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
+echo "<div class=\"info\">".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</div><br />";
 $newSettings['section_id'] = $section_id;
 
 //SQL wich is used for all updates

@@ -41,7 +41,7 @@ $MOD_FOLDERGALLERY['LIGHTBOX'] = 'Lightbox';
 $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE']		= 'Kategorie und Bilddetailes bearbeiten';
 $MOD_FOLDERGALLERY['MODIFY_CAT']			= 'Kategoriedetailes bearbeiten:';
 $MOD_FOLDERGALLERY['CAT_NAME']				= 'Kategoriename/Titel:';
-$MOD_FOLDERGALLERY['CAT_DESCRIPTION']		= 'Kategoriebeschrieb:';
+$MOD_FOLDERGALLERY['CAT_DESCRIPTION']		= 'Kategoriebeschreibung:';
 $MOD_FOLDERGALLERY['MODIFY_IMG']			= 'Bilder bearbeiten:';
 $MOD_FOLDERGALLERY['IMAGE']					= 'Bild';
 $MOD_FOLDERGALLERY['IMAGE_NAME']			= 'Bildname';
@@ -49,7 +49,7 @@ $MOD_FOLDERGALLERY['IMG_CAPTION']			= 'Bildbeschreibung';
 
 
 $MOD_FOLDERGALLERY['REDIRECT']  			= 'Sie m&uuml;ssen zuerst die Grundeinstellungen vornehmen.'
-											. ' Sie werden in zwei Sekunden weitergeleitet! (Funktioniert nur wenn JavaScript aktiviert!';
+							. ' Sie werden in zwei Sekunden weitergeleitet! (Funktioniert nur wenn JavaScript aktiviert!)';
 $MOD_FOLDERGALLERY['TITEL_BACKEND'] 			= 'Foldergallery Verwaltung';
 $MOD_FOLDERGALLERY['TITEL_MODIFY'] 			= 'Kategorien und Bilder bearbeiten:';
 $MOD_FOLDERGALLERY['SETTINGS'] 				= 'Allgemeine Einstellungen';
