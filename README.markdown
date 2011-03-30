@@ -15,6 +15,13 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 ##Changelog
+##V1.21 (Jürg Rast, 30.03.2011)
++ BugFix: Some categories where not displayed 
++ BugFix: Library-/jQueryAdmin integration was missing
++ Made infomessages better visible (eg.: during saving the settings, sync, new page)
+
+This Changelog is from now on in english, a german changelog  can be found on foldergallery.ch
+
 ###V1.20 (Juerg Rast, 09.03.2011)
 + Bugs behoben beim Aufrufen von nichtvorhandenen Seiten/Kategorien
 + Falls es mehrere Seiten für eine Kategorie gibt werden in der Lightbox jetzt alle Bilder angezeigt.
