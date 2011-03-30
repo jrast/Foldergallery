@@ -1,7 +1,7 @@
 <!-- BEGIN CommentDoc -->
 <!-- This is a phplib-template for modify.php -->
 <!-- END CommentDoc -->
-
+<hr />
 <hr />
 <h2>{TITEL_BACKEND_STRING}</h2>
 <table cellpadding="5px" cellspacing="0" border="0" width="100%">
@@ -14,13 +14,13 @@
         </td>
         <td width="25%" align="right">
         	<form name="edit_module_file" action="{WB_URL}/modules/edit_module_files.php?page_id={EDIT_PAGE}" method="post">
-			<input name="page_id" value="{EDIT_PAGE}" type="hidden">
-			<input name="section_id" value="{EDIT_SECTION}" type="hidden">
-			<input name="mod_dir" value="foldergallery" type="hidden">
-			<input name="edit_file" value="frontend.css" type="hidden">
-			<input name="action" value="edit" type="hidden">
+                <input name="page_id" value="{EDIT_PAGE}" type="hidden">
+                <input name="section_id" value="{EDIT_SECTION}" type="hidden">
+                <input name="mod_dir" value="foldergallery" type="hidden">
+                <input name="edit_file" value="frontend.css" type="hidden">
+                <input name="action" value="edit" type="hidden">
 			<input value="{EDIT_CSS_STRING}" type="submit" class="FG_button">
-		</form>
+            </form>
         </td>
         <td width="33%">
             <input type="button" value="{HELP_STRING}" class="FG_button" onclick="{HELP_ONCLICK}">
@@ -45,11 +45,11 @@
             </td>
         </tr>
     </table>	
-<!-- Liste erstellen -->
-<!-- BEGIN ListElement -->
-	<div id="dragableTable">
-	<ul id="p{COUNTER}">
-		<li style="padding: 1px 0px 1px 0px;">
+    <!-- Liste erstellen -->
+    <!-- BEGIN ListElement -->
+    <div id="dragableTable">
+        <ul id="p{COUNTER}">
+            <li style="padding: 1px 0px 1px 0px;">
                     <table cellpadding="1" cellspacing="0" border="0" class="cat_table">
                         <tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
                             <td width="20" style="padding-left: 0px;">
@@ -62,9 +62,9 @@
                             </td>
 			</tr>
                     </table>
-		</li>
+            </li>
 		{SUBELEM}
-	</ul>
+        </ul>
         </div>
-<!-- END ListElement -->
-</div>
+        <!-- END ListElement -->
+    </div>

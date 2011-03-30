@@ -12,10 +12,7 @@ $FG_HELP['HOMEPAGE_TEXT']   = 'Auf <a href="http://www.foldergallery.ch" target=
 $FG_HELP['HELP_TITLE']      = 'Hilfe und Support';
 $FG_HELP['HELP_TEXT']       = 'Support wird in der <a href="http://www.websitebaker2.org/forum/index.php/topic,21046.0.html" target="_blank">Websitebaker Community (Forum)</a> angeboten.';
 $FG_HELP['BUG_TITLE']       = 'Problem melden';
-$FG_HELP['BUG_TEXT']        = 'Falls sie ein Problem oder Fehler im Modul gefunden haben, bitte ich sie auf foldergallery.ch oder im Websitebaker Forum eine Nachricht zu hinterlassen!';
-
-$FG_HELP['VERSION_CHECK_ERROR']     = 'Es konnten keine Angaben &uuml;ber eine neuere Version abgefragt werden!';
-$FG_HELP['VERSION_COMPARE_ERROR']   = 'Beim vergleichen der Versionen ist ein Fehler aufgetreten';
+$FG_HELP['BUG_TEXT']        = 'Falls sie ein Problem oder Fehler im Modul gefunden haben, bitte ich sie auf <a href="http://www.foldergallery.ch" target="_blank">foldergallery.ch</a> oder im <a href="http://www.websitebaker2.org/forum/index.php/topic,21046.0.html" target="_blank">Websitebaker Forum</a> eine Nachricht zu hinterlassen!';
 
 $FG_HELP['BACK_STRING']     = 'Zur&uuml;ck';
 ?>

@@ -45,7 +45,7 @@ $flag = false;
 /* syncDB($galerie) ist kompletter updatealgorithmus */
 if(syncDB($settings)) {
 
-	echo "<center>".$MOD_FOLDERGALLERY['SYNC_DATABASE']."</center><br />";
+	echo "<div class=\"info\">".$MOD_FOLDERGALLERY['SYNC_DATABASE']."</div><br />";
 
 	// Wieder alle Angaben aus der DB holen um Sortierung festzulegen
 	$results = array();
