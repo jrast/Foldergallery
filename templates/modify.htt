@@ -2,7 +2,6 @@
 <!-- This is a phplib-template for modify.php -->
 <!-- END CommentDoc -->
 <hr />
-<hr />
 <h2>{TITEL_BACKEND_STRING}</h2>
 <table cellpadding="5px" cellspacing="0" border="0" width="100%">
     <tr>
