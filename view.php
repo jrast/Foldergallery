@@ -42,6 +42,7 @@ $catpic = (int) $settings['catpic']; //Chio
 $query_pages = $database->query("SELECT link FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id' LIMIT 1");
 $page = $query_pages->fetchRow();
 $link = WB_URL . PAGES_DIRECTORY . $page['link'] . PAGE_EXTENSION;
+$path = WB_PATH;
 
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
@@ -103,7 +104,7 @@ if (count($ergebnisse) == 0) {
         $parent_id = $ergebnisse[$i]['id'];
 
         $folder = $root_dir . $cat;
-        $pathToFolder = $path . $folder . '/';
+        $pathToFolder = WB_PATH . $folder . '/';
 
         $bildfilename = 'folderpreview.jpg';
 
@@ -133,8 +134,8 @@ if (count($ergebnisse) == 0) {
             }
         }
 
-        $pathToFolder = $path . $folder . '/';
-        $pathToThumb = $path . $folder . $thumbdir . '/';
+        $pathToFolder = WB_PATH . $folder . '/';
+        $pathToThumb = WB_PATH . $folder . $thumbdir . '/';
         $urlToFolder = $url . $folder . '/';
         $urlToThumb = $url . $folder . $thumbdir . '/';
 
@@ -185,9 +186,8 @@ if (count($bilder) != 0) {
         $folder = $root_dir . $result['parent'] . '/' . $result['categorie'] . '/';
     else
         $folder = $root_dir . $result['parent'] . '/';
-    $pathToFolder = $path . $folder . '/';
-    $pathToThumb = $path . $folder . $thumbdir . '/';
-
+    $pathToFolder = WB_PATH . $folder . '/';
+    $pathToThumb = WB_PATH . $folder . $thumbdir . '/';
     $urlToFolder = $url . $folder;
     $urlToThumb = $url . $folder . $thumbdir1 . '/';
 }

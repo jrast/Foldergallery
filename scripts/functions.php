@@ -285,4 +285,117 @@ function FG_getCatId($sectionID, $kategorie) {
     return $katID;
 }
 
+
+function display_categories($parent_id, $section_id , $tiefe = 0) {
+	$padding = $tiefe*20;
+	global $database;
+	global $url;
+	global $page_id;
+	$list = "\n";
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
+	$query = $database->query($sql);
+	$zagl = $query->numRows();
+
+
+	$arrup = false;
+	$arrdown = true;
+	if ($zagl > 1) {}
+
+	$counter = 0;
+	while($result = $query->fetchRow()){
+		$counter ++;
+		if ($counter > 1) {$arrup = true;}
+		if ($counter == $zagl) {$arrdown = false;}
+
+		if ($parent_id != "-1") $cursor = ' cursor: move;';
+		else $cursor = '';
+
+		if($result['has_child']){
+			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
+					."<table width='720' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
+					."<td width='20px' style='padding-left:".$padding."px'>\n"
+					// Pluszeichen Darsellen
+					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="Erweitern/Reduzieren">'
+					.'<img src="'.THEME_URL.'/images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
+					.'</a>'
+					// Pluszeichen Ende
+					."</td>\n"
+
+
+					// Zeile Mit allen Angaben
+					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.htmlentities($result['categorie'])."</a></td>"
+					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
+
+					//Active:
+					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+
+
+					// Aktionen Buttons
+					."<td width='20'>";
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
+					}
+					$list .= "</td>"
+					."<td width='20'>";
+
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
+					."</a>";}
+
+					$list .= "</td>";
+					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
+
+					"<td width='20'>"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
+					// Ende Zeile mit allen Angaben
+					*/
+
+
+					$list .= "</tr></table>\n"
+					."<ul id='p".$result['id']."'style='padding: 1px 0px 1px 0px;' class='cat_subelem'>";
+			$list .= display_categories($result['id'], $section_id, $tiefe+1);
+			$list .= "</ul></li>\n ";
+		} else {
+			$list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
+					."<table width='720' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
+					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
+					// Zeile Mit allen Angaben
+					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.htmlentities($result['categorie'])."</a></td>"
+					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
+
+					//Active:
+					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+					// Aktionen Buttons
+					."<td width='20'>";
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
+					}
+					$list .= "</td>"
+					."<td width='20'>";
+
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
+					."</a>";}
+
+					$list .= "</td>";
+					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
+
+					."<td width='20'>"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
+					// Ende Zeile mit allen Angaben
+					*/
+					$list .= "</tr></table>\n";
+		}
+	}
+	return $list;
+}
+
 ?>
