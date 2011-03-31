@@ -291,6 +291,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	global $database;
 	global $url;
 	global $page_id;
+        global $MOD_FOLDERGALLERY;
 	$list = "\n";
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
 	$query = $database->query($sql);
@@ -316,7 +317,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'>\n"
 					// Pluszeichen Darsellen
-					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="Erweitern/Reduzieren">'
+					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="'.$MOD_FOLDERGALLERY['EXPAND_COLAPSE'].'">'
 					.'<img src="'.THEME_URL.'/images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
 					.'</a>'
 					// Pluszeichen Ende
@@ -324,7 +325,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 
 					// Zeile Mit allen Angaben
-					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					."<td><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
 					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
@@ -335,19 +336,19 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 					// Aktionen Buttons
 					."<td width='20'>";
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}
 					$list .= "</td>"
 					."<td width='20'>";
 
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 
 					$list .= "</td>";
-					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 
+					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 					"<td width='20'>"
 					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
@@ -365,7 +366,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					.'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
 					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
 					// Zeile Mit allen Angaben
-					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
+					."<td><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
 					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
@@ -374,13 +375,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}
 					$list .= "</td>"
 					."<td width='20'>";
 
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 
