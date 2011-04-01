@@ -1,5 +1,5 @@
 <!-- BEGIN CommentDoc -->
-<!-- Template für galleryView. Bei galleryView macht es absolut keinen Sinn   -->
+<!-- Template fÃ¼r galleryView. Bei galleryView macht es absolut keinen Sinn   -->
 <!-- mehrere Seiten anzulegen, dahher werden auch immer alle Bilder angezeigt! -->
 <!-- END CommentDoc -->
 <link rel="stylesheet" href="{WB_URL}/modules/foldergallery/scripts/galleryview/galleryview.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
@@ -52,17 +52,17 @@
 <!-- BEGIN images -->
 <!-- BEGIN invisiblePre -->
 	<li>
-		<img src="{ORIGINAL}" alt="{CAPTION}"/></a>
+		<img src="{ORIGINAL}" alt="{CAPTION}"/>
 	</li>
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<img src="{ORIGINAL}" alt="{CAPTION}"/></a>
+		<img src="{ORIGINAL}" alt="{CAPTION}"/>
 	</li>
 <!-- END thumbnails -->
 <!-- BEGIN invisiblePost -->
 	<li>
-		<img src="{ORIGINAL}" alt="{CAPTION}"/></a>
+		<img src="{ORIGINAL}" alt="{CAPTION}"/>
 	</li>
 <!-- END invisiblePost -->
 <!-- END images -->
