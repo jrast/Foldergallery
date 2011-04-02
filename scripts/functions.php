@@ -320,7 +320,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                 if($result['has_child']) {
                     // Display Expand Sign
                     $list .= '<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="'.$MOD_FOLDERGALLERY['EXPAND_COLAPSE'].'">'
-                            .'<img src="'.THEME_URL.'/images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
+                            .'<img src="'.THEME_URL.'/images/plus_16.png" name="plus_minus_p'.$result['id'].'" border="0" alt="+" />'
                             .'</a>';
                 }
 

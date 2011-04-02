@@ -26,27 +26,25 @@ function hideWMTT() {
 
 /* Kategorieanzeige Funktionen */
 function toggle_visibility(id) {
+        /* Toggle plus/minus Image */
+        var plus = new Image;
+        plus.src = theme_url+"/images/plus_16.png";
+        var minus = new Image;
+        minus.src = theme_url+"/images/minus_16.png";
+
+        var img_src = document.images['plus_minus_' + id].src;
+	if (img_src == plus.src) {
+		document.images['plus_minus_' + id].src = minus.src;
+	}
+	else {
+		document.images['plus_minus_' + id].src = plus.src;
+	}
+
+        /* Toggle visibility of subcategorie */
 	if (document.getElementById(id).style.display == "block") {
 		document.getElementById(id).style.display = "none";
 	}
 	else {
 		document.getElementById(id).style.display = "block";
-	}
-}
-
-
-
-function toggle_plus_minus(id){
-	var plus = new Image;
-	plus.src = theme_url+"/images/plus_16.png";
-	var minus = new Image;
-	minus.src = theme_url+"/images/minus_16.png";
-
-	var img_src = document.images['plus_minus_' + id].src;
-	if (img_src == plus.src) {
-		document.images['plus_minus_' + id].src = minus.src;		
-	}
-	else {
-		document.images['plus_minus_' + id].src = plus.src;
 	}
 }
