@@ -109,8 +109,11 @@ $url = array(
 	'edit'	=> WB_URL."/modules/foldergallery/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
 );
 
+
 echo '<script type="text/javascript">
-		var the_parent_id = "0";			
+		var the_parent_id = "0";
+                var theme_url = "'.THEME_URL.'";
+                var settingsRatio = "0";
 	</script>
 	<ul>
 		'.display_categories(-1, $section_id).'
