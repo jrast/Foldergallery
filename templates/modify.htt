@@ -33,11 +33,11 @@
         <tr>
             <td width="20px">
             </td>
-            <td width="300px">
-                {FOLDER_IN_FS_STRING}
+            <td width="350px">
+                {CAT_TITLE_STRING}
             </td>
             <td align="left">
-                {CAT_TITLE_STRING}
+                {FOLDER_IN_FS_STRING}
             </td>
             <td width="130px" align="center">
                 {ACTIONS_STRING}

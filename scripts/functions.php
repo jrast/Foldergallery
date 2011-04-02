@@ -292,6 +292,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	global $url;
 	global $page_id;
         global $MOD_FOLDERGALLERY;
+        global $settings;
 
 	$list = "\n";
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
@@ -309,11 +310,16 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 		if ($counter > 1) {$arrup = true;}
 		if ($counter == $zagl) {$arrdown = false;}
 
-		if ($parent_id != "-1") $cursor = ' cursor: move;';
-		else $cursor = '';
+		if ($parent_id != "-1") {
+                    $cursor = ' cursor: move;';
+                    $result['categorie'] = $settings['root_dir'].$result['parent'].'/'.$result['categorie'];
+                } else {
+                    $cursor = '';
+                    $result['categorie'] = $settings['root_dir'];
+                }
 
                 $list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
-                        ."<table width='720' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
+                        ."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
                         .'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
                         ."<td width='20px' style='padding-left:".$padding."px'>\n";
 
@@ -325,10 +331,10 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                 }
 
                 $list .= '</td>'
-                        ."<td><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
+                        ."<td width='".(350-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
                         .'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
-                        .htmlentities($result['categorie'])."</a></td>"
-                        ."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
+                        .htmlentities($result['cat_name'])."</a></td>"
+                        ."<td align='left'>".htmlentities($result['categorie'])."</td>"
                         .'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
                         ."<td width='20'>";
 
