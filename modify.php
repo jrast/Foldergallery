@@ -62,7 +62,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 
 
 // Template
-$t = new Template(dirname(__FILE__).'/templates', 'remove');
+$t = new Template(dirname(__FILE__).'/admin/templates', 'remove');
 $t->halt_on_error = 'no';
 $t->set_file('modify', 'modify.htt');
 // clear the comment-block, if present
