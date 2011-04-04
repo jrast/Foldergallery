@@ -44,7 +44,7 @@ if($_POST['action'] == 'disable') {
 
 $database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_categories` SET active = ".$active." WHERE `id` = ".$_POST['cat_id']);
 
-if($databse->is_error()) {
+if($database->is_error()) {
     $answer['message'] = $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL'];
     exit(json_encode($answer));
 }
