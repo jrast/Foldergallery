@@ -136,7 +136,7 @@ $t->set_var(array(
 	'IMAGE_ACTION_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
 	'SAVE_STRING'		=> $TEXT['SAVE'],
 	'CANCEL_STRING'		=> $TEXT['CANCEL'],
-	'SORT_IMAGE_STRING'	=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
+	'SORT_IMAGES_STRING'	=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
 	// Section und Page ID
 	'SECTION_ID_VALUE'	=> $section_id,
 	'PAGE_ID_VALUE'		=> $page_id,
@@ -149,9 +149,9 @@ $t->set_var(array(
 
 // Links parsen
 $t->set_var(array(
-	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery/admin/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery/admin/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
+	'SAVE_CAT_LINK'             => WB_URL.'/modules/foldergallery/admin/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_FILES_LINK'           => WB_URL.'/modules/foldergallery/admin/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'CANCEL_ONCLICK'            => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 
 

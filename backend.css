@@ -17,13 +17,6 @@ p.ttlink{
 	text-decoration: underline;
 }
 
-tr.title{
-	font-weight: bold;
-}
-
-table.list {
-	background-color: #d3dcdc;
-}
 
 .cat_table {
 	background-color: #ECF3F7;
@@ -81,10 +74,30 @@ div.info {
     display:block;
 }
 
-.FG_cat_list th {
+.FG_cat_list th, .FG_table th {
    background: #CEE5F2;
    font-size: 12px;
    padding: 3px 0 3px 0;
+}
+
+#FG_table {
+	background-color: #d3dcdc;
+        border: 0;
+}
+
+#FG_upload {
+    margin: 10px 0 10px 0;
+    padding: 5px;
+    border: 1px solid #BFC6C7;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.uploadifyQueueItem {
+    margin: 5px 0 5px 0;
+    border: 1px solid #BFC6C7;
+    border-radius: 5px;
+    
 }
 
 

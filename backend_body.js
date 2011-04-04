@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$.insert(WB_URL+'/include/jquery/jquery-ui-min.js');
 	$.insert(WB_URL+'/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js');
+        $.insert(WB_URL+'/modules/foldergallery/admin/scripts/uploadify/swfobject.js');
+        $.insert(WB_URL+'/modules/foldergallery/admin/scripts/uploadify/jquery.uploadify.v2.1.4.min.js');
 });
 
 $(document).ready(function(){ 
@@ -81,6 +83,7 @@ function checkCoords()
 	return false;
 };
 
+// Function to toggle active/inavtive of a categorie in the overview
 function toggle_active_inactive(id) {
     var img = $("#i" + id);
     if( img.attr("src") == fg_url+"/images/active1.gif") {
@@ -106,3 +109,20 @@ function toggle_active_inactive(id) {
         complete: function() {}        
     });
 }
+
+$(document).ready(function() {
+   $('#file_upload').uploadify({
+    'uploader'          : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.swf',
+    'script'            : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.php',
+    'cancelImg'         : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/cancel.png',
+    'folder'            : '/wb28/media/test',
+    'auto'              : true,
+    'multi'             : true,
+    'simUploadLimit'    : 1,
+    'buttonText'        : "Bilder hochladen",
+    'removeCompleted'   : false,
+    'queueID'           : 'FG_queue'
+ })
+});
+
+
