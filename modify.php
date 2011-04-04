@@ -72,7 +72,7 @@ $t->clear_var('ListElement'); // Löschen, da dies über untenstehende Funktion 
 
 // Links im Template setzen
 $t->set_var(array(
-	'SETTINGS_ONCLICK'  => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SETTINGS_ONCLICK'  => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'SYNC_ONKLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
         'HELP_ONCLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/help.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'EDIT_PAGE'         => $page_id,
