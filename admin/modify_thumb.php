@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
@@ -13,7 +13,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 //get the CSS
 // Very dirty version of including a file into the header!
@@ -51,7 +51,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 			
 			//Neues Thumb erstellen
 			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
-				$admin->print_success('Thumb erfolgreich geändert', WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+				$admin->print_success('Thumb erfolgreich geändert', WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 			}
 		}
 		else {
@@ -87,20 +87,20 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				</div>
 				<br />
 				<!-- This is the form that our event handler fills -->
-				<form action="'.WB_URL.'/modules/foldergallery/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
+				<form action="'.WB_URL.'/modules/foldergallery/admin/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
 					<input type="hidden" id="x" name="x" />
 					<input type="hidden" id="y" name="y" />
 					<input type="hidden" id="w" name="w" />
 					<input type="hidden" id="h" name="h" />
 					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON'].'" /><br />
-					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\'"/>
+					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\'"/>
 				</form>
 			</div>';
 		}
 	}
 }
 else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 $admin->print_footer();

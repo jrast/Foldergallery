@@ -1,5 +1,5 @@
 <?php
-require('../../../config.php');
+require('../../../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)

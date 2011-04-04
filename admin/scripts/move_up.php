@@ -23,7 +23,7 @@
 
 */
 
-require('../../../config.php');
+require('../../../../config.php');
 
 // Get id
 if(isset($_GET['page_id']) AND is_numeric($_GET['page_id'])) {
@@ -49,13 +49,13 @@ require(WB_PATH.'/framework/class.order.php');
 // Create new order object an reorder
 $order = new order($table, 'position', $id_field, $common_field);
 if($id_field == 'id') {
-	if($order->move_down($id)) {
+	if($order->move_up($id)) {
 		$admin->print_success($MESSAGE['PAGES']['REORDERED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	} else {
 		$admin->print_error($MESSAGE['PAGES']['CANNOT_REORDER'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	}
 } else {
-	if($order->move_down($id)) {
+	if($order->move_up($id)) {
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	} else {
 		$admin->print_error($TEXT['ERROR'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);

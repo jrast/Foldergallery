@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$.insert('../../include/jquery/jquery-ui-min.js');
+	$.insert(WB_URL+'/include/jquery/jquery-ui-min.js');
 	$.insert(WB_URL+'/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js');
 });
 
@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(WB_URL+"/modules/foldergallery/scripts/reorderDND.php", order, function(theResponse){ 
+			$.post(WB_URL+"/modules/foldergallery/admin/scripts/reorderDND.php", order, function(theResponse){
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
@@ -19,7 +19,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableCategorie ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(WB_URL+"/modules/foldergallery/scripts/reorderCNC.php", order, function(theResponse){ 
+			$.post(WB_URL+"/modules/foldergallery/admin/scripts/reorderCNC.php", order, function(theResponse){
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
@@ -91,7 +91,7 @@ function toggle_active_inactive(id) {
         var src = fg_url+"/images/active1.gif";
     }
     $.ajax({
-        url: fg_url+"/admin/cat_switch_active_inactive.php",
+        url: fg_url+"/admin/scripts/cat_switch_active_inactive.php",
         type: "POST",
         data: 'cat_id='+id.substr(1)+'&action='+action,
         dataType: 'json',

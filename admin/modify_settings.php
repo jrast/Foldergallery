@@ -1,7 +1,7 @@
 <?php
 
 // Admin Backend erstellen
-require('../../config.php');
+require('../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if backend.css file needs to be included into <body></body>
@@ -28,7 +28,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 // --- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 ---
 $jqa_lightboxes = array();
@@ -58,7 +58,7 @@ $t->set_block('modify_settings', 'ratio_select', 'RATIO_SELECT');
 
 // find lightbox files in template folder
 $lightbox_select = '<select name="lightbox" id="lightbox">';
-if ( $dh = opendir(dirname(__FILE__).'/templates') ) {
+if ( $dh = opendir(WB_PATH.'/modules/foldergallery/templates') ) {
     while ( ($file = readdir($dh)) !== false ) {
         if ( preg_match( "/^view_(\w+).htt$/", $file, $matches ) ) {
             $lightbox_select .= '<option value="'
@@ -112,7 +112,7 @@ $catpicselect .= '</select>';
 // Text einsetzten
 $t->set_var(array(
 	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
-	'ROOT_FOLDER_STRING' 	=> $MOD_FOLDERGALLERY['ROOT_DIR'],
+	'ROOT_FOLDER_STRING'            => $MOD_FOLDERGALLERY['ROOT_DIR'],
 	'EXTENSIONS_STRING'		=> $MOD_FOLDERGALLERY['EXTENSIONS'],
 	'EXTENSIONS_VALUE'		=> $settings['extensions'],
 	'INVISIBLE_STRING'		=> $MOD_FOLDERGALLERY['INVISIBLE'],
@@ -134,7 +134,7 @@ $t->set_var(array(
 // Links einsetzen
 $t->set_var(array(
 	'CANCEL_ONCLICK' 		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
-	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
+	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/admin/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
 ));
 
 //Tooltips einsetzen

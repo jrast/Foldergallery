@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 require(WB_PATH.'/modules/admin.php');
 	
@@ -27,7 +27,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 $settings = getSettings($section_id);
 
@@ -89,9 +89,9 @@ $t->set_var(array(
 
 // Links Parsen
 $t->set_var(array(
-	'CANCEL_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
-	'QUICK_ASC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
-	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
+	'CANCEL_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
+	'QUICK_ASC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
 ));
 
 // JS Werte Parsen

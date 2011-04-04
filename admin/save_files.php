@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 require(WB_PATH.'/modules/admin.php');
 	
@@ -27,7 +27,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 
 
@@ -46,7 +46,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 	if(!isset($_POST['id'])) {
-		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		$admin->print_footer();
 		die();
 	}
@@ -103,7 +103,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 }
-$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 
 $admin->print_footer();
 ?>

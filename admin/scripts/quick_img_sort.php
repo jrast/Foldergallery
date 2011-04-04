@@ -1,5 +1,5 @@
 <?php
-require('../../../config.php');
+require('../../../../config.php');
 
 $error = null;
 
@@ -63,10 +63,10 @@ if($query->numRows()) {
 
 if($database->query($sql)){
 	$admin->print_success($MESSAGE['PAGES']['REORDERED'],
-	WB_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	WB_URL.'/modules/foldergallery/admin/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 } else {
 	$admin->print_error($TEXT['ERROR'],
-	WB_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	WB_URL.'/modules/foldergallery/admin/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 // Print admin footer

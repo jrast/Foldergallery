@@ -353,7 +353,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
                 if($arrup == true) {
                     // Move up arrow
-                    $list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
+                    $list .="<a href='".WB_URL."/modules/foldergallery/admin/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_UP']."'>"
                           . "<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 		}
 
@@ -362,7 +362,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                 
                 if ($arrdown == true) {
                     // Move down arrow
-                    $list .="<a href='".WB_URL."/modules/foldergallery/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
+                    $list .="<a href='".WB_URL."/modules/foldergallery/admin/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='".$MOD_FOLDERGALLERY['MOVE_DOWN']."'>"
                           . "<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' /></a>";
                 }
                 

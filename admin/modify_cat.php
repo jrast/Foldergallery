@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 require(WB_PATH.'/modules/admin.php');
 	
@@ -27,7 +27,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio
@@ -149,8 +149,8 @@ $t->set_var(array(
 
 // Links parsen
 $t->set_var(array(
-	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery/admin/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery/admin/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 
@@ -163,8 +163,8 @@ foreach($bilder as $bild) {
 		'IMAGE_VALUE'		=> $bild['thumb_link'].'?t='.time(),
 		'IMAGE_NAME_VALUE'	=> $bild['file_name'],
 		'CAPTION_VALUE'		=> $bild['caption'],
-		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'		=> $counter
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);

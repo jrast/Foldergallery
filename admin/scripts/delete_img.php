@@ -1,5 +1,5 @@
 <?php
-require('../../../config.php');
+require('../../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if backend.css file needs to be included into <body></body>
@@ -9,7 +9,7 @@ include(WB_PATH .'/modules/foldergallery/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergaller/backend.js")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery/backend.js")) {
 echo '<script type="text/javascript">';
 include(WB_PATH .'/modules/foldergallery/backend.js');
 echo "</script>";
@@ -57,14 +57,14 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'];
 		$database->query($sql);
 			
-		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		
 		
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 	}
 } else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 $admin->print_footer();
 ?>

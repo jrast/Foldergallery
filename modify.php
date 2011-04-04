@@ -42,7 +42,7 @@ if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) 
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
-require_once (WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 
 // Einstellungen zur aktuellen Foldergallery aus der DB

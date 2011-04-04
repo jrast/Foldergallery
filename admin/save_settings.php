@@ -20,7 +20,7 @@
 
 */
 
-require('../../config.php');
+require('../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
@@ -33,7 +33,7 @@ if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) 
 }
 
 require_once(WB_PATH.'/modules/foldergallery/info.php');
-require_once(WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 $oldSettings = getSettings($section_id);
 $newSettings = array();
@@ -161,7 +161,7 @@ if($oldSettings['root_dir'] != $newSettings['root_dir']){
     VALUES ( '$section_id', '-1', 'Root', '-1', 'Root', '1', '0', '0', '-1', '0', '', 'Root Description' );";
   $query = $database->query($sql);
   if($database->is_error()) {
-  	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+  	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
   }
 }
 
@@ -170,9 +170,9 @@ syncDB($newSettings);
 
 // Überprüfen ob ein Fehler aufgetreten ist, sonst Erfolg ausgeben
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
 } else {
-	$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/sync.php?page_id='.$page_id.'&section_id='.$section_id);
 }
 
 // Print admin footer

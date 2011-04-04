@@ -20,7 +20,7 @@
 
 */
 
-require('../../config.php');
+require('../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // Direkten Zugriff verhindern
@@ -36,7 +36,7 @@ if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) 
 }
 
 require_once(WB_PATH.'/modules/foldergallery/info.php');
-require_once(WB_PATH.'/modules/foldergallery/scripts/backend.functions.php');
+require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 $settings = getSettings($section_id);
 
@@ -163,14 +163,13 @@ if(syncDB($settings)) {
       if($flag) {
       	$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
       } else {
-    	  $admin->print_error("Synchronisation fehlgeschlagen", WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+    	  $admin->print_error("Synchronisation fehlgeschlagen", WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
       }
 
     }   // keine Kategorien vorhanden
     else {
-        $admin->print_error( $MOD_FOLDERGALLERY['NO_CATEGORIES'], WB_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
+        $admin->print_error( $MOD_FOLDERGALLERY['NO_CATEGORIES'], WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
     }
-
 }
 
 // Print admin footer
