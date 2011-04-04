@@ -106,7 +106,7 @@ while($result = $query->fetchRow()){
 
 // Needed for display_categories()
 $url = array(
-	'edit'	=> WB_URL."/modules/foldergallery/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
+	'edit'	=> WB_URL."/modules/foldergallery/admin/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
 );
 
 
