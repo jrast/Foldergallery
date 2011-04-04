@@ -82,13 +82,16 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME']              = 'Sort images by filename';
 $MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']          = 'filename ascending';
 $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']         = 'filename descending';
 $MOD_FOLDERGALLERY['SORT_FREEHAND']             = 'Free sort (Drag & Drop)';
-$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Edit Thumbnail';
-$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Delete Image';
-$MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Edit Categorie';
-$MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Expand/Colapse';
-$MOD_FOLDERGALLERY['MOVE_UP']                           = 'Move up';
-$MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Move down';
-$MOD_FOLDERGALLERY['HELP_INFORMATION']                  = 'Help/Info';
+$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']            = 'Edit Thumbnail';
+$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']          = 'Delete Image';
+$MOD_FOLDERGALLERY['EDIT_CATEGORIE']            = 'Edit Categorie';
+$MOD_FOLDERGALLERY['EXPAND_COLAPSE']            = 'Expand/Colapse';
+$MOD_FOLDERGALLERY['MOVE_UP']                   = 'Move up';
+$MOD_FOLDERGALLERY['MOVE_DOWN']                 = 'Move down';
+$MOD_FOLDERGALLERY['HELP_INFORMATION']          = 'Help/Info';
+$MOD_FOLDERGALLERY['CAT_ACTIVE']                = 'active, click to deactivate!';
+$MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inactive, click to activate!';
+$MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Could not acvtivate/deactivate this categorie! Do you try to hack the system?';
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']     = 'This is the basic (root) folder to scan for images recursively. '

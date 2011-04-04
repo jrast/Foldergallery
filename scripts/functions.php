@@ -318,6 +318,12 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                     $result['categorie'] = $settings['root_dir'];
                 }
 
+                if($result['active'] == 1) {
+                    $activ_string = $MOD_FOLDERGALLERY['CAT_ACTIVE'];
+                } else {
+                    $activ_string = $MOD_FOLDERGALLERY['CAT_INACTIVE'];
+                }
+
                 $list .= "<li id='recordsArray_".$result['id']."' style='padding: 1px 0px 1px 0px;".$cursor."'>\n"
                         ."<table width='100%' cellpadding='0' cellspacing='0' border='0' class='cat_table'>\n"
                         .'<tr onmouseover="this.style.backgroundColor = \'#F1F8DD\';" onmouseout="this.style.backgroundColor = \'#ECF3F7\';">'
@@ -339,7 +345,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
                 // Active / Inactive Sign
                 if($parent_id != "-1") {
-                    $list .= '<a class="FG_active_categorie" href="javascript: toggle_active_inactive(\'p'.$result['id'].'\');"><img id="ip'.$result['id'].'" src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" /></a>&nbsp;&nbsp;';
+                    $list .= '<a class="FG_active_categorie" href="javascript: toggle_active_inactive(\'p'.$result['id'].'\');"><img id="ip'.$result['id'].'" src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="'.$activ_string.'" /></a>&nbsp;&nbsp;';
                 }
 
                 $list .='</td>'

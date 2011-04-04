@@ -11,35 +11,46 @@ if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.ph
     require_once(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
 }
 
+// Answer array wich is sent back to the backend
 $answer = array();
+$answer['message'] = $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL'];
+$answer['success'] = 'false';
 
 // Check the Parameters
 if(!isset($_POST['cat_id']) || !isset($_POST['action'])) {
-    $answer['success'] = 'false';
-    $answer['message'] = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
     exit(json_encode($answer));
 }
 
 if(!(($_POST['action'] == 'enable') || ($_POST['action'] == 'disable')) || !is_numeric($_POST['cat_id'])) {
-    $answer['success'] = 'false';
-    $answer['message'] = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
+    exit(json_encode($answer));
+}
+// OK, Parameters seem to be save
+
+// Check if user has enough rights to do this:
+require_once(WB_PATH.'/framework/class.admin.php');
+$admin = new admin('Modules', 'module_view', false, false);
+if (!($admin->is_authenticated() && $admin->get_permission('foldergallery', 'module'))) {
     exit(json_encode($answer));
 }
 
-// OK, Parameters seem to be save
 
 if($_POST['action'] == 'disable') {
     $active = 0;
+    $answer['message'] = $MOD_FOLDERGALLERY['CAT_INACTIVE'];
 } else {
     $active = 1;
+    $answer['message'] = $MOD_FOLDERGALLERY['CAT_ACTIVE'];
 }
 
 $database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_categories` SET active = ".$active." WHERE `id` = ".$_POST['cat_id']);
 
-$answer = array(
-    'success'   => 'true',
-    'message'   => 'Erfolgreich'
-);
+if($databse->is_error()) {
+    $answer['message'] = $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL'];
+    exit(json_encode($answer));
+}
 
+// If the script is still running, set success to true
+$answer['success'] = 'true';
+// and echo the answer as json to the ajax function
 echo json_encode($answer);
 ?>

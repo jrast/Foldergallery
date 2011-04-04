@@ -84,13 +84,16 @@ $MOD_FOLDERGALLERY['SORT_BY_NAME']              = 'Bilder nach Dateiname sortier
 $MOD_FOLDERGALLERY['SORT_BY_NAME_ASC']          = 'Dateiname aufsteigend';
 $MOD_FOLDERGALLERY['SORT_BY_NAME_DESC']         = 'Dateiname absteigend';
 $MOD_FOLDERGALLERY['SORT_FREEHAND']             = 'Frei sortieren (Drag & Drop)';
-$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']                    = 'Vorschaubild bearbeiten';
-$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']                  = 'Bild löschen';
-$MOD_FOLDERGALLERY['EDIT_CATEGORIE']                    = 'Kategorie bearbeiten';
-$MOD_FOLDERGALLERY['EXPAND_COLAPSE']                    = 'Erweitern/Reduzieren';
-$MOD_FOLDERGALLERY['MOVE_UP']                           = 'Aufw&auml;rts verschieben';
-$MOD_FOLDERGALLERY['MOVE_DOWN']                         = 'Abw&auml;rts verschieben';
-$MOD_FOLDERGALLERY['HELP_INFORMATION']                  = 'Hilfe/Info';
+$MOD_FOLDERGALLERY['THUMB_EDIT_ALT']            = 'Vorschaubild bearbeiten';
+$MOD_FOLDERGALLERY['IMAGE_DELETE_ALT']          = 'Bild löschen';
+$MOD_FOLDERGALLERY['EDIT_CATEGORIE']            = 'Kategorie bearbeiten';
+$MOD_FOLDERGALLERY['EXPAND_COLAPSE']            = 'Erweitern/Reduzieren';
+$MOD_FOLDERGALLERY['MOVE_UP']                   = 'Aufw&auml;rts verschieben';
+$MOD_FOLDERGALLERY['MOVE_DOWN']                 = 'Abw&auml;rts verschieben';
+$MOD_FOLDERGALLERY['HELP_INFORMATION']          = 'Hilfe/Info';
+$MOD_FOLDERGALLERY['CAT_ACTIVE']                = 'aktiv, klicken zum deaktivieren!';
+$MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inaktiv, klicken zum aktivieren!';
+$MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren &auml;ndern, sonst gehen alle Infos zu den Bilder verloren!';
