@@ -80,3 +80,29 @@ function checkCoords()
 	alert('Please select a crop region then press submit.');
 	return false;
 };
+
+function toggle_active_inactive(id) {
+    var img = $("#i" + id);
+    if( img.attr("src") == fg_url+"/images/active1.gif") {
+        action = "disable";
+        var src = fg_url+"/images/active0.gif";
+    } else {
+        action = "enable";
+        var src = fg_url+"/images/active1.gif";
+    }
+    $.ajax({
+        url: fg_url+"/admin/cat_switch_active_inactive.php",
+        type: "POST",
+        data: 'cat_id='+id.substr(1)+'&action='+action,
+        dataType: 'json',
+        success: function(data) {
+            if(data.success == "true") {
+                img.attr("src", src);
+                img.attr("title", data.message);
+            } else {
+                alert(data.message);
+            }
+        },
+        complete: function() {}        
+    });
+}

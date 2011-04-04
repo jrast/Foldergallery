@@ -113,6 +113,7 @@ $url = array(
 echo '<script type="text/javascript">
 		var the_parent_id = "0";
                 var theme_url = "'.THEME_URL.'";
+                var fg_url = "'.WB_URL.'/modules/foldergallery";
                 var settingsRatio = "0";
 	</script>
 	<ul>

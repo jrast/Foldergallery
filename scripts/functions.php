@@ -329,13 +329,20 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                             .'<img src="'.THEME_URL.'/images/plus_16.png" name="plus_minus_p'.$result['id'].'" border="0" alt="+" />'
                             .'</a>';
                 }
-
+                // Categorie Name and Folder
                 $list .= '</td>'
                         ."<td width='".(350-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
                         .'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
                         .htmlentities($result['cat_name'])."</a></td>"
                         ."<td align='left'>".htmlentities($result['categorie'])."</td>"
-                        .'<td width="30"><img src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+                        .'<td width="30">';
+
+                // Active / Inactive Sign
+                if($parent_id != "-1") {
+                    $list .= '<a class="FG_active_categorie" href="javascript: toggle_active_inactive(\'p'.$result['id'].'\');"><img id="ip'.$result['id'].'" src="'.WB_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" /></a>&nbsp;&nbsp;';
+                }
+
+                $list .='</td>'
                         ."<td width='20'>";
 
                 if($arrup == true) {
