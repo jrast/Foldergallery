@@ -18,7 +18,7 @@
                 <input name="mod_dir" value="foldergallery" type="hidden">
                 <input name="edit_file" value="frontend.css" type="hidden">
                 <input name="action" value="edit" type="hidden">
-			<input value="{EDIT_CSS_STRING}" type="submit" class="FG_button">
+		<input value="{EDIT_CSS_STRING}" type="submit" class="FG_button">
             </form>
         </td>
         <td width="33%">
@@ -28,20 +28,20 @@
 </table>
 <h3>{TITEL_MODIFY}</h3>
 <!-- Tabellen Überschrift -->
-<div class="cat_list">
+<div class="FG_cat_list">
     <table cellpadding="0" cellspacing="0" width="100%" border="0">
         <tr>
-            <td width="20px">
-            </td>
-            <td width="350px">
+            <th width="20px">
+            </th>
+            <th width="350px">
                 {CAT_TITLE_STRING}
-            </td>
-            <td align="left">
+            </th>
+            <th align="left">
                 {FOLDER_IN_FS_STRING}
-            </td>
-            <td width="130px" align="center">
+            </th>
+            <th width="130px" align="center">
                 {ACTIONS_STRING}
-            </td>
+            </th>
         </tr>
     </table>	
     <!-- Liste erstellen -->

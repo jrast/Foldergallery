@@ -35,9 +35,6 @@ table.list {
 	display:none;
 }
 
-.cat_list {
-	display:block;
-}
 
 ul {
    list-style-type:none;
@@ -78,6 +75,16 @@ div.info {
     font-weight: bold;
     margin-top: 15px;
     min-height: 20px;
+}
+
+.FG_cat_list {
+    display:block;
+}
+
+.FG_cat_list th {
+   background: #CEE5F2;
+   font-size: 12px;
+   padding: 3px 0 3px 0;
 }
 
 
