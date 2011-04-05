@@ -110,19 +110,27 @@ function toggle_active_inactive(id) {
     });
 }
 
-$(document).ready(function() {
-   $('#file_upload').uploadify({
-    'uploader'          : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.swf',
-    'script'            : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.php',
-    'cancelImg'         : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/cancel.png',
-    'folder'            : '/wb28/media/test',
-    'auto'              : true,
-    'multi'             : true,
-    'simUploadLimit'    : 1,
-    'buttonText'        : "Bilder hochladen",
-    'removeCompleted'   : false,
-    'queueID'           : 'FG_queue'
- })
-});
 
-
+/* This is only needed for the modify_cat view */
+if(!(typeof(upSettings) == 'undefined')) {
+    $(document).ready(function() {
+        $('#file_upload').uploadify({
+            'uploader'          : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.swf',
+            'script'            : WB_URL+'/modules/foldergallery/admin/scripts/upload.php',
+            'cancelImg'         : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/cancel.png',
+            'folder'            : upSettings.folder,
+            'auto'              : true,
+            'multi'             : true,
+            'simUploadLimit'    : 1,
+            'buttonText'        : 'Browse',
+            'width'             : 250,
+            'removeCompleted'   : true,
+            'queueID'           : 'FG_queue',
+            onComplete          : function(event, ID, fileObj, response, data) {
+                //$('#FG_table').append(response);
+                alert(response);
+                //alert(WB_URL+'/modules/foldergallery/admin/scripts/upload.php?cat_id='+upSettings.catID+'&section_id='+upSettings.sectionID+'&page_id='+upSettings.pageID);
+            }
+        })
+    });
+}

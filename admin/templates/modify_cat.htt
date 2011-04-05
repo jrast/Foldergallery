@@ -4,7 +4,12 @@ This is a phplib-template for modify_cat.php
 -->
 <!-- END CommentDoc -->
 <script type="text/javascript">
-	var settingsRatio = 1
+	var settingsRatio = 1;
+        upSettings = new Object();
+        upSettings.folder = '{UPLOAD_FOLDER}';
+        upSettings.catID = '{CAT_ID_VALUE}';
+        upSettings.sectionID = '{SECTION_ID_VALUE}';
+        upSettings.pageID = '{PAGE_ID_VALUE}';
 </script>
 <h2>{MODIFY_CAT_TITLE}</h2><br />
 <h3>{MODIFY_CAT_STRING}</h3>
@@ -42,10 +47,6 @@ This is a phplib-template for modify_cat.php
 	</table>
 </form>
 <hr>
-<div id="FG_upload">
-    <input id="file_upload" name="file_upload" type="file" />
-    <div id="FG_queue"></div>
-</div>
 <h3>{MODIFY_IMG_STRING} | <a href="modify_cat_sort.php?page_id={PAGE_ID_VALUE}&section_id={SECTION_ID_VALUE}&cat_id={CAT_ID_VALUE}">{SORT_IMAGES_STRING}</a></h3>
 <form action="{SAVE_FILES_LINK}" method="post" >
 	<table width="100%" id="FG_table">
@@ -76,6 +77,11 @@ This is a phplib-template for modify_cat.php
 		</tr>
 		<!-- END file_loop -->
 	</table>
+        <div id="FG_upload">
+            <h3>Weitere Bilder zu dieser Kategorie hinzufügen:</h3>
+            <input id="file_upload" name="file_upload" type="file" />
+            <div id="FG_queue"></div>
+        </div>
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td align="left">

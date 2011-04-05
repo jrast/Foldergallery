@@ -30,7 +30,6 @@ require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 $settings = getSettings($section_id);
-$thumb_size = $settings['thumb_size']; //Chio
 $root_dir = $settings['root_dir']; //Chio
 $ratio = $settings['ratio']; //Pumpi
 
@@ -51,13 +50,15 @@ $categorie = $query->fetchRow();
 if ( is_array( $categorie ) ) {
     if ( $categorie['parent'] != -1 ) {
         $cat_path = $path.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
-		$cat_path = str_replace(WB_PATH, '', $cat_path);
+	$cat_path = str_replace(WB_PATH, '', $cat_path);
         $parent   = $categorie['parent'].'/'.$categorie['categorie'];
+        $uploadPath = $settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
     }
     else {
         // Root
         $cat_path = $path.$settings['root_dir'];
-        $parent   = '';		
+        $parent   = '';
+        $uploadPath = $settings['root_dir'];
     }
 }
 $parent_id = $categorie['id'];
@@ -88,7 +89,7 @@ if($query->numRows()){
 		
 		$thumb = $pathToThumb.$bildfilename;			
 		if(!is_file($thumb)){	
-			generateThumb($file, $thumb, $thumb_size, 0, $ratio);
+			generateThumb($file, $thumb, $settings['thumb_size'], 0, $ratio);
 		}
 		
 		//Chio Ende
@@ -144,7 +145,8 @@ $t->set_var(array(
         'IMAGE_DELETE_ALT'      => $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'],
         'THUMB_EDIT_ALT'        => $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'],
         'EDIT_THUMB_SOURCE'     => THEME_URL.'/images/resize_16.png',
-        'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png'
+        'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png',
+        'UPLOAD_FOLDER'         => $uploadPath
 ));
 
 // Links parsen
