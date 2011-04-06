@@ -117,8 +117,10 @@ if(!(typeof(upSettings) == 'undefined')) {
         $('#file_upload').uploadify({
             'uploader'          : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/uploadify.swf',
             'script'            : WB_URL+'/modules/foldergallery/admin/scripts/upload.php',
+            'checkScript'       : WB_URL+'/modules/foldergallery/admin/scripts/upload_check.php',
             'cancelImg'         : WB_URL+'/modules/foldergallery/admin/scripts/uploadify/cancel.png',
             'folder'            : upSettings.folder,
+            'scriptData'        : {'secCheck': upSettings.data},
             'auto'              : true,
             'multi'             : true,
             'simUploadLimit'    : 1,
@@ -127,10 +129,11 @@ if(!(typeof(upSettings) == 'undefined')) {
             'removeCompleted'   : true,
             'queueID'           : 'FG_queue',
             onComplete          : function(event, ID, fileObj, response, data) {
-                //$('#FG_table').append(response);
-                alert(response);
-                //alert(WB_URL+'/modules/foldergallery/admin/scripts/upload.php?cat_id='+upSettings.catID+'&section_id='+upSettings.sectionID+'&page_id='+upSettings.pageID);
-            }
+                $(response).appendTo($('#FG_table'));
+            },
+            'onCheck'           : function(event,data,key) {
+                $('#file_upload' + key).find('.percentage').text(' - Exists');
+           }
         })
     });
 }

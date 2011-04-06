@@ -10,6 +10,7 @@ This is a phplib-template for modify_cat.php
         upSettings.catID = '{CAT_ID_VALUE}';
         upSettings.sectionID = '{SECTION_ID_VALUE}';
         upSettings.pageID = '{PAGE_ID_VALUE}';
+        upSettings.data = '{UPLOAD_SEC_NUM}';
 </script>
 <h2>{MODIFY_CAT_TITLE}</h2><br />
 <h3>{MODIFY_CAT_STRING}</h3>
@@ -38,10 +39,10 @@ This is a phplib-template for modify_cat.php
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td align="left">
-				<input name="save" type="submit" value="{SAVE_STRING}" style="width: 100px; margin-top: 5px;" />
+				<input name="save" type="submit" value="{SAVE_STRING}" class="FG_button" style="width: 100px; margin-top: 5px;" />
 			</td>
 			<td align="right">
-				<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 5px;" />
+				<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" class="FG_button" style="width: 100px; margin-top: 5px;" />
 			</td>
 		</tr>
 	</table>
@@ -58,7 +59,6 @@ This is a phplib-template for modify_cat.php
 		</tr>
 		<!-- BEGIN file_loop -->
 		<tr>
-			<input type="hidden" name="id[{COUNTER}]" value="{ID_VALUE}" alt="Thumb">
 			<td align="center">
 				<a href='{THUMB_EDIT_LINK}'><img src="{IMAGE_VALUE}"></a>
 			</td>
@@ -77,11 +77,13 @@ This is a phplib-template for modify_cat.php
 		</tr>
 		<!-- END file_loop -->
 	</table>
+
         <div id="FG_upload">
             <h3>Weitere Bilder zu dieser Kategorie hinzufügen:</h3>
             <input id="file_upload" name="file_upload" type="file" />
             <div id="FG_queue"></div>
         </div>
+    
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td align="left">

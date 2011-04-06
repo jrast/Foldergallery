@@ -44,28 +44,25 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 		$admin->print_error('lost cat', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 		die();
 	}
-	
-	if(!isset($_POST['id'])) {
-		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
-		$admin->print_footer();
-		die();
-	}
 
-	$anzahl = count($_POST['id']);
+        
 	$bilderNeu = array();
-	for($i = 0; $i < $anzahl; $i++) {
-		if(isset($_POST['caption'][$i]) && is_string($_POST['caption'][$i]) && ($_POST['caption'][$i] != '')) {
-			$caption = htmlentities($_POST['caption'][$i],ENT_QUOTES,"UTF-8");
-		} else {
-			$caption = '';
-		}
-		$bilderNeu[] = array(
-			'id'		=> $_POST['id'][$i],
-			'caption' 	=> $caption,
-			'delete' 	=> false
-		);
-		
-	}	
+        foreach($_POST['caption'] as $key => $value) {
+            if(!is_numeric($key)) {
+                continue;
+            }
+            if(is_string($value) && $value != '') {
+                $caption = htmlentities($value, ENT_QUOTES, "UTF-8");
+            } else {
+                $caption = '';
+            }
+            $bilderNeu[] = array(
+                'id'        => $key,
+                'caption'   => $caption,
+                'delete'    => false
+            );
+        }
+
 	//echo '<pre>'; var_export($bilderNeu); echo '</pre>';
 		
 	// Jetzt machen wir alle Datenbank Änderungen
