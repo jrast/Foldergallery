@@ -44,15 +44,20 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		
 		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$parent_id.' LIMIT 1;');
 		$categorie = $query2->fetchRow();
-		$parent   = $categorie['parent'].'/'.$categorie['categorie'];
+                if($categorie['parent_id'] != -1) {
+                   $parent   = $categorie['parent'].'/'.$categorie['categorie'];
+                } else {
+                    $parent = '';
+                }
 		$folder = $root_dir.$parent;
 		$pathToFolder = $path.$folder.'/';	
 
 		
 		$pathToFile = $path.$folder.'/'.$bildfilename;	
-		$pathToThumb = $path.$folder.$thumbdir.'/thumb.'.$bildfilename;				
-		deleteFile($pathToFile);
-		deleteFile($pathToThumb);
+		$pathToThumb = $path.$folder.$thumbdir.'/'.$bildfilename;
+		if(!deleteFile($pathToFile) || !deleteFile($pathToThumb) ) {
+                    $admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+                }
 		
 		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'];
 		$database->query($sql);
