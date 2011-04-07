@@ -110,7 +110,7 @@ $urlToThumb = str_replace(WB_PATH, WB_URL, $thumbFile);
 $thumbEditLink = WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$newId;
 $thumbEditAlt = $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'] ;
 $editThumbSource = THEME_URL.'/images/resize_16.png';
-$imageDeleteLink = "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$newId."\");";
+$imageDeleteLink = "javascript: confirm_link(\"".$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE'] ."\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$newId."\");";
 $imageDeleteAlt = $MOD_FOLDERGALLERY['IMAGE_DELETE_ALT'];
 $imageDeleteSource = THEME_URL.'/images/delete_16.png';
 

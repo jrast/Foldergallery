@@ -94,6 +94,8 @@ $MOD_FOLDERGALLERY['HELP_INFORMATION']          = 'Hilfe/Info';
 $MOD_FOLDERGALLERY['CAT_ACTIVE']                = 'aktiv, klicken zum deaktivieren!';
 $MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inaktiv, klicken zum aktivieren!';
 $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
+$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE']       = 'Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten? Die Datei wird komplett vom Server gelöscht!';
+$MOD_FOLDERGALLERY['ADD_MORE_PICS']             = 'Weitere Bilder zu dieser Kategorie hinzuf&uuml;gen';
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren &auml;ndern, sonst gehen alle Infos zu den Bilder verloren!';

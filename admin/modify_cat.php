@@ -106,11 +106,6 @@ if($query->numRows()){
 }
 
 
-
-
-
-
-
 //Template
 $t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->set_file('modify_cat', 'modify_cat.htt');
@@ -147,7 +142,8 @@ $t->set_var(array(
         'EDIT_THUMB_SOURCE'     => THEME_URL.'/images/resize_16.png',
         'DELETE_IMG_SOURCE'     => THEME_URL.'/images/delete_16.png',
         'UPLOAD_FOLDER'         => $uploadPath,
-        'UPLOAD_SEC_NUM'        => $page_id.'/'.$section_id.'/'.$cat_id
+        'UPLOAD_SEC_NUM'        => $page_id.'/'.$section_id.'/'.$cat_id,
+        'ADD_MORE_PICS_TITLE'   => $MOD_FOLDERGALLERY['ADD_MORE_PICS']
 ));
 
 // Links parsen
@@ -167,7 +163,7 @@ foreach($bilder as $bild) {
 		'IMAGE_NAME_VALUE'	=> $bild['file_name'],
 		'CAPTION_VALUE'		=> $bild['caption'],
 		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"".$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE'] ."\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'		=> $bild['id']
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);

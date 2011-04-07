@@ -4,7 +4,6 @@ This is a phplib-template for modify_cat.php
 -->
 <!-- END CommentDoc -->
 <script type="text/javascript">
-	var settingsRatio = 1;
         upSettings = new Object();
         upSettings.folder = '{UPLOAD_FOLDER}';
         upSettings.catID = '{CAT_ID_VALUE}';
@@ -79,7 +78,7 @@ This is a phplib-template for modify_cat.php
 	</table>
 
         <div id="FG_upload">
-            <h3>Weitere Bilder zu dieser Kategorie hinzufügen:</h3>
+            <h3>{ADD_MORE_PICS_TITLE}:</h3>
             <input id="file_upload" name="file_upload" type="file" />
             <div id="FG_queue"></div>
         </div>

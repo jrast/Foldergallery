@@ -92,6 +92,9 @@ $MOD_FOLDERGALLERY['HELP_INFORMATION']          = 'Help/Info';
 $MOD_FOLDERGALLERY['CAT_ACTIVE']                = 'active, click to deactivate!';
 $MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inactive, click to activate!';
 $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Could not acvtivate/deactivate this categorie! Do you try to hack the system?';
+$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE']       = 'Would you like to delete this file? The file is completely deleted from the server!';
+$MOD_FOLDERGALLERY['ADD_MORE_PICS']             = 'Add more Pictures to this categorie';
+
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']     = 'This is the basic (root) folder to scan for images recursively. '
