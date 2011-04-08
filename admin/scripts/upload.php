@@ -88,7 +88,7 @@ if(!in_array($fileParts['extension'], $allowedFileTypes)) {
 
 // File verschieben
 move_uploaded_file($tempFile, $targetFile);
-generateThumb($targetFile, $thumbFile, $settings['thumb_size'], 0, $settings['ratio']);
+generateThumb($targetFile, $thumbFile, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
 
 // get DB infos
 $sql = 'SELECT position FROM `'.TABLE_PREFIX.'mod_foldergallery_files` WHERE `parent_id`= '.$cat_id.' ORDER BY `position` DESC LIMIT 1;';

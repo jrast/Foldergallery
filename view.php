@@ -150,7 +150,7 @@ if (count($ergebnisse) == 0) {
             $thumb = $pathToThumb . $bildfilename;
             if (!is_file($thumb)) {
                 $file = $pathToFolder . $bildfilename;
-                $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio']);
+                $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
                 if ($terg < 0)
                     $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
             }
@@ -341,7 +341,7 @@ if ($bilder) {
         }
         if (!is_file($thumb)) {
             $file = $pathToFolder . $bildfilename;
-            $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio']);
+            $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
             if ($terg < 0)
                 $tumburl = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
         }

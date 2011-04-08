@@ -20,15 +20,16 @@ function getSettings($section_id) {
  * @return void or true
  * @param string $file  Pfadangabe zum original File
  * @param string $thumb Pfadangabe zum Thumbfile
- * **********************************************
- * Anpassung für individuelle Thumb erstellung
+ * @param bool $showmessage Logging ein/aus
  * @param string $ratio Seitenverhältniss der Thumbs
+ * @param int $fullpercent Prozentangabe, wie das Originalbild beschniten werden muss
+ * @param string $bg_color Farbe des Hintergrunds, falls das Bild nicht das richtige Format hat
  * @param string $positionX Position X von jCrop ansonsten 0
  * @param string $positionY Position Y von jCrop ansonsten 0
  * @param string $positionW Position W von jCrop ansonsten 0
  * @param string $positionH Position H von jCrop ansonsten 0
  */
-function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0) {
+function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpercent = 100, $bg_color = '999999', $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0) {
 
     //Von Chio eingef�gt:
     global $megapixel_limit;
@@ -72,7 +73,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
     $gif = '\.gif$';
     $png = '\.png$';
     $fontSize = 2;
-    $bg = "999999";
+    $bg = $bg_color;
 
     $thumbFolder = dirname($thumb);
 

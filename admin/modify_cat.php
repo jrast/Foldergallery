@@ -89,7 +89,7 @@ if($query->numRows()){
 		
 		$thumb = $pathToThumb.$bildfilename;			
 		if(!is_file($thumb)){	
-			generateThumb($file, $thumb, $settings['thumb_size'], 0, $ratio);
+			generateThumb($file, $thumb, $settings['thumb_size'], 0, $ratio, 100, '999999');
 		}
 		
 		//Chio Ende

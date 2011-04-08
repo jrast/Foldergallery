@@ -50,7 +50,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 			deleteFile($thumb_file);
 			
 			//Neues Thumb erstellen
-			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
+			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], 100, '999999', $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
 				$admin->print_success('Thumb erfolgreich geändert', WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 			}
 		}
