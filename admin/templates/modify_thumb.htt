@@ -1,0 +1,34 @@
+<!-- BEGIN CommentDoc -->
+<!--
+This is a phplib-template for modify_thumb.php
+-->
+<!-- END CommentDoc -->
+<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" />
+<script type="text/javascript">
+    var relWidth = '{REL_WIDTH}';
+    var relHeight = '{REL_HEIGHT}';
+    var thumbSize = '{THUMB_SIZE}';
+    var settingsRatio = '{RATIO}';
+</script>
+<h2>{EDIT_THUMB}</h2>
+<p>{EDIT_THUMB_DESCR}</p>
+<p>{FULL_FILE_LINK}</p>
+<div style="float: left; padding: 0 20px 0 20px;">
+    <img src="{FULL_FILE_LINK}" id="cropbox" style="max-width: 500px; max-height: 500px;"/>
+</div>
+<div style="float:left;" align="center">
+    <div style="overflow: hidden; width: {PREVIEW_WIDTH}px; height: {PREVIEW_HEIGHT}px;">
+	<img src="{FULL_FILE_LINK}" id="preview">
+    </div>
+    <br />
+    <!-- This is the form that our event handler fills -->
+    <form action="{WB_URL}/modules/foldergallery/admin/modify_thumb.php?page_id={PAGE_ID}&section_id={SECTION_ID}&cat_id={CAT_ID}&id={IMG_ID}" method="post" onsubmit="return checkCoords();">
+        <input type="hidden" id="x" name="x" />
+	<input type="hidden" id="y" name="y" />
+	<input type="hidden" id="w" name="w" />
+	<input type="hidden" id="h" name="h" />
+	<input style="width: 130px;" type="submit" value="{SAVE_NEW_THUMB}" class="FG_button" />
+        <br />
+	<input style="width: 130px;" type="button" value="{CANCEL}" onClick="parent.location='{WB_URL}/modules/foldergallery/admin/modify_cat.php?page_id={PAGE_ID}&section_id={SECTION_ID}&cat_id={CAT_ID}'" class="FG_button"/>
+    </form>
+</div>
