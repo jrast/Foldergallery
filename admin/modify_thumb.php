@@ -16,9 +16,6 @@ if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.ph
 require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/admin/scripts/backend.functions.php');
 
-//get the CSS
-// Very dirty version of including a file into the header!
-echo '<link rel="stylesheet" type="text/css" href="' . WB_URL . '/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
 
 $cat_id = $_GET['cat_id'];
@@ -68,7 +65,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $t = new Template(dirname(__FILE__) . '/templates', 'remove');
             $t->set_file('modify_thumb', 'modify_thumb.htt');
             // clear the comment-block, if present
-            $t->set_block('modify_cat', 'CommentDoc');
+            $t->set_block('modify_thumb', 'CommentDoc');
             $t->clear_var('CommentDoc');
 
             $t->set_var(array(

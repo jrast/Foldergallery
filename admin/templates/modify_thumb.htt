@@ -3,7 +3,7 @@
 This is a phplib-template for modify_thumb.php
 -->
 <!-- END CommentDoc -->
-<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" />
+<link rel="stylesheet" type="text/css" href="{WB_URL}/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" />
 <script type="text/javascript">
     var relWidth = '{REL_WIDTH}';
     var relHeight = '{REL_HEIGHT}';
