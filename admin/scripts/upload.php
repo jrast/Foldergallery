@@ -41,6 +41,7 @@ require_once(WB_PATH.'/framework/class.admin.php');
 $admin = new admin('Modules', 'module_view', false, false);
 
 require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
+require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
@@ -76,9 +77,7 @@ $categoriePath .= '/';
 // OK, now we have all Informations we can get from the Database
 
 // Process the new Data
-$tempFile = $_FILES['Filedata']['tmp_name'];
-$targetFile = $categoriePath. $_FILES['Filedata']['name'];
-$thumbFile = $categoriePath.'fg-thumbs/'.$_FILES['Filedata']['name'];
+
 $allowedFileTypes = explode(',',$settings['extensions']);
 $fileParts = pathinfo($_FILES['Filedata']['name']);
 
@@ -86,9 +85,33 @@ if(!in_array($fileParts['extension'], $allowedFileTypes)) {
     exit;
 }
 
-// File verschieben
-move_uploaded_file($tempFile, $targetFile);
-generateThumb($targetFile, $thumbFile, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
+$thumb_x = 150;
+$thumb_y = 150;
+// Move the image and create the thumb:
+$handle = new upload($_FILES['Filedata']['tmp_name']);
+if($handle->uploaded) {
+    // Save the image in the right categorie
+    $handle->file_new_name_body = $_FILES['Filedata']['name'];
+    $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
+    $handle->process($categoriePath);
+    if(!$handle->processed) {
+        exit;
+    }
+    // Create the thumb
+    $handle->file_new_name_body = $_FILES['Filedata']['name'];
+    $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
+    $handle->image_resize       = true;
+    $handle->image_ratio_crop   = true;
+    $handle->image_x            = $thumb_x;
+    $handle->image_y            = $thumb_y;
+    $handle->process($categoriePath.'fg-thumbs/');
+    if(!$handle->processed) {
+        exit;
+    }
+    $handle->clean();
+} else {
+    exit;
+}
 
 // get DB infos
 $sql = 'SELECT position FROM `'.TABLE_PREFIX.'mod_foldergallery_files` WHERE `parent_id`= '.$cat_id.' ORDER BY `position` DESC LIMIT 1;';
@@ -106,6 +129,9 @@ $result = $query->fetchRow();
 
 
 $newId = $result['id'];
+
+// Very bad method to get the URL to the thumb-file...
+$thumbFile = $categoriePath.'fg-thumbs/'.$_FILES['Filedata']['name'];
 $urlToThumb = str_replace(WB_PATH, WB_URL, $thumbFile);
 $thumbEditLink = WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$newId;
 $thumbEditAlt = $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'] ;
