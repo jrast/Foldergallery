@@ -4,11 +4,11 @@ This is a phplib-template for modify_cat_sort.php
 -->
 <!-- END CommentDoc -->
 <h2>{REORDER_IMAGES_STRING}</h2>
-<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px; margin-top: 5px;" />
+<input type="button" value="{CANCEL_STRING}" onclick="{CANCEL_ONCLICK}" style="width: 100px;" class="FG_button" />
 
 <h3>{QUICK_SORT_STRING}</h3>
-<input type="button" value="{QUICK_ASC_STRING}" onclick="{QUICK_ASC_ONCLICK}" style="width: 150px; margin-top:5px;" />
-<input type="button" value="{QUICK_DESC_STRING}" onclick="{QUICK_DESC_ONCLICK}" style="width: 150px; margin-top: 5px;" />
+<input type="button" value="{QUICK_ASC_STRING}" onclick="{QUICK_ASC_ONCLICK}" style="width: 150px;" class="FG_button" />
+<input type="button" value="{QUICK_DESC_STRING}" onclick="{QUICK_DESC_ONCLICK}" style="width: 150px;" class="FG_button" />
 
 <h3>{MANUAL_SORT}</h3>
 
