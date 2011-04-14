@@ -11,6 +11,7 @@ function getSettings($section_id) {
     while($row = $query->fetchRow()){
         $settings[$row['s_name']] = $row['s_value'];
     }
+    $settings['tbSettings'] = unserialize($settings['tbSettings']);
     $settings['section_id'] = $section_id;
     return $settings;
 }
@@ -379,6 +380,15 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 	}
 	return $list;
+}
+
+function FG_appendThumbSettings(&$handle, $settings) {
+    foreach($settings as $option => $value) {
+        if($option == 'description') {
+            continue;
+        }
+        $handle->$option = $value;
+    }
 }
 
 ?>

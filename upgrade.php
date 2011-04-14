@@ -49,6 +49,7 @@ if ($oldFormat) {
             . "PRIMARY KEY (`id`));";
     $database->query($sql);
 
+    // Write the new Settings
     foreach ($settings as $value) {
         $section_id = $value['section_id'];
         foreach ($value as $key => $val) {
@@ -56,14 +57,63 @@ if ($oldFormat) {
             if (is_numeric($key)) {
                 continue;
             }
-            // The section_id is no longer neded as there is a special colum for this
+            // The following values are no longer needed
             if ($key == 'section_id') {
                 continue;
             }
+            if ($key == 'thumb_size') {
+                continue;
+            }
+            if ($key == 'ratio') {
+                continue;
+            }
+
             $sql = "INSERT INTO `" . TABLE_PREFIX . "mod_foldergallery_settings` (`id`, `section_id`, `s_name`, `s_value`) VALUES "
                     . "(null, '" . $section_id . "', '" . $key . "', '" . $val . "');";
             $database->query($sql);
         }
+        // OK, Update ThumbSettings:
+        switch ($value['ratio']) {
+            case 1:
+                $thumbSettings = array(
+                    'image_resize'  => true,
+                    'image_x'       => $value['thumb_size'],
+                    'image_y'       => $value['thumb_size']
+                );
+                break;
+            case 1.3333:
+                $thumbSettings = array(
+                    'image_resize'  => true,
+                    'image_x'       => $value['thumb_size'],
+                    'image_y'       => floor($value['thumb_size']*3/4)
+                );
+                break;
+            case 0.75:
+                $thumbSettings = array(
+                    'image_resize'  => true,
+                    'image_x'       => floor($value['thumb_size']*3/4),
+                    'image_y'       => $value['thumb_size']
+                );
+                break;
+            case 1.7778:
+                $thumbSettings = array(
+                    'image_resize'  => true,
+                    'image_x'       => $value['thumb_size'],
+                    'image_y'       => floor($value['thumb_size']*9/16)
+                );
+                break;
+            case 0.5625:
+                $thumbSettings = array(
+                    'image_resize'  => true,
+                    'image_x'       => floor($value['thumb_size']*9/16),
+                    'image_y'       => $value['thumb_size']
+                );
+            default:
+                break;
+        }
+        $sql = "INSERT INTO `" . TABLE_PREFIX . "mod_foldergallery_settings` (`id`, `section_id`, `s_name`, `s_value`) VALUES "
+             . "(null, '" . $section_id . "', 'tbSettings', '".serialize($thumbSettings)."');";
+        $database->query($sql);
     }
 }
 /**
