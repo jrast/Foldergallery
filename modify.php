@@ -52,7 +52,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 	?>
 		<script language="javascript">
 			function Weiterleitung() {
-   				location.href= '<?php echo WB_URL; ?>/modules/foldergallery/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id; ?>';
+   				location.href= '<?php echo WB_URL; ?>/modules/foldergallery/admin/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id; ?>';
 			}
 			window.setTimeout("Weiterleitung()", 2000); // in msecs 1000 => eine Sekunde
 		</script>
