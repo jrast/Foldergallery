@@ -79,15 +79,15 @@ if(!(typeof(settingsRatio) == 'undefined')) {
         var imgWidth = $("#cropbox").width();
         var scale = relWidth / imgWidth;
 
-        $('#x').val(c.x * scale);
-        $('#y').val(c.y * scale);
-        $('#w').val(c.w * scale);
-        $('#h').val(c.h * scale);
+        $('#x1').val(c.x * scale);
+        $('#y1').val(c.y * scale);
+        $('#x2').val(c.x2 * scale);
+        $('#y2').val(c.y2 * scale);
     };
 
     function checkCoords()
     {
-        if (parseInt($('#w').val())) return true;
+        if (parseInt($('#y2').val())) return true;
         alert('Please select a crop region then press submit.');
         return false;
     };

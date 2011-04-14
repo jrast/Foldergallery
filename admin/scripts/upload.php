@@ -85,12 +85,6 @@ if(!in_array($fileParts['extension'], $allowedFileTypes)) {
     exit;
 }
 
-$thumbSettings = array(
-    'image_resize'      => true,
-    'image_ratio_crop'  => true,
-    'image_x'           => 150,
-    'image_y'           => 150,
-);
 // Move the image and create the thumb:
 $handle = new upload($_FILES['Filedata']['tmp_name']);
 if($handle->uploaded) {
@@ -104,7 +98,7 @@ if($handle->uploaded) {
     // Create the thumb
     $handle->file_new_name_body = $_FILES['Filedata']['name'];
     $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
-    FG_appendThumbSettings($handle, $thumbSettings);
+    FG_appendThumbSettings($handle, $settings['tbSettings']);
     $handle->process($categoriePath.'fg-thumbs/');
     if(!$handle->processed) {
         exit;

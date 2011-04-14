@@ -15,6 +15,7 @@ if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.ph
 // Files includen
 require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/admin/scripts/backend.functions.php');
+require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
 
 
 
@@ -36,31 +37,34 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         if ($categorie['parent'] != "-1") {
             $parent = $categorie['parent'] . '/' . $categorie['categorie'];
         }
-        else
+        else {
             $parent = '';
-
+        }
         $full_file_link = $url . $root_dir . $parent . '/' . $bildfilename;
         $full_file = $path . $root_dir . $parent . '/' . $bildfilename;
-        $thumb_file = $path . $root_dir . $parent . $thumbdir . '/' . $bildfilename;
+        $thumbFolder = $path.$root_dir.$parent.$thumbdir.'/';
+        $thumb_file = $thumbFolder.$bildfilename;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Löscht das bisherige Thumbnail
             deleteFile($thumb_file);
 
-            //Neues Thumb erstellen
-            if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], 100, '999999', $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
+            //Create the new Thumb
+            $handle = new upload($full_file);
+            FG_appendThumbSettings($handle, $settings['tbSettings']);
+            $topCrop = floor($_POST['y1']);
+            $rightCrop = floor($handle->image_src_x - $_POST['x2']);
+            $bottomCrop = floor($handle->image_src_y - $_POST['y2']);
+            $leftCrop = floor($_POST['x1']);
+            $handle->image_precrop = "$topCrop $rightCrop $bottomCrop $leftCrop";
+            $handle->process($thumbFolder);
+            if($handle->processed) {
                 $admin->print_success('Thumb erfolgreich geändert', WB_URL . '/modules/foldergallery/admin/modify_cat.php?page_id=' . $page_id . '&section_id=' . $section_id . '&cat_id=' . $cat_id);
             }
         } else {
-            list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
-            //erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
-            if ($settings['ratio'] > 1) {
-                $previewWidth = $settings['thumb_size'];
-                $previewHeight = $settings['thumb_size'] / $settings['ratio'];
-            } else {
-                $previewWidth = $settings['thumb_size'] * $settings['ratio'];
-                $previewHeight = $settings['thumb_size'];
-            }
+            list($width, $height, $type, $attr) = getimagesize($full_file);
+            $previewWidth = $settings['tbSettings']['image_x'];
+            $previewHeight = $settings['tbSettings']['image_y'];
 
             $t = new Template(dirname(__FILE__) . '/templates', 'remove');
             $t->set_file('modify_thumb', 'modify_thumb.htt');
@@ -72,8 +76,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 // Infos for JCrop
                 'REL_WIDTH'         => $width,
                 'REL_HEIGHT'        => $height,
-                'THUMB_SIZE'        => $settings['thumb_size'],
-                'RATIO'             => $settings['ratio'],
+                'THUMB_SIZE'        => $previewWidth,
+                'RATIO'             => $previewWidth/$previewHeight,
                 // Language Strings
                 'EDIT_THUMB'        => $MOD_FOLDERGALLERY['EDIT_THUMB'],
                 'EDIT_THUMB_DESCR'  => $MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION'],

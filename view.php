@@ -31,6 +31,7 @@ $generatethumbscounter = 0;
 // Files includen
 require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
+require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);
@@ -150,9 +151,12 @@ if (count($ergebnisse) == 0) {
             $thumb = $pathToThumb . $bildfilename;
             if (!is_file($thumb)) {
                 $file = $pathToFolder . $bildfilename;
-                $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
-                if ($terg < 0)
+                $handle = new upload($file);
+                FG_appendThumbSettings($handle, $settings['tbSettings']);
+                $handle->process($pathToThumb);
+                if(!$handle->processed) {
                     $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
+                }
             }
         }
         //Chio ENDE
@@ -341,9 +345,12 @@ if ($bilder) {
         }
         if (!is_file($thumb)) {
             $file = $pathToFolder . $bildfilename;
-            $terg = generateThumb($file, $thumb, $settings['thumb_size'], 0, $settings['ratio'], 100, '999999');
-            if ($terg < 0)
+            $handle = new upload($file);
+            FG_appendThumbSettings($handle, $settings['tbSettings']);
+            $handle->process($pathToThumb);
+            if(!$handle->processed) {
                 $tumburl = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
+            }
         }
 
         if ($settings['lightbox'] != 'contentFlow')
@@ -411,19 +418,8 @@ if ($aktuelleKat != '') {
 $t->set_var('WB_URL', WB_URL);
 
 //überschreibt die fest eingestellte Größe von ul.categories li a auf die Thumbgrößenwerte
-$catWidth = $settings['thumb_size'] + 10;
-if ($settings['ratio'] > 1) {
-    if ($settings['thumb_size'] >= 150)
-        $catHeight = $settings['thumb_size'] + 10;
-    else
-        $catHeight = $settings['thumb_size'] / $settings['ratio'] + 50;
-}
-else {
-    if ($settings['thumb_size'] >= 150)
-        $catHeight = $settings['thumb_size'] + 10;
-    else
-        $catHeight = $settings['thumb_size'] + 50;
-}
+$catWidth = $settings['tbSettings']['image_x'] + 10;
+$catHeight = $settings['tbSettings']['image_y'] + 10;
 
 echo '<style type="text/css">
 ul.categories li a {

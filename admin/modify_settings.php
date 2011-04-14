@@ -121,7 +121,7 @@ $t->set_var(array(
 	'CANCEL_STRING' 		=> $TEXT['CANCEL'],
 	'PICS_PP_STRING'    		=> $MOD_FOLDERGALLERY['PICS_PP'],
 	'PICS_PP_VALUE'    		=> $settings['pics_pp'],
-	'THUMBSIZE'    			=> $settings['thumb_size'],
+	'THUMBSIZE'    			=> $settings['tbSettings']['image_x'],
 	'THUMB_SIZE_STRING'   		=> $MOD_FOLDERGALLERY['THUMB_SIZE'],
 	'THUMB_RATIO_STRING'    	=> $MOD_FOLDERGALLERY['THUMB_RATIO'],
 	'THUMB_NOT_NEW_STRING'    	=> $MOD_FOLDERGALLERY['THUMB_NOT_NEW'],
@@ -171,7 +171,7 @@ foreach($ratioArray as $ratio => $value) {
 			'RATIO'		=> $ratio,
 			'RATIO_VALUE'	=> $value
 			));
-	if($value == $settings['ratio']) {
+	if($value == $settings['tbSettings']['image_y']) {
 		$t->set_var('SELECTED','selected="selected"');
 	} else {
 		$t->set_var('SELECTED','');
