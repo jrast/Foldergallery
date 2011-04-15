@@ -151,3 +151,33 @@ if(!(typeof(upSettings) == 'undefined')) {
         })
     });
 }
+
+$("#loadPreset").change(function () {
+    var value = $(this).val();
+    $.getJSON(
+        WB_URL + '/modules/foldergallery/admin/scripts/getThumbPreset.php',
+        'preset=' + value,
+        function(data) {
+            $("#size_x").attr("value", data.image_x);
+            $("#size_y").attr("value", data.image_y);
+            if(typeof(data.image_ratio) =='undefined' || data.image_ratio == 'false') {
+                $('#thumb_cut').attr('checked', true);
+            } else {
+                $('#thumb_keep').attr('checked', true);
+            }
+        }
+    );
+});
+
+
+//
+//    $("#zahl").blur(function () {
+//      var value = $(this).val();
+//      $("#zahl10").attr("value", value * 10);
+//    });
+//
+//    $("#zahl10").blur(function() {
+//      var value = $(this).val();
+//      $("#zahl").attr("value", (value / 10));
+//    });
+//</script>

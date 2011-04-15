@@ -47,26 +47,52 @@ This is a phplib-template for modify_settings.php
 				<input name="pics_pp" type="text" size="40" value="{PICS_PP_VALUE}" />
 			</td>
 		</tr>
+        </table>
+        <h2>Tumbnail-Einstellungen</h2>
+        <table cellpadding="2" cellspacing="0" border="0" width="100%">
 		<tr>
-			<td>
-				{THUMB_SIZE_STRING}:
-			</td>
-			<td>
-				<input name="thumb_size" type="text" size="40" value="{THUMBSIZE}" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				{THUMB_RATIO_STRING}:				
-			</td>
-			<td>
-				<select name="ratio">
-					<!-- BEGIN ratio_select -->
-					<option value="{RATIO_VALUE}" {SELECTED} >{RATIO}</option>
-					<!-- END ratio_select -->
-				</select>
-			</td>
-	 	</tr>
+                    <td>
+                        Preset Laden:
+                    </td>
+                    <td>
+                        <select id="loadPreset" name="loadPreset">
+                            <option></option>
+                            <!-- BEGIN preset_select -->
+                            <option value="{PRESET_NAME}">{PRESET_DESCRIPTION}</option>
+                            <!-- END preset_select -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Mit dieser Funktion können Voreinstellungen geladen werden! Dabei werden alle vorhandenen Einstellungen überschrieben!</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h3>Thumbnail-Grösse:</h3></td>
+                </tr>
+                <tr>
+                    <td>Bildausschnitt:</td>
+                    <td>
+                        <input id="thumb_keep" type="radio" name="thumb_ratio" value="keep" >ganzes Bild
+                        <input id="thumb_cut" type="radio" name="thumb_ratio" value="cut" >Bild zuschneiden
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Maximale Breite:
+                    </td>
+                    <td>
+                        <input id="size_x" name="size_x" type="text" size="40" value="{THUMBSIZE_X}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Maximale Höhe:
+                    </td>
+                    <td>
+                        <input id="size_y" name="size_y" type="text" size="40" value="{THUMBSIZE_Y}" />
+                    </td>
+                </tr>
 	 	<tr>
 	 		<td>&nbsp;</td>
 	 		<td>{CHANGING_INFO_STRING}</td>

@@ -29,6 +29,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/presets/thumbPresets.php');
 
 // --- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 ---
 $jqa_lightboxes = array();
@@ -51,10 +52,9 @@ $t->halt_on_error = 'no';
 $t->set_file('modify_settings', 'modify_settings.htt');
 // clear the comment-block, if present
 $t->set_block('modify_settings', 'CommentDoc'); $t->clear_var('CommentDoc');
-
 $t->set_block('modify_settings', 'ordner_select', 'ORDNER_SELECT');
-
 $t->set_block('modify_settings', 'ratio_select', 'RATIO_SELECT');
+$t->set_block('modify_settings', 'preset_select', 'PRESET_SELECT');
 
 // find lightbox files in template folder
 $lightbox_select = '<select name="lightbox" id="lightbox">';
@@ -164,22 +164,16 @@ foreach($ordnerliste as $ordner) {
 	$t->parse('ORDNER_SELECT', 'ordner_select', true);
 }
 
-//Ratio Auswahlliste
-$ratioArray = array("quadratisch" => 1, "4:3" => round(4/3, 4), "3:4" => round(3/4, 4), "16:9" => round(16/9, 4), "9:16" => round(9/16, 4));
-foreach($ratioArray as $ratio => $value) {
-	$t->set_var(array(
-			'RATIO'		=> $ratio,
-			'RATIO_VALUE'	=> $value
-			));
-	if($value == $settings['tbSettings']['image_y']) {
-		$t->set_var('SELECTED','selected="selected"');
-	} else {
-		$t->set_var('SELECTED','');
-	}
-	$t->parse('RATIO_SELECT', 'ratio_select', true);
+// Preset Select
+foreach($thumbPresets as $presetName => $preset) {
+    $t->set_var(array(
+        'PRESET_NAME'           => $presetName,
+        'PRESET_DESCRIPTION'    => $preset['description']
+    ));
+    $t->parse('PRESET_SELECT', 'preset_select', true);
 }
 
-$t->pparse('Output', 'modify_settings');
 
+$t->pparse('Output', 'modify_settings');
 $admin->print_footer();
 ?>
