@@ -38,8 +38,6 @@ require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php
 $oldSettings = getSettings($section_id);
 $newSettings = array();
 
-
-
 //Daten aus $_post auswerten und validieren
 if (isset($_POST['root_dir'])) {
     $newSettings['root_dir'] = $_POST['root_dir'];
@@ -64,32 +62,11 @@ if (isset($_POST['pics_pp']) && is_numeric($_POST['pics_pp']) ) {
 } else {
 	$newSettings['pics_pp'] = '';
 }
-
-//--------------------------
-//Chio Thumbsize:
-if (isset($_POST['thumb_size']) && is_numeric($_POST['thumb_size']) ) {
-	$newSettings['thumb_size'] = (int) trim($_POST['thumb_size']);
-} else {
-	$newSettings['thumb_size'] = 150;
-}
-
 if (isset($_POST['catpic']) && is_numeric($_POST['catpic']) ) {
 	$newSettings['catpic'] = (int) $_POST['catpic'];
 } else {
 	$newSettings['catpic'] = 0;
 }
-// Ende Chio
-
-//--------------------------
-//Pumpi Thumbratio:
-if (isset($_POST['ratio'])) {
-	$newSettings['ratio'] = $_POST['ratio'];
-} else {
-	$newSettings['ratio'] = 1;
-}
-// END ratio
-
-
 if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
 // ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
@@ -101,6 +78,42 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 } else {
 	$newSettings['lightbox'] = '';
 }
+
+// Get the new Thumbsettings:
+if (isset($_POST['size_x']) && is_numeric($_POST['size_x']) ) {
+	$newSettings['tbSettings']['image_x'] = (int) trim($_POST['size_x']);
+} else {
+	$newSettings['tbSettings']['image_x'] = 150;
+}
+if (isset($_POST['size_y']) && is_numeric($_POST['size_y']) ) {
+	$newSettings['tbSettings']['image_y'] = (int) trim($_POST['size_y']);
+} else {
+	$newSettings['tbSettings']['image_y'] = 150;
+}
+// Fetch the advanced settings, they need a little bit more effort...
+$advanced = preg_replace('/\r\n|\r/', "\n", trim($_POST['thumb_advanced']));
+$advanced = explode("\n", $advanced);
+foreach($advanced as $value) {
+    $tmp = explode('=', $value);
+    $tmp[0] = trim($tmp[0]);
+    $tmp[1] = trim($tmp[1]);
+    $tmp[1] = trim($tmp[1], "'");
+    // Check if it's a bool variable
+    if($tmp[1] == 'true' || $tmp[1] == 'True' || $tmp[1] == 'TRUE') {
+        $tmp[1] = true;
+    } else if($tmp[1] == 'false' || $tmp[1] == 'False' || $tmp[1] == 'FALSE') {
+        $tmp[1] = false;
+    }
+    $newSettings['tbSettings'][$tmp[0]] = $tmp[1];
+}
+
+var_dump($_POST);
+var_dump($oldSettings);
+var_dump($newSettings);
+exit;
+
+
+
 
 //Debuganzeige die ab 1.1 auskommentiert wird
 //echo "<textarea cols=\"100\" rows=\"20\" style=\"width: 100%;\">";

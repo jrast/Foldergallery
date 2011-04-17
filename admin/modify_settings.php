@@ -111,6 +111,8 @@ $catpicselect .= '</select>';
 
 // Text einsetzten
 $t->set_var(array(
+        'SECTION_ID_VALUE'              => $section_id,
+        'PAGE_ID_VALUE'                 => $page_id,
 	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
 	'ROOT_FOLDER_STRING'            => $MOD_FOLDERGALLERY['ROOT_DIR'],
 	'EXTENSIONS_STRING'		=> $MOD_FOLDERGALLERY['EXTENSIONS'],
