@@ -165,19 +165,53 @@ $("#loadPreset").change(function () {
             } else {
                 $('#thumb_keep').attr('checked', true);
             }
+            var ratio = Math.round((data.image_x/data.image_y)*100)/100;
+            switch (ratio) {
+                case 1:
+                    $("input[name='thumb_ratio'][value='1']").attr('checked', true);
+                    break;
+                case 1.34:
+                    $("input[name='thumb_ratio'][value='1.34']").attr('checked', true);
+                    break;
+                case 0.75:
+                    $("input[name='thumb_ratio'][value='0.75']").attr('checked', true);
+                    break;
+                case 1.79:
+                    $("input[name='thumb_ratio'][value='1.79']").attr('checked', true);
+                    break;
+                case 0.56:
+                    $("input[name='thumb_ratio'][value='0.56']").attr('checked', true);
+                    break;
+                default:
+                    $("input[name='thumb_ratio'][value='free']").attr('checked', true);
+            }
+            // Delete unused elements:
+            delete(data.image_x); delete(data.image_y); delete(data.image_ratio); delete(data.description);
+            var out = '';
+            for(i in data) {
+                out = out + i + '=' + data[i] + '\n';
+            }
+            $("#thumb_advanced").val(out);
         }
     );
 });
 
+$("#size_x").blur(function() {
+    var value = $(this).val();
+    var ratio = $("input[name='thumb_ratio']:checked").val();
+    if(ratio == 'undefined' || ratio == 'free') {
+     // Do nothing
+    } else {
+        $("#size_y").attr("value", Math.round(value/ratio));
+    }
+});
 
-//
-//    $("#zahl").blur(function () {
-//      var value = $(this).val();
-//      $("#zahl10").attr("value", value * 10);
-//    });
-//
-//    $("#zahl10").blur(function() {
-//      var value = $(this).val();
-//      $("#zahl").attr("value", (value / 10));
-//    });
-//</script>
+$("#size_y").blur(function() {
+    var value = $(this).val();
+    var ratio = $("input[name='thumb_ratio']:checked").val();
+    if(ratio == 'undefined' || ratio == 'free') {
+     // Do nothing
+    } else {
+        $("#size_x").attr("value", Math.round(value*ratio));
+    }
+});
