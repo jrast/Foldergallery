@@ -105,6 +105,12 @@ This is a phplib-template for modify_settings.php
             </td>
         </tr>
         <tr>
+            <td>{BACKGROUND_COLOR_STRING}</td>
+            <td>
+                <input id="background_color" name="background_color" type="text" size="40" value="{BACKGROUND_COLOR}">
+            </td>
+        </tr>
+        <tr>
             <td>
                 {MAX_WIDTH_STRING}:
             </td>

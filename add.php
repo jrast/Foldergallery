@@ -13,7 +13,10 @@ $extensions = 'jpg,jpeg,gif,png';
 $thumbSettings = array(
     'image_resize'  => true,
     'image_x'       => 150,
-    'image_y'       => 150
+    'image_y'       => 150,
+    'image_ratio_fill'  => false,
+    'image_ratio_crop'  => true,
+    'image_background_color'    => '#FFFFFF'
 );
 
 $rawSql = "INSERT INTO `".TABLE_PREFIX."mod_foldergallery_settings` (`section_id`, `s_name`, `s_value`)"

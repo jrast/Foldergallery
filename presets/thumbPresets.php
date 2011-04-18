@@ -29,11 +29,12 @@ $thumbPresets = array(
         'image_x'       => 84,
         'image_y'       => 150
     ),
-    '1:1noCrop105'      => array(
+    '1:1noCrop150'      => array(
         'description'   => 'Ratio: 1:1, 150px',
         'image_x'       => 150,
         'image_y'       => 150,
-        'image_ratio'   => true
+        'image_ratio'   => true,
+        'image_background_color'    => '#FFFFFF'
     )
 );
 ?>

@@ -406,7 +406,9 @@ function FG_getAdvancedThumbSettings($tbSettings) {
         if( $key == 'image_x'
          || $key == 'image_y'
          || $key == 'image_resize'
-         || $key == 'image_ratio_fill')
+         || $key == 'image_ratio_fill'
+         || $key == 'image_background_color'
+         || $key == 'image_ratio_crop')
         {
             continue;
         }

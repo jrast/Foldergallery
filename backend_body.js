@@ -165,28 +165,15 @@ $("#loadPreset").change(function () {
             } else {
                 $('#thumb_keep').attr('checked', true);
             }
-            var ratio = Math.round((data.image_x/data.image_y)*100)/100;
-            switch (ratio) {
-                case 1:
-                    $("input[name='thumb_ratio'][value='1']").attr('checked', true);
-                    break;
-                case 1.34:
-                    $("input[name='thumb_ratio'][value='1.34']").attr('checked', true);
-                    break;
-                case 0.75:
-                    $("input[name='thumb_ratio'][value='0.75']").attr('checked', true);
-                    break;
-                case 1.79:
-                    $("input[name='thumb_ratio'][value='1.79']").attr('checked', true);
-                    break;
-                case 0.56:
-                    $("input[name='thumb_ratio'][value='0.56']").attr('checked', true);
-                    break;
-                default:
-                    $("input[name='thumb_ratio'][value='free']").attr('checked', true);
+            if(typeof(data.image_background_color) == 'undefined') {
+                $('#background_color').attr("value", "#FFFFFF");
+            } else {
+                $('#background_color').attr("value", data.image_background_color);
             }
+            var ratio = Math.round((data.image_x/data.image_y)*100)/100;
+            setRatio(ratio);
             // Delete unused elements:
-            delete(data.image_x); delete(data.image_y); delete(data.image_ratio); delete(data.description);
+            delete(data.image_x); delete(data.image_y); delete(data.image_ratio); delete(data.description); delete(data.image_background_color);
             var out = '';
             for(i in data) {
                 out = out + i + '=' + data[i] + '\n';
@@ -219,24 +206,29 @@ $("#size_y").blur(function() {
 $(document).ready(function() {
     if($('#size_x') != 'undefined') {
         var ratio = Math.round(($('#size_x').val()/$('#size_y').val())*100)/100;
-            switch (ratio) {
-                case 1:
-                    $("input[name='thumb_ratio'][value='1']").attr('checked', true);
-                    break;
-                case 1.34:
-                    $("input[name='thumb_ratio'][value='1.34']").attr('checked', true);
-                    break;
-                case 0.75:
-                    $("input[name='thumb_ratio'][value='0.75']").attr('checked', true);
-                    break;
-                case 1.79:
-                    $("input[name='thumb_ratio'][value='1.79']").attr('checked', true);
-                    break;
-                case 0.56:
-                    $("input[name='thumb_ratio'][value='0.56']").attr('checked', true);
-                    break;
-                default:
-                    $("input[name='thumb_ratio'][value='free']").attr('checked', true);
-        }
+        setRatio(ratio);
+
     }
 });
+
+function setRatio(ratio) {
+    switch (ratio) {
+        case 1:
+            $("input[name='thumb_ratio'][value='1']").attr('checked', true);
+            break;
+        case 1.34:
+            $("input[name='thumb_ratio'][value='1.34']").attr('checked', true);
+            break;
+        case 0.75:
+            $("input[name='thumb_ratio'][value='0.75']").attr('checked', true);
+            break;
+        case 1.79:
+            $("input[name='thumb_ratio'][value='1.79']").attr('checked', true);
+            break;
+        case 0.56:
+            $("input[name='thumb_ratio'][value='0.56']").attr('checked', true);
+            break;
+        default:
+           $("input[name='thumb_ratio'][value='free']").attr('checked', true);
+    }
+}

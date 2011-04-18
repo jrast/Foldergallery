@@ -67,7 +67,7 @@ if (isset($_POST['catpic']) && is_numeric($_POST['catpic']) ) {
 } else {
 	$newSettings['catpic'] = 0;
 }
-if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
+if (isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/foldergallery/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
 // ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
 } elseif( isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
@@ -92,8 +92,21 @@ if (isset($_POST['size_y']) && is_numeric($_POST['size_y']) ) {
 }
 if(isset($_POST['thumb_crop']) && is_string($_POST['thumb_crop']) && $_POST['thumb_crop'] == 'keep') {
     $newSettings['tbSettings']['image_ratio_fill'] = true;
+    $newSettings['tbSettings']['image_ratio_crop'] = false;
 } else {
     $newSettings['tbSettings']['image_ratio_fill'] = false;
+    $newSettings['tbSettings']['image_ratio_crop'] = true;
+}
+if(isset($_POST['background_color']) && is_string($_POST['background_color'])) {
+    if(strlen($_POST['background_color']) == 6) {
+        $newSettings['tbSettings']['image_background_color'] = '#'.$_POST['background_color'];
+    } else if(strlen($_POST['background_color']) == 7) {
+        $newSettings['tbSettings']['image_background_color'] = $_POST['background_color'];
+    } else {
+        $newSettings['tbSettings']['image_background_color'] = '#FFFFFF';
+    }
+} else {
+    $newSettings['tbSettings']['image_background_color'] = '#FFFFFF';
 }
 // Fetch the advanced settings, they need a little bit more effort...
 if(isset($_POST['thumb_advanced'])

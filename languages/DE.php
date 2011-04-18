@@ -96,7 +96,6 @@ $MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inaktiv, klicken zum aktivier
 $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
 $MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE']       = 'Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten? Die Datei wird komplett vom Server gelöscht!';
 $MOD_FOLDERGALLERY['ADD_MORE_PICS']             = 'Weitere Bilder zu dieser Kategorie hinzuf&uuml;gen';
-
 $MOD_FOLDERGALLERY['CATPIC_STRINGS'][0]         = 'Zufällig';
 $MOD_FOLDERGALLERY['CATPIC_STRINGS'][1]         = 'Erstes';
 $MOD_FOLDERGALLERY['CATPIC_STRINGS'][2]         = 'Letztes';
@@ -112,6 +111,7 @@ $MOD_FOLDERGALLERY['CALCULATE_RATIO']           = 'Berechne aus Maximalwerten';
 $MOD_FOLDERGALLERY['MAX_WIDTH']                 = 'Maximale Breite';
 $MOD_FOLDERGALLERY['MAX_HEIGHT']                = 'Maximale Höhe';
 $MOD_FOLDERGALLERY['ADVANCED_SETTINGS']         = 'Erweiterte Einstellungen';
+$MOD_FOLDERGALLERY['BACKGROUND_COLOR']          = 'Hintergrundfarbe';
 
 
 // Tooltips

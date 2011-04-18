@@ -113,8 +113,6 @@ $ordnerliste = getFolderData($path, array(), $invisibleFileNames, 2);
 
 $advanced_settings = FG_getAdvancedThumbSettings($settings['tbSettings']);
 
-
-
 // Text einsetzten
 $t->set_var(array(
         'SECTION_ID_VALUE'              => $section_id,
@@ -137,6 +135,8 @@ $t->set_var(array(
         'IMAGE_DONT_CROP_STRING'        => $MOD_FOLDERGALLERY['IMAGE_DONT_CROP'],
         'RATIO_STRING'                  => $MOD_FOLDERGALLERY['RATIO'],
         'CALCULATE_RATIO_STRING'        => $MOD_FOLDERGALLERY['CALCULATE_RATIO'],
+        'BACKGROUND_COLOR_STRING'       => $MOD_FOLDERGALLERY['BACKGROUND_COLOR'],
+        'BACKGROUND_COLOR'              => $settings['tbSettings']['image_background_color'],
         'MAX_WIDTH_STRING'              => $MOD_FOLDERGALLERY['MAX_WIDTH'],
         'MAX_HEIGHT_STRING'             => $MOD_FOLDERGALLERY['MAX_HEIGHT'],
         'THUMBSIZE_X'                   => $settings['tbSettings']['image_x'],

@@ -111,6 +111,12 @@ if ($oldFormat) {
             default:
                 break;
         }
+        // Set the default values
+        $thumbSettings['image_ratio_fill'] = false;
+        $thumbSettings['image_ratio_crop'] = true;
+        $thumbSettings['image_background_color'] = '#FFFFFF';
+        
+
         $sql = "INSERT INTO `" . TABLE_PREFIX . "mod_foldergallery_settings` (`id`, `section_id`, `s_name`, `s_value`) VALUES "
              . "(null, '" . $section_id . "', 'tbSettings', '".serialize($thumbSettings)."');";
         $database->query($sql);

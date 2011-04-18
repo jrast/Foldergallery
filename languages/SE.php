@@ -94,6 +94,22 @@ $MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inactive, click to activate!'
 $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Could not acvtivate/deactivate this categorie! Do you try to hack the system?';
 $MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE']       = 'Would you like to delete this file? The file is completely deleted from the server!';
 $MOD_FOLDERGALLERY['ADD_MORE_PICS']             = 'Add more Pictures to this categorie';
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][0]         = 'Random';
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][1]         = 'First';
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][2]         = 'Last';
+$MOD_FOLDERGALLERY['CAT_OVERVIEW_PIC']          = 'Categorie Preview';
+$MOD_FOLDERGALLERY['THUMBNAIL_SETTINGS']        = 'Thumbnail Settigns';
+$MOD_FOLDERGALLERY['LOAD_PRESET']               = 'Load Preset';
+$MOD_FOLDERGALLERY['LOAD_PRESET_INFO']          = '<b>Attention, this functions overwrites all other fields below!</b>';
+$MOD_FOLDERGALLERY['IMAGE_CROP']                = 'Image Crop';
+$MOD_FOLDERGALLERY['IMAGE_DONT_CROP']           = 'No Crop';
+$MOD_FOLDERGALLERY['IMAGE_DO_CROP']             = 'Crop the image';
+$MOD_FOLDERGALLERY['RATIO']                     = 'Ratio';
+$MOD_FOLDERGALLERY['CALCULATE_RATIO']           = 'Calculate with Max values from below';
+$MOD_FOLDERGALLERY['MAX_WIDTH']                 = 'Maximum width';
+$MOD_FOLDERGALLERY['MAX_HEIGHT']                = 'Maximum height';
+$MOD_FOLDERGALLERY['ADVANCED_SETTINGS']         = 'Advanced Settings';
+$MOD_FOLDERGALLERY['BACKGROUND_COLOR']          = 'Background-color';
 
 
 
