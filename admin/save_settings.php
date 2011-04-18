@@ -90,36 +90,22 @@ if (isset($_POST['size_y']) && is_numeric($_POST['size_y']) ) {
 } else {
 	$newSettings['tbSettings']['image_y'] = 150;
 }
-// Fetch the advanced settings, they need a little bit more effort...
-$advanced = preg_replace('/\r\n|\r/', "\n", trim($_POST['thumb_advanced']));
-$advanced = explode("\n", $advanced);
-foreach($advanced as $value) {
-    $tmp = explode('=', $value);
-    $tmp[0] = trim($tmp[0]);
-    $tmp[1] = trim($tmp[1]);
-    $tmp[1] = trim($tmp[1], "'");
-    // Check if it's a bool variable
-    if($tmp[1] == 'true' || $tmp[1] == 'True' || $tmp[1] == 'TRUE') {
-        $tmp[1] = true;
-    } else if($tmp[1] == 'false' || $tmp[1] == 'False' || $tmp[1] == 'FALSE') {
-        $tmp[1] = false;
-    }
-    $newSettings['tbSettings'][$tmp[0]] = $tmp[1];
+if(isset($_POST['thumb_crop']) && is_string($_POST['thumb_crop']) && $_POST['thumb_crop'] == 'keep') {
+    $newSettings['tbSettings']['image_ratio_fill'] = true;
+} else {
+    $newSettings['tbSettings']['image_ratio_fill'] = false;
 }
+// Fetch the advanced settings, they need a little bit more effort...
+if(isset($_POST['thumb_advanced'])
+   && is_string($_POST['thumb_advanced'])
+   && $_POST['thumb_advanced'] != '')
+{
+    $advanced_settings = FG_setAdvancedThumbSettings($_POST['thumb_advanced']);
+    $newSettings['tbSettings'] = array_merge($newSettings['tbSettings'], $advanced_settings);
+}
+// This is set by default as we want to resize the images
+$newSettings['tbSettings']['image_resize'] = true;
 
-var_dump($_POST);
-var_dump($oldSettings);
-var_dump($newSettings);
-exit;
-
-
-
-
-//Debuganzeige die ab 1.1 auskommentiert wird
-//echo "<textarea cols=\"100\" rows=\"20\" style=\"width: 100%;\">";
-//var_export( $newSettings );
-//echo "</textarea>";
-//ENDE Debug
 echo "<div class=\"info\">".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</div><br />";
 $newSettings['section_id'] = $section_id;
 
@@ -131,34 +117,30 @@ $database->query(sprintf($rawUpdtSQL, $newSettings['root_dir'], 'root_dir'));
 $database->query(sprintf($rawUpdtSQL, $newSettings['extensions'], 'extensions'));
 $database->query(sprintf($rawUpdtSQL, $newSettings['invisible'], 'invisible'));
 $database->query(sprintf($rawUpdtSQL, $newSettings['pics_pp'], 'pics_pp'));
-$database->query(sprintf($rawUpdtSQL, $newSettings['thumb_size'], 'thumb_size'));
-$database->query(sprintf($rawUpdtSQL, $newSettings['ratio'], 'ratio'));
 $database->query(sprintf($rawUpdtSQL, $newSettings['catpic'], 'catpic'));
 $database->query(sprintf($rawUpdtSQL, $newSettings['lightbox'], 'lightbox'));
+$database->query(sprintf($rawUpdtSQL, serialize($newSettings['tbSettings']), 'tbSettings'));
 
 
-
-if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ratio'] != $newSettings['ratio']) && !isset($_POST['noNew'])){
-	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
+if(( serialize($oldSettings['tbSettings']) != serialize($newSettings['tbSettings'])) && !isset($_POST['noNew'])){
+	// Ok, thumb_size hat gewechselt, also alte Thumbs lÃ¶schen
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$query = $database->query($sql);
+        echo '<div class="info">Loesche alte Thumbs:';
 	while($link = $query->fetchRow()) {
 		$pathToFolder = $path.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
-		echo '<center><br/>Delete: '.$pathToFolder.'</center>';
+		echo '<br/>Delete: '.$pathToFolder;
 		deleteFolder($pathToFolder);
 	}
 	$pathToFolder = $path.$oldSettings['root_dir'].$thumbdir;
-	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
+	echo '<br/>Delete: '.$pathToFolder.'</div>';
 	deleteFolder($pathToFolder);
 
 }
 
-///Chio verändert: Orig: // Ok, Ordner hat gewechselt, also alte Thumbs löschen
-//Wieso thumbs löschen, wenn sich root-dir geändert hat? Die Thumbs sind bei den Bildern - egal wo.
-
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
 
-	// Und jetzt noch alte DB Einträge
+	// Und jetzt noch alte DB EintrÃ¤ge
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$query = $database->query($sql);
 	while($cat = $query->fetchRow()) {
@@ -181,7 +163,7 @@ if($oldSettings['root_dir'] != $newSettings['root_dir']){
 // Jetzt wird die DB neu synchronisiert //Anm CHio: Wozu? Wenn ein Fehler ist, kann man nichtmal die Settings speichern.
 syncDB($newSettings);
 
-// Überprüfen ob ein Fehler aufgetreten ist, sonst Erfolg ausgeben
+// ÃœberprÃ¼fen ob ein Fehler aufgetreten ist, sonst Erfolg ausgeben
 if($database->is_error()) {
 	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
 } else {

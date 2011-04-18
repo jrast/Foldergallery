@@ -215,3 +215,28 @@ $("#size_y").blur(function() {
         $("#size_x").attr("value", Math.round(value*ratio));
     }
 });
+
+$(document).ready(function() {
+    if($('#size_x') != 'undefined') {
+        var ratio = Math.round(($('#size_x').val()/$('#size_y').val())*100)/100;
+            switch (ratio) {
+                case 1:
+                    $("input[name='thumb_ratio'][value='1']").attr('checked', true);
+                    break;
+                case 1.34:
+                    $("input[name='thumb_ratio'][value='1.34']").attr('checked', true);
+                    break;
+                case 0.75:
+                    $("input[name='thumb_ratio'][value='0.75']").attr('checked', true);
+                    break;
+                case 1.79:
+                    $("input[name='thumb_ratio'][value='1.79']").attr('checked', true);
+                    break;
+                case 0.56:
+                    $("input[name='thumb_ratio'][value='0.56']").attr('checked', true);
+                    break;
+                default:
+                    $("input[name='thumb_ratio'][value='free']").attr('checked', true);
+        }
+    }
+});

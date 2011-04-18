@@ -71,8 +71,8 @@ $MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION']    = '<strong>Bitte neuen Bildaussc
 $MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON']         = 'Thumbnail erstellen';
 $MOD_FOLDERGALLERY['THUMB_SIZE']                = 'Thumbnail Größe';
 $MOD_FOLDERGALLERY['THUMB_RATIO']               = 'Thumbnail Verhältniss';
-$MOD_FOLDERGALLERY['THUMB_NOT_NEW']             = 'Keine neuen Thumbnails erzeugen';
-$MOD_FOLDERGALLERY['CHANGING_INFO']             = 'Das ändern von <strong>Thumbnail Größe</strong> oder <strong>Thumbnail Verhältniss</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.';
+$MOD_FOLDERGALLERY['THUMB_NOT_NEW']             = 'Thumbnails nicht löschen, keine neuen Thumbnails erstellen!';
+$MOD_FOLDERGALLERY['CHANGING_INFO']             = 'Das ändern von <strong>Thumbnail Einstellungen</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.';
 $MOD_FOLDERGALLERY['SYNC_DATABASE']             = 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY['SAVE_SETTINGS']             = 'Einstellungen werden gespeichert...';
 $MOD_FOLDERGALLERY['SORT_IMAGE']                = 'Bilder sortieren';
@@ -96,6 +96,23 @@ $MOD_FOLDERGALLERY['CAT_INACTIVE']              = 'inaktiv, klicken zum aktivier
 $MOD_FOLDERGALLERY['CAT_TOGGLE_ACTIV_FAIL']     = 'Fehler beim aktivieren/deaktivieren der Kategorie! Ist dass ein Hack-Versuch?';
 $MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE']       = 'Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten? Die Datei wird komplett vom Server gelöscht!';
 $MOD_FOLDERGALLERY['ADD_MORE_PICS']             = 'Weitere Bilder zu dieser Kategorie hinzuf&uuml;gen';
+
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][0]         = 'Zufällig';
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][1]         = 'Erstes';
+$MOD_FOLDERGALLERY['CATPIC_STRINGS'][2]         = 'Letztes';
+$MOD_FOLDERGALLERY['CAT_OVERVIEW_PIC']          = 'Vorschaubild Kategorie';
+$MOD_FOLDERGALLERY['THUMBNAIL_SETTINGS']        = 'Vorschaubild Einstellungen';
+$MOD_FOLDERGALLERY['LOAD_PRESET']               = 'Voreinstellung laden';
+$MOD_FOLDERGALLERY['LOAD_PRESET_INFO']          = '<b>Achtung, diese Funktion überschreibt die momentanen Werte der Eingabefelder!</b>';
+$MOD_FOLDERGALLERY['IMAGE_CROP']                = 'Bildausschnitt';
+$MOD_FOLDERGALLERY['IMAGE_DONT_CROP']           = 'ganzes Bild';
+$MOD_FOLDERGALLERY['IMAGE_DO_CROP']             = 'Bild zuschneiden';
+$MOD_FOLDERGALLERY['RATIO']                     = 'Seitenverhältnis';
+$MOD_FOLDERGALLERY['CALCULATE_RATIO']           = 'Berechne aus Maximalwerten';
+$MOD_FOLDERGALLERY['MAX_WIDTH']                 = 'Maximale Breite';
+$MOD_FOLDERGALLERY['MAX_HEIGHT']                = 'Maximale Höhe';
+$MOD_FOLDERGALLERY['ADVANCED_SETTINGS']         = 'Erweiterte Einstellungen';
+
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren &auml;ndern, sonst gehen alle Infos zu den Bilder verloren!';
