@@ -2341,25 +2341,26 @@ class upload {
             }
 
             // checks MIME type with mime_magic
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
-                if ($this->mime_magic) {
-                    $this->log .= '- Checking MIME type with mime.magic file (mime_content_type())<br />';
-                    if (function_exists('mime_content_type')) {
-                        $this->file_src_mime = mime_content_type($this->file_src_pathname);
-                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by mime_content_type()<br />';
-                        if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                            $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
-                            $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
-                        } else {
-                            $this->file_src_mime = null;
-                        }
-                    } else {
-                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;mime_content_type() is not available<br />';
-                    }
-                } else {
-                    $this->log .= '- mime.magic file (mime_content_type()) is deactivated<br />';
-                }
-            }
+            // Don't use this function, this function is deprecated
+//            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
+//                if ($this->mime_magic) {
+//                    $this->log .= '- Checking MIME type with mime.magic file (mime_content_type())<br />';
+//                    if (function_exists('mime_content_type')) {
+//                        $this->file_src_mime = mime_content_type($this->file_src_pathname);
+//                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by mime_content_type()<br />';
+//                        if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
+//                            $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+//                            $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
+//                        } else {
+//                            $this->file_src_mime = null;
+//                        }
+//                    } else {
+//                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;mime_content_type() is not available<br />';
+//                    }
+//                } else {
+//                    $this->log .= '- mime.magic file (mime_content_type()) is deactivated<br />';
+//                }
+//            }
 
             // checks MIME type with getimagesize()
             if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {

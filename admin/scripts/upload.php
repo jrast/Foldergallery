@@ -96,9 +96,7 @@ if($handle->uploaded) {
         exit;
     }
     // Create the thumb
-    $handle->file_new_name_body = $_FILES['Filedata']['name'];
-    $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
-    FG_appendThumbSettings($handle, $settings['tbSettings']);
+    FG_appendThumbSettings($handle, $settings['tbSettings'], $_FILES['Filedata']['name']);
     $handle->process($categoriePath.'fg-thumbs/');
     if(!$handle->processed) {
         exit;

@@ -382,13 +382,16 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	return $list;
 }
 
-function FG_appendThumbSettings(&$handle, $settings) {
+function FG_appendThumbSettings(&$handle, $settings, $filename) {
     foreach($settings as $option => $value) {
         if($option == 'description') {
             continue;
         }
         $handle->$option = $value;
+        $handle->file_new_name_body = $filename;
+        $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
     }
+
 }
 
 ?>

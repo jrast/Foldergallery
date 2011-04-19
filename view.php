@@ -136,7 +136,7 @@ if (count($ergebnisse) == 0) {
         }
 
         $pathToFolder = WB_PATH . $folder . '/';
-        $pathToThumb = WB_PATH . $folder . $thumbdir . '/';
+        $pathToThumb = WB_PATH . $folder . $thumbdir ;
         $urlToFolder = $url . $folder . '/';
         $urlToThumb = $url . $folder . $thumbdir . '/';
 
@@ -152,10 +152,10 @@ if (count($ergebnisse) == 0) {
             if (!is_file($thumb)) {
                 $file = $pathToFolder . $bildfilename;
                 $handle = new upload($file);
-                FG_appendThumbSettings($handle, $settings['tbSettings']);
+                FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
                 $handle->process($pathToThumb);
                 if(!$handle->processed) {
-                    $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
+                    $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken-1.jpg';
                 }
             }
         }
@@ -190,8 +190,8 @@ if (count($bilder) != 0) {
         $folder = $root_dir . $result['parent'] . '/' . $result['categorie'] . '/';
     else
         $folder = $root_dir . $result['parent'] . '/';
-    $pathToFolder = WB_PATH . $folder . '/';
-    $pathToThumb = WB_PATH . $folder . $thumbdir . '/';
+    $pathToFolder = WB_PATH . $folder;
+    $pathToThumb = WB_PATH . $folder . $thumbdir1;
     $urlToFolder = $url . $folder;
     $urlToThumb = $url . $folder . $thumbdir1 . '/';
 }
@@ -348,7 +348,7 @@ if ($bilder) {
         if (!is_file($thumb)) {
             $file = $pathToFolder . $bildfilename;
             $handle = new upload($file);
-            FG_appendThumbSettings($handle, $settings['tbSettings']);
+            FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
             $handle->process($pathToThumb);
             if(!$handle->processed) {
                 $tumburl = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';

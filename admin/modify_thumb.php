@@ -51,7 +51,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
             //Create the new Thumb
             $handle = new upload($full_file);
-            FG_appendThumbSettings($handle, $settings['tbSettings']);
+            FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
             $topCrop = floor($_POST['y1']);
             $rightCrop = floor($handle->image_src_x - $_POST['x2']);
             $bottomCrop = floor($handle->image_src_y - $_POST['y2']);
