@@ -28,10 +28,10 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
 
 $settings = getSettings($section_id);
 $root_dir = $settings['root_dir']; //Chio
-$ratio = $settings['ratio']; //Pumpi
 
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
@@ -88,8 +88,10 @@ if($query->numRows()){
 		}
 		
 		$thumb = $pathToThumb.$bildfilename;			
-		if(!is_file($thumb)){	
-			generateThumb($file, $thumb, $settings['thumb_size'], 0, $ratio, 100, '999999');
+		if(!is_file($thumb)){
+                    $handle = new upload($file);
+                    FG_appendThumbSettings($handle, $settings['tbSettings']);
+                    $handle->process($pathToThumb);
 		}
 		
 		//Chio Ende

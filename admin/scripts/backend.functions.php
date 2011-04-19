@@ -393,5 +393,69 @@ function rek_db_delete($cat_id) {
 	$database->query($deletesql);
 }
 
+/**
+ * This function is used to get the advanced thumbsettings as a string
+ * to display them in the Config view.
+ * 
+ * @param array $tbSettings The array with all the Thumbsettings
+ */
+function FG_getAdvancedThumbSettings($tbSettings) {
+    $s = '';
+    foreach ($tbSettings as $key => $value) {
+        // filter default settings
+        if( $key == 'image_x'
+         || $key == 'image_y'
+         || $key == 'image_resize'
+         || $key == 'image_ratio_fill'
+         || $key == 'image_background_color'
+         || $key == 'image_ratio_crop')
+        {
+            continue;
+        }
+        // convert booleans
+        if(is_bool($value)) {
+            if($value == true) {
+                $s .= $key."=true;\n";
+            } else {
+                $s .= $key."=false;\n";
+            }
+        } else if(is_int($value) || is_float($value)) {
+            $s .= $key . "=" . $value . ";\n";
+        } else {
+            $s .= $key . "='" . $value . "';\n";
+        }
+    }
+    return $s;
+}
+
+function FG_setAdvancedThumbSettings($advancedString) {
+    $advancedString = preg_replace('/\r\n|\r/', "\n", trim($advancedString));
+    $advancedString = preg_replace("/ |'|;/", '', $advancedString);
+    $advancedArray = explode("\n", $advancedString);
+    $returnArray = array();
+    foreach($advancedArray as $value) {
+        $tmp = explode('=', $value);
+        // skip if key/value is ''
+        if($tmp[0] == '' || $tmp[1] == '') {
+            continue;
+        }
+        // Check if it's a bool variable
+        if($tmp[1] == 'true' || $tmp[1] == 'True' || $tmp[1] == 'TRUE') {
+            $tmp[1] = true;
+        } else if($tmp[1] == 'false' || $tmp[1] == 'False' || $tmp[1] == 'FALSE') {
+            $tmp[1] = false;
+        } else if(is_numeric($tmp[1])) {
+            // is it a integer or a float?
+            if(ctype_digit($tmp[1])) {
+                $tmp[1] = (int) $tmp[1];
+            } else {
+                $tmp[1] = (float) $tmp[1];
+            }
+        }
+        $returnArray[$tmp[0]] = $tmp[1];
+    }
+    return $returnArray;
+}
+
 
 ?>
