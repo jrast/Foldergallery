@@ -336,7 +336,7 @@ if ($bilder) {
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
     for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
-        $thumb = $pathToThumb . $bildfilename;
+        $thumb = $pathToThumb. '/' . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
         $file = $pathToFolder . $bildfilename;
         if (!is_file($file)) {

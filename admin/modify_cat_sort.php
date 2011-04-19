@@ -107,7 +107,8 @@ if($query->numRows()) {
 		$thumb = $pathToThumb.$bildfilename;
 		$t->set_var(array(
 			'RESULT_ID_VALUE'   => $result['id'],
-			'THUMB_SIZE_VALUE'  => $settings['thumb_size'],
+			'THUMB_SIZE_X'      => $settings['tbSettings']['image_x'],
+                        'THUMB_SIZE_Y'      => $settings['tbSettings']['image_y'],
 			'THUMB_URL'         => $urlToThumb.$bildfilename,
 			'TITLE_VALUE'       => $result['position'].': '.$bildfilename
 		));

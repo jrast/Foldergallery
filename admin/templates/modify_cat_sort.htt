@@ -23,7 +23,7 @@ This is a phplib-template for modify_cat_sort.php
 		<li id="recordsArray_{RESULT_ID_VALUE}" style="width:{THUMB_SIZE_VALUE}px; height:{THUMB_SIZE_VALUE}px; ">
 			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="sortgroup">
 				<tr>
-					<td style="width:{THUMB_SIZE_VALUE}px; height:{THUMB_SIZE_VALUE}px; ">
+					<td style="width:{THUMB_SIZE_X}px; height:{THUMB_SIZE_Y}px; ">
 						<img src="{THUMB_URL}" title="{TITLE_VALUE}" />
 	</td></tr></table></li>
 	
