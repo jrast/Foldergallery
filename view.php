@@ -246,6 +246,8 @@ $t->set_block('view', 'hr', 'HR');
 $t->set_block('view', 'error', 'ERROR');  // Dieser Fehler wird nicht ausgegeben, BUG
 $t->set_block('view', 'pagenav', 'PAGE_NAV');
 
+// As the error reporting is not implemented in the frontend, set error to false
+$error = false;
 if ($error) {
     $t->set_var('FRONT_END_ERROR_STRING', $MOD_FOLDERGALLERY['FRONT_END_ERROR']);
     $t->parse('ERROR', 'error');
