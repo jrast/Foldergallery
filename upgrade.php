@@ -6,19 +6,23 @@ if (!defined('WB_PATH'))
 
 global $database;
 
-/**
+/*******************************************************************************
  *
+ * Update from Version 1.20/1.21 to newer Versions
  *
- * Update from Version 1.20 to newer Versions
+ * * new Settings Table
+ * * new Thumbnail-Settings
+ * * categorie text field now as text
+ * * delete unused files (many of them are moved to the admin folder)
  *
- *
- */
+ ******************************************************************************/
 
 /*
- * create the new settings-table
+ * BEGIN: Create new settings table
  */
+
 // Check if the table has still it's old format
-// (Maybe this script runs a second time, so wo don't have to run the whole scruipt again
+// (Maybe this script runs a second time, so wo don't have to run the whole script again
 $oldFormat = true;
 $sql = "SHOW FIELDS FROM `" . TABLE_PREFIX . "mod_foldergallery_settings`";
 $query = $database->query($sql);
@@ -72,7 +76,10 @@ if ($oldFormat) {
                     . "(null, '" . $section_id . "', '" . $key . "', '" . $val . "');";
             $database->query($sql);
         }
-        // OK, Update ThumbSettings:
+        /**
+         * The thumbnail Settings are now stored as a serialized array
+         * the folowing switch statement calculates the new values
+         */
         switch ($value['ratio']) {
             case 1:
                 $thumbSettings = array(
@@ -111,7 +118,10 @@ if ($oldFormat) {
             default:
                 break;
         }
-        // Set the default values
+        /**
+         * the folowing values are default for new pages. As there was no
+         * equivalten value before, we set them on update to default.
+         */
         $thumbSettings['image_ratio_fill'] = false;
         $thumbSettings['image_ratio_crop'] = true;
         $thumbSettings['image_background_color'] = '#FFFFFF';
@@ -123,7 +133,7 @@ if ($oldFormat) {
     }
 }
 /**
- * END create the new settings table
+ * END: Create new settings table
  */
 
 
@@ -134,6 +144,51 @@ $sql = "ALTER TABLE `".TABLE_PREFIX."mod_foldergallery_categories` CHANGE `descr
 $database->query($sql);
 /**
  * END alter categories Table
+ */
+
+/**
+ * There are files which are moved or no longer needed.
+ * So we need to delete the old files and directories
+ */
+$fg_path =  WB_PATH.'/modules/foldergallery/';
+$file_list = array(
+    $fg_path.'modify_cat.php',      // Moved to admin
+    $fg_path.'modify_cat_sort.php', // Moved to admin
+    $fg_path.'modify_settings.php', // Moved to admin
+    $fg_path.'modify_thumb.php',    // Moved to admin
+    $fg_path.'save_cat.php',        // Moved to admin
+    $fg_path.'save_files.php',      // Moved to admin
+    $fg_path.'save_settings.php',   // Moved to admin
+    $fg_path.'sync.php',            // Moved to admin
+    $fg_path.'frontend.css.orig',   // No longer needed
+    $fg_path.'scripts/backend.functions.php', // Moved to admin/scripts
+    $fg_path.'scripts/delete_cat.php',      // Moved to admin/scripts
+    $fg_path.'scripts/delete_img.php',      // Moved to admin/scripts
+    $fg_path.'scripts/move_down.php',       // Moved to admin/scripts
+    $fg_path.'scripts/move_up.php',         // Moved to admin/scripts
+    $fg_path.'scripts/quick_img_sort.php',  // Moved to admin/scripts
+    $fg_path.'scripts/reorderCNC.php',      // Moved to admin/scripts
+    $fg_path.'scripts/reorderDND.php',      // Moved to admin/scripts
+    $fg_path.'templates/modify_cat.htt',    // Moved to admin/templates
+    $fg_path.'templates/modify_cat_sort.htt', // Moved to admin/templates
+    $fg_path.'templates/modify_settings.htt', // Moved to admin/templates
+    $fg_path.'templates/modify.htt',        // Moved to admin/templates
+    $fg_path.'images/eck.gif',              // No longer needed
+    $fg_path.'images/crumbs.png'            // No longer needed
+);
+
+foreach($file_list as $file) {
+    if(file_exists($file)) {
+        unlink($file);
+    }
+}
+/**
+ * END: Deleting old files
+ */
+
+
+/**
+ * END: Update from Version 1.20/1.21
  */
 
 ?>
