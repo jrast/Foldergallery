@@ -27,6 +27,7 @@
     </tr>
 </table>
 <h3>{TITEL_MODIFY}</h3>
+<input type="button" value="{NEW_CAT_STRING}" class="FG_button" onclick="{NEW_CAT_ONCLICK}" style="margin-bottom: 10px; width: 200px;" >
 <!-- Tabellen Überschrift -->
 <div class="FG_cat_list">
     <table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -49,21 +50,22 @@
     <div id="dragableTable">
         <ul id="p{COUNTER}">
             <li style="padding: 1px 0px 1px 0px;">
-                    <table cellpadding="1" cellspacing="0" border="0" class="cat_table">
-                        <tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
-                            <td width="20" style="padding-left: 0px;">
-                                <a href="javascript: toggle_visibility('p{NCOUNTER}');" title="{EXPAND_COLAPSE_STRING}">
-                                    <img src="../images/plus_16.png" onclick="toggle_plus_minus('{NCOUNTER}');" name="plus_minus_{NCOUNTER}" border="0" alt="+" />
-				</a>
-                            </td>
-                            <td>
-                                {FOLDER_VALUE}
-                            </td>
-			</tr>
-                    </table>
+                <table cellpadding="1" cellspacing="0" border="0" class="cat_table">
+                    <tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
+                        <td width="20" style="padding-left: 0px;">
+                            <a href="javascript: toggle_visibility('p{NCOUNTER}');" title="{EXPAND_COLAPSE_STRING}">
+                                <img src="../images/plus_16.png" onclick="toggle_plus_minus('{NCOUNTER}');" name="plus_minus_{NCOUNTER}" border="0" alt="+" />
+                            </a>
+                         </td>
+                         <td>
+                            {FOLDER_VALUE}
+                         </td>
+                    </tr>
+                </table>
             </li>
-		{SUBELEM}
+            {SUBELEM}
         </ul>
-        </div>
-        <!-- END ListElement -->
     </div>
+    <!-- END ListElement -->
+</div>
+

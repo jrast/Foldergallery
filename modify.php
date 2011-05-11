@@ -75,6 +75,7 @@ $t->set_var(array(
 	'SETTINGS_ONCLICK'  => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'SYNC_ONKLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
         'HELP_ONCLICK'      => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/help.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+        'NEW_CAT_ONCLICK'   => 'javascript: window.location = \''.WB_URL.'/modules/foldergallery/admin/new_cat.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'EDIT_PAGE'         => $page_id,
 	'EDIT_SECTION'      => $section_id,
 	'WB_URL'            => WB_URL
@@ -91,7 +92,8 @@ $t->set_var(array(
 	'SYNC_STRING'		=> $MOD_FOLDERGALLERY['SYNC'],
 	'EDIT_CSS_STRING'	=> $MOD_FOLDERGALLERY['EDIT_CSS'],
         'EXPAND_COLAPSE_STRING' => $MOD_FOLDERGALLERY['EXPAND_COLAPSE'],
-        'HELP_STRING'           => $MOD_FOLDERGALLERY['HELP_INFORMATION']
+        'HELP_STRING'           => $MOD_FOLDERGALLERY['HELP_INFORMATION'],
+        'NEW_CAT_STRING'        => $MOD_FOLDERGALLERY['NEW_CAT']
 ));
 
 // Template ausgeben

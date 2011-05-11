@@ -113,6 +113,13 @@ $MOD_FOLDERGALLERY['MAX_HEIGHT']                = 'Maximale Höhe';
 $MOD_FOLDERGALLERY['ADVANCED_SETTINGS']         = 'Erweiterte Einstellungen';
 $MOD_FOLDERGALLERY['BACKGROUND_COLOR']          = 'Hintergrundfarbe';
 
+$MOD_FOLDERGALLERY['NEW_CAT']                   = 'Neue Kategorie erstellen';
+$MOD_FOLDERGALLERY['CAT_PARENT']                = 'Elternkategorie';
+$MOD_FOLDERGALLERY['FOLDER_NAME']               = 'Ordnername';
+$MOD_FOLDERGALLERY['CAT_TITLE']                 = 'Kategoire Titel';
+$MOD_FOLDERGALLERY['CAT_DESC']                  = 'Kategoriebeschreibung';
+
+
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren &auml;ndern, sonst gehen alle Infos zu den Bilder verloren!';
