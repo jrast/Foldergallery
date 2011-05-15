@@ -16,17 +16,22 @@ GNU General Public License for more details.
 
 ##Changelog
 
-###V1.30 (Jürg Rast, 07.04.2011)
+###V1.30 (beta version) (Jürg Rast, 07.04.2011)
 + BugFix: Allow to display more than one foldergallery-section per page (with some restrictions)
 + BugFix: Some new language-variables added
 + BugFix: Removed restriction for the length of categoriedescription
 + Feautre: New Layout of the Settingstable (allow to create new settings "on the fly")
 + Feautre: Backend-Upload with jQuery and Flash
 + Feautre: Enable/Disable categorie with a click
++ Feautre: Create new categories via backend
 + Moved files to admin-folder to get a better structure
 + Added a simple Help/Infopage
 + Some work on the design
 + cleand up code
++ removed unused lightbox-scripts
++ updated lightbox-scripts
++ removed old files
+
 
 ###V1.21 (Jürg Rast, 30.03.2011)
 + BugFix: Some categories where not displayed 
