@@ -250,6 +250,13 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpe
     }
 }
 
+/**
+ * Just clean up your Categorie-string which is passed by the user to you
+ *
+ * @deprecated deprecated since version 1.30, use validator class instead
+ * @param string $string
+ * @return string clean categorie name
+ */
 function FG_cleanCat($string) {
     if (is_string($string)) {
         if (!preg_match('~^(/([.a-zA-Z0-9_-]/{0,1})*[^/])$~', $string)) {
@@ -382,6 +389,14 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	return $list;
 }
 
+/**
+ * Use this to append your thumb-settings to the upload class, it's just an easy way
+ * to pass a array to the function and all the keys are appended to the thumbclass
+ *
+ * @param Upload $handle
+ * @param array $settings
+ * @param string $filename
+ */
 function FG_appendThumbSettings(&$handle, $settings, $filename) {
     foreach($settings as $option => $value) {
         if($option == 'description') {

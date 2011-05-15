@@ -41,15 +41,22 @@ $t->set_var(array(
 ));
 
 // parent folder Select
+$t->set_var('ORDNER', '/');
+$t->parse('ORDNER_SELECT', 'ordner_select', true);
 foreach($folders as $folder) {
     $t->set_var('ORDNER', $folder);
     $t->parse('ORDNER_SELECT', 'ordner_select', true);
 }
 
 
+// set the links and other actions
+$t->set_var(array(
+    'SECTION_ID_VALUE'  => $section_id,
+    'PAGE_ID_VALUE'     => $page_id,
+    'NEW_CAT_LINK'      => WB_URL.'/modules/foldergallery/admin/save_new_cat.php?page_id='.$page_id.'&section_id='.$section_id,
+    'CANCEL_ONCLICK'    => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
+));
 
 $t->pparse('Output', 'new_cat');
-
-
 $admin->print_footer();
 ?>
