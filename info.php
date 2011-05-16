@@ -14,13 +14,9 @@
   Modulbeschreibung: Eine einfache Bildergalerie erstellen anhand der
   Ordnerstruktur auf dem Server. Im Backend kann zu jedem Bild/jeder Kategorie
   eine Beschreibung angegeben werden.
+ 
  -------------------------------------------------------------------------------
- *
  * The Changelog of this Module can be found in the README.markdown file!
-
-  V1.21 (Juerg Rast)
-  + fiexed a lot of bugs
-  + repaired libraryAdmin integration
  -------------------------------------------------------------------------------
 **/
 
@@ -28,7 +24,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.30';
+$module_version 	= '1.31';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';

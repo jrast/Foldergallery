@@ -16,6 +16,11 @@ GNU General Public License for more details.
 
 ##Changelog
 
+###V1.31 (beta version) (Jürg Rast, 16.05.2011)
++ BugFix: Backend-Upload, allow Files with special chars
++ BugFix: Create new categories: filter special chars in folder name
++ BugFix: Wrong thumbpath in view.php
+
 ###V1.30 (beta version) (Jürg Rast, 15.05.2011)
 + BugFix: Allow to display more than one foldergallery-section per page (with some restrictions)
 + BugFix: Some new language-variables added
