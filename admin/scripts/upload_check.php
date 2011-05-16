@@ -1,9 +1,9 @@
 <?php
 
 require_once('../../../../config.php');
-if(defined('WB_PATH') == false) {
-    exit();
-}
+require_once(WB_PATH.'/modules/foldergallery/class/validator.php');
+
+$v = new Validator();
 
 $fileArray = array();
 foreach ($_POST as $key => $value) {

@@ -16,7 +16,7 @@ GNU General Public License for more details.
 
 ##Changelog
 
-###V1.30 (beta version) (Jürg Rast, 07.04.2011)
+###V1.30 (beta version) (Jürg Rast, 15.05.2011)
 + BugFix: Allow to display more than one foldergallery-section per page (with some restrictions)
 + BugFix: Some new language-variables added
 + BugFix: Removed restriction for the length of categoriedescription

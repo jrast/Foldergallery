@@ -23,7 +23,7 @@ $v->process();
 $request = $v->getValidData();
 // This is used to prevent SQL attacks
 $request['cat_parent']  = $admin->add_slashes($request['cat_parent']);
-$request['folder_name'] = $admin->add_slashes($request['folder_name']);
+$request['folder_name'] = $v->getSaveFilename($request['folder_name']);
 $request['cat_title']   = $admin->add_slashes($request['cat_title']);
 $request['cat_desc']    = $admin->add_slashes($request['cat_desc']);
 

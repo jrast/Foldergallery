@@ -29,6 +29,23 @@ class Validator {
     private $_lastError = '';
 
 
+    private $badSystemChars = array(
+        // All the Umlauts and other Chars with acents
+        'ä' => 'ae',    'Ä' => 'Ae',
+        'ö' => 'oe',    'Ö' => 'Oe',
+        'ü' => 'ue',    'Ü' => 'Ue',
+        'é' => 'e',     'É' => 'E',
+        'è' => 'e',     'È' => 'E',
+        'à' => 'a',     'À' => 'A',
+        'ß' => 'ss',
+        // Whitespace, Colon, ...
+        ' ' => '_',     '\''   => '_',
+        '\\'=> '_',     '/'    => '_',
+        '(' => '_',     ')'    => '_',
+        '$' => '_',     '%'    => '_'
+    );
+
+
     /**
      *
      * @var bool Just a flag to remember if there was a error
@@ -340,6 +357,10 @@ class Validator {
         } else {
             return '';
         }
+    }
+
+    public function getSaveFilename($value) {
+        return strtolower(strtr($value, $this->badSystemChars));
     }
 }
 

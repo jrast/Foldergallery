@@ -145,10 +145,11 @@ if (count($ergebnisse) == 0) {
         // Es gibt also noch kein Thumb. Also prüfen und erstellen
 
 
+
         if ($bildfilename == '') { //Leer oder ein Ordner
             $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/folder.jpg';
         } else {
-            $thumb = $pathToThumb . $bildfilename;
+            $thumb = $pathToThumb .'/'. $bildfilename;
             if (!is_file($thumb)) {
                 $file = $pathToFolder . $bildfilename;
                 $handle = new upload($file);

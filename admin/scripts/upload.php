@@ -42,6 +42,7 @@ $admin = new admin('Modules', 'module_view', false, false);
 
 require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
 require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
+require_once (WB_PATH.'/modules/foldergallery/class/validator.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
@@ -77,9 +78,11 @@ $categoriePath .= '/';
 // OK, now we have all Informations we can get from the Database
 
 // Process the new Data
-
+$v = new Validator();
 $allowedFileTypes = explode(',',$settings['extensions']);
 $fileParts = pathinfo($_FILES['Filedata']['name']);
+$filename = $v->getSaveFilename($fileParts['filename']);
+$extension = strtolower($fileParts['extension']);
 
 if(!in_array($fileParts['extension'], $allowedFileTypes)) {
     exit;
@@ -89,14 +92,14 @@ if(!in_array($fileParts['extension'], $allowedFileTypes)) {
 $handle = new upload($_FILES['Filedata']['tmp_name']);
 if($handle->uploaded) {
     // Save the image in the right categorie
-    $handle->file_new_name_body = $_FILES['Filedata']['name'];
-    $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
+    $handle->file_new_name_body = $filename;
+    $handle->file_new_name_ext  = $extension;
     $handle->process($categoriePath);
     if(!$handle->processed) {
         exit;
     }
     // Create the thumb
-    FG_appendThumbSettings($handle, $settings['tbSettings'], $_FILES['Filedata']['name']);
+    FG_appendThumbSettings($handle, $settings['tbSettings'], $filename.'.'.$extension);
     $handle->process($categoriePath.'fg-thumbs/');
     if(!$handle->processed) {
         exit;
@@ -113,7 +116,7 @@ $result = $query->fetchRow();
 $newPosition = $result['position'] +1;
 
 //Insert to db
-$sql = 'INSERT INTO `'.TABLE_PREFIX.'mod_foldergallery_files` (`parent_id`, `file_name`, `position`) VALUES ( \''.$cat_id.'\' , \''.$_FILES['Filedata']['name'].'\' , \''.$newPosition.'\');';
+$sql = 'INSERT INTO `'.TABLE_PREFIX.'mod_foldergallery_files` (`parent_id`, `file_name`, `position`) VALUES ( \''.$cat_id.'\' , \''.$filename.'.'.$extension.'\' , \''.$newPosition.'\');';
 $query = $database->query($sql);
 
 $sql = 'SELECT id FROM `'.TABLE_PREFIX.'mod_foldergallery_files` WHERE `parent_id` = '.$cat_id.' AND `position` = '.$newPosition.';';
@@ -124,7 +127,7 @@ $result = $query->fetchRow();
 $newId = $result['id'];
 
 // Very bad method to get the URL to the thumb-file...
-$thumbFile = $categoriePath.'fg-thumbs/'.$_FILES['Filedata']['name'];
+$thumbFile = $categoriePath.'fg-thumbs/'.$filename.'.'.$extension;
 $urlToThumb = str_replace(WB_PATH, WB_URL, $thumbFile);
 $thumbEditLink = WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$newId;
 $thumbEditAlt = $MOD_FOLDERGALLERY['THUMB_EDIT_ALT'] ;
@@ -141,7 +144,7 @@ echo '
             <a href=\''.$thumbEditLink.'\'><img src="'.$urlToThumb.'"></a>
         </td>
         <td>
-            '.$_FILES['Filedata']['name'].'
+            '.$filename.'.'.$extension.'
         </td>
         <td>
             <textarea cols="40" rows="3"  name="caption['.$newId.']" ></textarea>
