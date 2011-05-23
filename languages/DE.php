@@ -116,7 +116,7 @@ $MOD_FOLDERGALLERY['BACKGROUND_COLOR']          = 'Hintergrundfarbe';
 $MOD_FOLDERGALLERY['NEW_CAT']                   = 'Neue Kategorie erstellen';
 $MOD_FOLDERGALLERY['CAT_PARENT']                = 'Elternkategorie';
 $MOD_FOLDERGALLERY['FOLDER_NAME']               = 'Ordnername';
-$MOD_FOLDERGALLERY['CAT_TITLE']                 = 'Kategoire Titel';
+$MOD_FOLDERGALLERY['CAT_TITLE']                 = 'Kategorie Titel';
 $MOD_FOLDERGALLERY['CAT_DESC']                  = 'Kategoriebeschreibung';
 
 

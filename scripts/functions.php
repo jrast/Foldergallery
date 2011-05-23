@@ -279,11 +279,13 @@ function FG_cleanCat($string) {
  */
 function FG_getCatId($sectionID, $kategorie) {
     global $database;
+    $activeTerm = 'AND active = 1 ';
     if($kategorie == '') {
         $kategorie = '-1/Root';
+        $activeTerm = '';
     }
     $sql = "SELECT id FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE ".
-            "section_id = ".$sectionID." AND is_empty = 0 AND active = 1 ".
+            "section_id = ".$sectionID." AND is_empty = 0 ".$activeTerm.
             "AND CONCAT(parent,'/',categorie) = '".$kategorie."'";
     $query = $database->query($sql);
     $ergebnis = $query->fetchRow();
@@ -348,7 +350,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                 $list .= '</td>'
                         ."<td width='".(350-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
                         .'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
-                        .htmlentities($result['cat_name'])."</a></td>"
+                        .($result['cat_name'])."</a></td>"
                         ."<td align='left'>".htmlentities($result['categorie'])."</td>"
                         .'<td width="30">';
 
