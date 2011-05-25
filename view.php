@@ -32,6 +32,9 @@ $generatethumbscounter = 0;
 require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
 require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
+require_once (WB_PATH . '/modules/foldergallery/class/validator.php');
+
+$validator = new Validator();
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);
@@ -75,7 +78,7 @@ $sql = 'SELECT * FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE '
 
 // OK, Angaben aus DB holen
 $query = $database->query($sql);
-while ($ergebnis = $query->fetchRow()) {
+while ($ergebnis = $query->fetchRow(MYSQL_ASSOC)) {
     $ergebnisse[] = $ergebnis;
 }
 
@@ -98,69 +101,71 @@ if (count($ergebnisse) == 0) {
             $catpicstring = 'RAND()';
     }
 
-    for ($i = 0; $i <= count($ergebnisse) - 1; $i++) {
-        $cat = $ergebnisse[$i]['parent'] . '/' . $ergebnisse[$i]['categorie'];
-        $unterKats[$i]['link'] = $link . '?cat=' . $cat;
-        $unterKats[$i]['name'] = $ergebnisse[$i]['cat_name'];
-        $parent_id = $ergebnisse[$i]['id'];
+    foreach($ergebnisse as $ergebnis) {
+        $catCrumb  = $ergebnis['parent'] . '/' .$ergebnis['categorie'];
+        $catLink   = $link.'?cat='.$catCrumb;
+        $catName   = $ergebnis['cat_name'];
+        $catID     = $ergebnis['id'];
+        $catChilds = $ergebnis['childs'];
 
-        $folder = $root_dir . $cat;
-        $pathToFolder = WB_PATH . $folder . '/';
-
-        $bildfilename = 'folderpreview.jpg';
-
-        if (!is_file($pathToFolder . $bildfilename)) {
-            // Vorschaubild suchen
-            $sql = 'SELECT file_name, id, parent_id  FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE parent_id = ' . $parent_id . ' ORDER BY ' . $catpicstring . ' LIMIT 1;';
+        // OK, lets find a preview Image for this categorie
+        $sql = 'SELECT file_name, id, parent_id FROM '.TABLE_PREFIX.'mod_foldergallery_files '
+             . 'WHERE parent_id ='.$catID.' '
+             . 'ORDER BY '.$catpicstring
+             . ' LIMIT 1;';
+        $query = $database->query($sql);
+        if($query->numRows() == 0) {
+            // OK, Categorie itself contains no images
+            $sql = 'SELECT file_name, id, parent_id FROM '.TABLE_PREFIX.'mod_foldergallery_files '
+                 . 'WHERE parent_id IN ('.$catID.$catChilds.') '
+                 . 'ORDER BY parent_id ASC, '.$catpicstring
+                 . ' LIMIT 1;';
             $query = $database->query($sql);
-            if ($query->numRows() == 0) {
-                $sql = 'SELECT file_name, id, parent_id  FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE parent_id IN (' . $parent_id . $ergebnisse[$i]['childs'] . ') ORDER BY ' . $catpicstring . ' LIMIT 1;';
-                $query = $database->query($sql);
-            }
-            $bildLinks = $query->fetchRow();
-            $bildfilename = $bildLinks['file_name'];
-
-            //Falls es childs gab, k?nnte das Bild auch aus einem anderen Verzeichnis sein:
-            if ($bildLinks['parent_id'] != $parent_id) {
-                $sql = 'SELECT parent, categorie, active FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE id = "' . $bildLinks['parent_id'] . '";';
-                $query = $database->query($sql);
-                $ergebnisseneu = $query->fetchRow();
-                $catneu = $ergebnisseneu['parent'] . '/' . $ergebnisseneu['categorie'];
-                $folder = $root_dir . $catneu;
-
-                if ($ergebnisseneu['active'] == 0) {
-                    $bildfilename = '';
-                }
-                //echo '<br>Neu: '.$folder;
-            }
         }
+        $imageData      = $query->fetchRow(MYSQL_ASSOC);
+        $imageID        = $imageData['id'];
+        $imageName      = $imageData['file_name'];
+        $imageParentID  = $imageData['parent_id'];
 
-        $pathToFolder = WB_PATH . $folder . '/';
-        $pathToThumb = WB_PATH . $folder . $thumbdir ;
-        $urlToFolder = $url . $folder . '/';
-        $urlToThumb = $url . $folder . $thumbdir . '/';
-
-        $unterKats[$i]['thumb'] = $urlToThumb . $bildfilename;     //WB_URL.$bildLinks['thumb_link'];
-        // Eventuell wird die Gallerie zum ersten mal betrachtet
-        // Es gibt also noch kein Thumb. Also prüfen und erstellen
-
-
-
-        if ($bildfilename == '') { //Leer oder ein Ordner
-            $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/folder.jpg';
+        if($imageParentID != $catID) {
+            // OK, its a image of a subcat, so we need the folder of this cat
+            $sql = 'SELECT id, parent, categorie FROM '.TABLE_PREFIX.'mod_foldergallery_categories '
+                 . 'WHERE id='.$imageParentID.';';
+            $query = $database->query($sql);
+            $result = $query->fetchRow(MYSQL_ASSOC);
+            $imageCrumb = $root_dir.$result['parent'].'/'.$result['categorie'];
         } else {
-            $thumb = $pathToThumb .'/'. $bildfilename;
-            if (!is_file($thumb)) {
-                $file = $pathToFolder . $bildfilename;
-                $handle = new upload($file);
-                FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
-                $handle->process($pathToThumb);
-                if(!$handle->processed) {
-                    $unterKats[$i]['thumb'] = WB_URL . '/modules/foldergallery/images/broken-1.jpg';
-                }
+            $imageCrumb = $root_dir.$catCrumb;
+        }
+
+        // Let's santizie the filename:
+        if(!$validator->checkSaveFilename($imageName)) {
+            var_dump($imageName);
+            $newImageName = $validator->getSaveFilename($imageName);
+            FG_updateFilename($imageParentID, WB_PATH.$imageCrumb.'/', $imageName, $newImageName);
+            $imageName = $newImageName;
+        }
+
+        // Create the thumb for a categorie
+        $imagePath = WB_PATH.$imageCrumb.'/'.$imageName;
+        $thumbPath = WB_PATH.$imageCrumb.$thumbdir;
+        $thumbImagePath = WB_PATH.$imageCrumb.$thumbdir.'/'.$imageName;
+        $thumbImageURL = WB_URL.$imageCrumb.$thumbdir.'/'.$imageName;
+        if(!is_file($thumbImagePath)) {
+            $handle = new upload($imagePath);
+            FG_appendThumbSettings($handle, $settings['tbSettings'], $imageName);
+            $handle->process($thumbPath);
+            if(!$handle->processed) {
+              $thumbImageURL = WB_URL . '/modules/foldergallery/images/broken-1.jpg';
             }
         }
-        //Chio ENDE
+
+        // Create a array for the template
+        $unterKats[] = array(
+            'link'  => $catLink,
+            'thumb' => $thumbImageURL,
+            'name'  => $catName
+        );
     }
 }
 
@@ -337,6 +342,13 @@ if ($bilder) {
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
     for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
+        // Check if the filename contains some special chars
+        // This is used because ther may exist files from a older Version of FG
+        if(!$validator->checkSaveFilename($bildfilename)) {
+            $newFilename = $validator->getSaveFilename($bildfilename);
+            FG_updateFilename($aktuelleKat_id,$pathToFolder, $bildfilename, $newFilename);
+            $bildfilename = $newFilename;
+        }
         $thumb = $pathToThumb. '/' . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
         $file = $pathToFolder . $bildfilename;

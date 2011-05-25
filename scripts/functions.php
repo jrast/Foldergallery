@@ -411,4 +411,25 @@ function FG_appendThumbSettings(&$handle, $settings, $filename) {
 
 }
 
+
+function FG_updateFilename($catID, $path, $oldFilename, $newFilename) {
+    global $database;
+    if(file_exists($path.$oldFilename)) {
+        // OK, file exists in FS
+    } else {
+        return;
+    }
+    $sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id='.$catID.' AND file_name=\''.$oldFilename.'\';';
+    $query = $database->query($sql);
+    if($result = $query->fetchRow(MYSQL_ASSOC)) {
+        echo "Erfolg!";
+        // OK, file exist in DB
+    } else {
+        return;
+    }
+    $sql = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_files SET file_name=\''.$newFilename.'\' WHERE id='.$result['id'];
+    $database->query($sql);
+    rename($path.$oldFilename, $path.$newFilename);
+}
+
 ?>

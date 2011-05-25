@@ -29,23 +29,6 @@ class Validator {
     private $_lastError = '';
 
 
-    private $badSystemChars = array(
-        // All the Umlauts and other Chars with acents
-        'ä' => 'ae',    'Ä' => 'Ae',
-        'ö' => 'oe',    'Ö' => 'Oe',
-        'ü' => 'ue',    'Ü' => 'Ue',
-        'é' => 'e',     'É' => 'E',
-        'è' => 'e',     'È' => 'E',
-        'à' => 'a',     'À' => 'A',
-        'ß' => 'ss',
-        // Whitespace, Colon, ...
-        ' ' => '_',     '\''   => '_',
-        '\\'=> '_',     '/'    => '_',
-        '(' => '_',     ')'    => '_',
-        '$' => '_',     '%'    => '_'
-    );
-
-
     /**
      *
      * @var bool Just a flag to remember if there was a error
@@ -359,8 +342,20 @@ class Validator {
         }
     }
 
+    public function checkSaveFilename($value) {
+        $origValue = $value;
+        $value = strtr($value, 'ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy');
+        $value = strtr($value, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+        $value = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $value);
+        return ($origValue == $value);
+
+    }
+
     public function getSaveFilename($value) {
-        return strtolower(strtr($value, $this->badSystemChars));
+        $value = strtr($value, 'ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy');
+        $value = strtr($value, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+        $value = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $value);
+        return $value;
     }
 }
 

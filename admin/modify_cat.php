@@ -29,6 +29,7 @@ require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
+require_once (WB_PATH.'/modules/foldergallery/class/validator.php');
 
 $settings = getSettings($section_id);
 $root_dir = $settings['root_dir']; //Chio
@@ -87,6 +88,14 @@ if($query->numRows()){
 			continue;
 		}
 		
+                // Santizise Filename
+                $validator = new Validator();
+                if(!$validator->checkSaveFilename($bildfilename)) {
+                    $newFilename = $validator->getSaveFilename($bildfilename);
+                    FG_updateFilename($parent_id, $pathToFolder, $bildfilename, $newFilename);
+                    $bildfilename = $newFilename;
+                }
+                $file = $pathToFolder.$bildfilename;
 		$thumb = $pathToThumb.$bildfilename;			
 		if(!is_file($thumb)){
                     $handle = new upload($file);
