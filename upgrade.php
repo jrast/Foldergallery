@@ -174,7 +174,7 @@ $file_list = array(
     $fg_path.'templates/modify_settings.htt', // Moved to admin/templates
     $fg_path.'templates/modify.htt',        // Moved to admin/templates
     $fg_path.'images/eck.gif',              // No longer needed
-    $fg_path.'images/crumbs.png'            // No longer needed
+    $fg_path.'images/crumbs.gif'            // No longer needed
 );
 
 foreach($file_list as $file) {
