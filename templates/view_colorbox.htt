@@ -25,7 +25,7 @@
 
 <script src="{WB_URL}/modules/foldergallery/scripts/colorbox/jquery.colorbox.js" type="text/javascript"></script>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='cslide']").colorbox({
 			 slideshow:true,
