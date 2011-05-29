@@ -139,10 +139,10 @@ if(( serialize($oldSettings['tbSettings']) != serialize($newSettings['tbSettings
 	// Ok, thumb_size hat gewechselt, also alte Thumbs lÃ¶schen
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$query = $database->query($sql);
-        echo '<div class="info">Loesche alte Thumbs:';
+        echo '<div class="info">'.$MOD_FOLDERGALLERY['DELETE_OLD_THUMBS'].':';
 	while($link = $query->fetchRow()) {
 		$pathToFolder = $path.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
-		echo '<br/>Delete: '.$pathToFolder;
+		echo '<br/>'.$MOD_FOLDERGALLERY['DELETE'].': '.$pathToFolder;
 		deleteFolder($pathToFolder);
 	}
 	$pathToFolder = $path.$oldSettings['root_dir'].$thumbdir;

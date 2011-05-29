@@ -27,7 +27,7 @@ This is a phplib-template for modify_cat.php
 			<td><input name='cat_name' type='text' size='80' value='{CAT_NAME_VALUE}'></td>
 		</tr>
 		<tr>
-			<td>active:</td>
+			<td>{CAT_ACTIVE_STRING}:</td>
 			<td><input name="active" type="checkbox" value="1" {CAT_ACTIVE_CHECKED}></td>
 		</tr>
 		<tr>

@@ -132,6 +132,7 @@ $t->set_var(array(
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
 	'FOLDER_IN_FS_VALUE'	=> htmlentities($cat_path),
 	'CAT_ACTIVE_CHECKED'	=> $cat_active_checked,
+        'CAT_ACTIVE_STRING'     => $MOD_FOLDERGALLERY['ACTIVE'],
 	'CAT_NAME_STRING'	=> $MOD_FOLDERGALLERY['CAT_NAME'],
 	'CAT_NAME_VALUE'	=> $categorie['cat_name'],
 	'CAT_DESCRIPTION_STRING'=> $MOD_FOLDERGALLERY['CAT_DESCRIPTION'],

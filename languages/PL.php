@@ -120,6 +120,11 @@ $MOD_FOLDERGALLERY['FOLDER_NAME']               = 'Nazwa folderu';
 $MOD_FOLDERGALLERY['CAT_TITLE']                 = 'Tytuł kategorii';
 $MOD_FOLDERGALLERY['CAT_DESC']                  = 'Opis kategorii';
 
+$MOD_FOLDERGALLERY['DELETE_OLD_THUMBS']         = 'Delete old thumbnails';
+$MOD_FOLDERGALLERY['DELETE']                    = 'Delete';
+$MOD_FOLDERGALLERY['UPDATED_THUMB']             = 'Updated thumbnail successfully';
+$MOD_FOLDERGALLERY['ACTIVE']                    = 'active';
+
 
 // Tooltips
 $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT']     = 'To jest podstawowy (główny) folder galerii, do którego będą odnosić się zagnieżdżone foldery galerii.' . 'Nie należy zmieniać tego folderu, albowiem wszystkie ustawienia obrazów zostaną utracone!';

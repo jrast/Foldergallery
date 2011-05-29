@@ -110,12 +110,15 @@ $MOD_FOLDERGALLERY['MAX_WIDTH']                 = 'Maximum width';
 $MOD_FOLDERGALLERY['MAX_HEIGHT']                = 'Maximum height';
 $MOD_FOLDERGALLERY['ADVANCED_SETTINGS']         = 'Advanced Settings';
 $MOD_FOLDERGALLERY['BACKGROUND_COLOR']          = 'Background-color';
-
 $MOD_FOLDERGALLERY['NEW_CAT']                   = 'Create New Categorie';
 $MOD_FOLDERGALLERY['CAT_PARENT']                = 'Parent Categorie';
 $MOD_FOLDERGALLERY['FOLDER_NAME']               = 'Foldername';
 $MOD_FOLDERGALLERY['CAT_TITLE']                 = 'Categorie Title';
 $MOD_FOLDERGALLERY['CAT_DESC']                  = 'Categorie Description';
+$MOD_FOLDERGALLERY['DELETE_OLD_THUMBS']         = 'Delete old thumbnails';
+$MOD_FOLDERGALLERY['DELETE']                    = 'Delete';
+$MOD_FOLDERGALLERY['UPDATED_THUMB']             = 'Updated thumbnail successfully';
+$MOD_FOLDERGALLERY['ACTIVE']                    = 'active';
 
 
 

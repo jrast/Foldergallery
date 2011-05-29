@@ -59,7 +59,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $handle->image_precrop = "$topCrop $rightCrop $bottomCrop $leftCrop";
             $handle->process($thumbFolder);
             if($handle->processed) {
-                $admin->print_success('Thumb erfolgreich geändert', WB_URL . '/modules/foldergallery/admin/modify_cat.php?page_id=' . $page_id . '&section_id=' . $section_id . '&cat_id=' . $cat_id);
+                $admin->print_success($MOD_FOLDERGALLERY['UPDATED_THUMB'], WB_URL . '/modules/foldergallery/admin/modify_cat.php?page_id=' . $page_id . '&section_id=' . $section_id . '&cat_id=' . $cat_id);
             }
         } else {
             list($width, $height, $type, $attr) = getimagesize($full_file);
