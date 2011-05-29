@@ -80,7 +80,7 @@ $sql = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_categories '
 $database->query($sql);
 
 
-$admin->print_success($TEXT['SUCCESS'], WB_URL.'/admin/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 
 $admin->print_footer();
 ?>

@@ -422,8 +422,7 @@ function FG_updateFilename($catID, $path, $oldFilename, $newFilename) {
     $sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id='.$catID.' AND file_name=\''.$oldFilename.'\';';
     $query = $database->query($sql);
     if($result = $query->fetchRow(MYSQL_ASSOC)) {
-        echo "Erfolg!";
-        // OK, file exist in DB
+        // OK, file exists in DB
     } else {
         return;
     }
