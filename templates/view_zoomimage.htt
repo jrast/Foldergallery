@@ -48,7 +48,7 @@
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<a href="{ORIGINAL}" title="{CAPTION}" class="bwgal"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="bwgal" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
 <!-- BEGIN invisiblePost -->

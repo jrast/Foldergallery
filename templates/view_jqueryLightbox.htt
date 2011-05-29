@@ -49,7 +49,7 @@ $(function() {
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
 <!-- BEGIN invisiblePost -->

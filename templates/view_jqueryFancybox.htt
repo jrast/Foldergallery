@@ -44,7 +44,7 @@
 <!-- BEGIN images -->
 <!-- BEGIN invisiblePre -->
 	<li style="display:none;">
-		<a href="{ORIGINAL}" title="{CAPTION}" rel="fancybox"><img src="{WB_URL}/modules/foldergallery/images/1px.gif" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="fancybox" target="_blank"><img src="{WB_URL}/modules/foldergallery/images/1px.gif" alt="{CAPTION}"/></a>
 	</li>
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->

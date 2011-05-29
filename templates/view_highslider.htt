@@ -74,7 +74,7 @@
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<a href="{ORIGINAL}" title="{CAPTION}" class="highslide" onclick="return hs.expand(this)"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="highslide" onclick="return hs.expand(this)" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
 		<div class='highslide-caption'>
    			{CAPTION}
 		</div>

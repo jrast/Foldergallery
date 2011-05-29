@@ -48,7 +48,7 @@ $(document).ready(function() {
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" class="pirobox" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
 <!-- BEGIN invisiblePost -->
