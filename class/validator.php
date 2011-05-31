@@ -343,21 +343,22 @@ class Validator {
     }
 
     public function checkSaveFilename($value) {
+        require_once(WB_PATH.'/framework/charsets_table.php');
+        require_once(WB_PATH.'/framework/functions-utf8.php');      
+
         $origValue = $value;
-        $value = strtr($value, 'ŠŽšžYAÁÂAÄAÇEÉEËIÍÎINOÓÔOÖOUÚUÜÝaáâaäaçeéeëiíîinoóôoöouúuüýyĄĘŚĆŻŹÓŁŃąęśćżźółń', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyyAESCZZOLNaesczzoln');
-        //$value = strtr($value, 'ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy');
-        $value = strtr($value, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+        $value = utf8_romanize($value);
         $value = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $value);
-        return ($origValue == $value);
+        return ($origValue == strtolower($value));
 
     }
 
     public function getSaveFilename($value) {
-        $value = strtr($value, 'ŠŽšžYAÁÂAÄAÇEÉEËIÍÎINOÓÔOÖOUÚUÜÝaáâaäaçeéeëiíîinoóôoöouúuüýyĄĘŚĆŻŹÓŁŃąęśćżźółń', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyyAESCZZOLNaesczzoln');
-        //$value = strtr($value, 'ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy');
-        $value = strtr($value, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+        require_once(WB_PATH.'/framework/charsets_table.php');
+        require_once(WB_PATH.'/framework/functions-utf8.php');
+        $value = utf8_romanize($value);
         $value = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $value);
-        return $value;
+        return strtolower($value);
     }
 }
 

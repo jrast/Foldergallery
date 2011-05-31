@@ -140,7 +140,6 @@ if (count($ergebnisse) == 0) {
 
         // Let's santizie the filename:
         if(!$validator->checkSaveFilename($imageName)) {
-            var_dump($imageName);
             $newImageName = $validator->getSaveFilename($imageName);
             FG_updateFilename($imageParentID, WB_PATH.$imageCrumb.'/', $imageName, $newImageName);
             $imageName = $newImageName;
@@ -195,7 +194,7 @@ if (count($bilder) != 0) {
     if (!empty($result['categorie']))
         $folder = $root_dir . $result['parent'] . '/' . $result['categorie'] . '/';
     else
-        $folder = $root_dir . $result['parent'] . '/';
+    $folder = $root_dir . $result['parent'] . '/';
     $pathToFolder = WB_PATH . $folder;
     $pathToThumb = WB_PATH . $folder . $thumbdir1;
     $urlToFolder = $url . $folder;
