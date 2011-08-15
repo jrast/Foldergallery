@@ -6,7 +6,7 @@ This is a phplib-template for modify_settings.php
 <h2>{SETTINGS_STRING}</h2>
 <form action="{MODIFY_SETTINGS_LINK}" method="post">
 	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}" />
-	<input type="hidden" name="page_id" value="PAGE_ID_VALUE" />
+	<input type="hidden" name="page_id" value="{PAGE_ID_VALUE}" />
 	<table cellpadding="2" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td>

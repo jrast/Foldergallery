@@ -111,8 +111,10 @@ $catpicselect .= '</select>';
 
 // Text einsetzten
 $t->set_var(array(
+        'PAGE_ID_VALUE'                 => $page_id,
+        'SECTION_ID_VALUE'              => $section_id,
 	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
-	'ROOT_FOLDER_STRING' 	=> $MOD_FOLDERGALLERY['ROOT_DIR'],
+	'ROOT_FOLDER_STRING'            => $MOD_FOLDERGALLERY['ROOT_DIR'],
 	'EXTENSIONS_STRING'		=> $MOD_FOLDERGALLERY['EXTENSIONS'],
 	'EXTENSIONS_VALUE'		=> $settings['extensions'],
 	'INVISIBLE_STRING'		=> $MOD_FOLDERGALLERY['INVISIBLE'],
@@ -133,7 +135,7 @@ $t->set_var(array(
 
 // Links einsetzen
 $t->set_var(array(
-	'CANCEL_ONCLICK' 		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
+	'CANCEL_ONCLICK'        => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
 	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
 ));
 
