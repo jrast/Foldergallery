@@ -88,6 +88,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				<br />
 				<!-- This is the form that our event handler fills -->
 				<form action="'.WB_URL.'/modules/foldergallery/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
+                                    	<input type="hidden" name="section_id" value="'.$section_id.'">
+                                        <input type="hidden" name="page_id" value="'.$page_id.'">
 					<input type="hidden" id="x" name="x" />
 					<input type="hidden" id="y" name="y" />
 					<input type="hidden" id="w" name="w" />
