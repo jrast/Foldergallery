@@ -45,6 +45,7 @@ This is a phplib-template for modify_cat.php
 <form action="{SAVE_FILES_LINK}" method="post" >
     	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}">
 	<input type="hidden" name="page_id" value="{PAGE_ID_VALUE}">
+        <input type="hidden" name="cat_id" value="{CAT_ID_VALUE}" >
 	<table width="100%" class="list">
 		<tr class="title">
 			<td align="center">{IMAGE_STRING}</td>

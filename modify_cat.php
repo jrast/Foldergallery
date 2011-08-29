@@ -148,8 +148,8 @@ $t->set_var(array(
 
 // Links parsen
 $t->set_var(array(
-	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery/save_cat.php',
+	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery/save_files.php',
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 

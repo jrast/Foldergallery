@@ -131,6 +131,10 @@
   + fiexed a lot of bugs
   + repaired libraryAdmin integration
 
+  V1.22 (Juerg Rast)
+  + Supports now WB 2.8.2
+  ! Only tested with WB 2.8.2!
+
  -------------------------------------------------------------------------------
 **/
 
@@ -138,7 +142,7 @@
 $module_directory 	= 'foldergallery';
 $module_name 		= 'Foldergallery';
 $module_function 	= 'page';
-$module_version 	= '1.21';
+$module_version 	= '1.22';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';
