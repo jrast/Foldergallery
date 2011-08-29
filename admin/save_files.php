@@ -62,8 +62,6 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
                 'delete'    => false
             );
         }
-
-	//echo '<pre>'; var_export($bilderNeu); echo '</pre>';
 		
 	// Jetzt machen wir alle Datenbank Änderungen
 	$deleteSQL = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE ';
@@ -72,25 +70,22 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	foreach($bilderNeu as $bild){
 		$selectArray[] = $bild['id'];
 	}
-
 	if(isset($selectArray)){
-		$selectSQL .= '(id IN('.implode(',',$selectArray).'));';
-		$query = $database->query($selectSQL);
-		while($singleResult = $query->fetchRow()){
-			foreach($bilderNeu as $bild) {
-				if($bild['id'] == $singleResult['id']) {
-					if($bild['caption'] != $singleResult['caption']){
-						$updateArray[] = array(
-							'id' => $bild['id'],
-							'caption' => $bild['caption']
-						);
-					}
-				}
+            $selectSQL .= '(id IN('.implode(',',$selectArray).'));';
+            $query = $database->query($selectSQL);
+            while($singleResult = $query->fetchRow(MYSQL_ASSOC)){
+                foreach($bilderNeu as $bild) {
+                    if($bild['id'] == $singleResult['id']) {
+                        if($bild['caption'] != $singleResult['caption']){
+                            $updateArray[] = array(
+                                'id' => $bild['id'],
+                                'caption' => $bild['caption']
+                            );
 			}
+                    }
 		}
-		
+            }
 	}
-	
 	if(isset($updateArray)) {
 		$anzahlUpdates = count($updateArray);
 		for($i = 0; $i < $anzahlUpdates; $i++) {

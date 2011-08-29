@@ -75,7 +75,6 @@ $urlToThumb = $url.$folder.$thumbdir.'/';
 $bilder= array();
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
-
 if($query->numRows()){
 	while($result = $query->fetchRow()) {
 		// Falls es das Vorschaubild noch nicht gibt:
@@ -167,7 +166,6 @@ $t->set_var(array(
 
 
 // parse Images
-$counter = 0;
 foreach($bilder as $bild) {
 	$t->set_var(array(
 		'ID_VALUE'		=> $bild['id'],
@@ -178,13 +176,9 @@ foreach($bilder as $bild) {
 		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"".$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE'] ."\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'		=> $bild['id'],
 		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
-		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
-		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
-		'COUNTER'			=> $counter
+		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png'
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);
-	$counter++;
 }
 
 

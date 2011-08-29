@@ -51,6 +51,7 @@ This is a phplib-template for modify_cat.php
 <form action="{SAVE_FILES_LINK}" method="post" >
     	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}">
 	<input type="hidden" name="page_id" value="{PAGE_ID_VALUE}">
+        <input type="hidden" name="cat_id"  value="{CAT_ID_VALUE}" >
 	<table width="100%" id="FG_table">
 		<tr>
 			<th align="center">{IMAGE_STRING}</th>
@@ -67,7 +68,7 @@ This is a phplib-template for modify_cat.php
 				{IMAGE_NAME_VALUE}
 			</td>
 			<td>
-				<textarea cols="40" rows="3"  name="caption[{COUNTER}]" >{CAPTION_VALUE}</textarea>
+                            <textarea cols="40" rows="3"  name="caption[{COUNTER}]" >{CAPTION_VALUE}</textarea>
 			</td>
 			<td align="center" width="20px">
 				<a href='{THUMB_EDIT_LINK}' title="{THUMB_EDIT_ALT}"><img src='{EDIT_THUMB_SOURCE}' border="0" alt="{THUMB_EDIT_ALT}"></a>

@@ -47,7 +47,6 @@ if(isset($_POST['save'])) {
 	if(isset($_POST['active'])) {
 		$active = $_POST['active'];
 	}
-	
 	$sql = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_categories SET cat_name="'.$cat_name.'", description="'.$cat_description.'", active="'.$active.'" WHERE id='.$cat_id;
 	if($database->query($sql)){
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);

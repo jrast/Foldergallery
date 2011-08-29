@@ -16,6 +16,10 @@ GNU General Public License for more details.
 
 ##Changelog
 
+###V1.32 (beta version) (Jürg Rast, 30.8.2011)
++ Anpassungen für WB 2.8.2
++ verschiedene kleine Schönheitsfehler korrigiert
+
 ###V1.31 (beta version) (Jürg Rast, 16.05.2011)
 + BugFix: Backend-Upload, allow Files with special chars
 + BugFix: Create new categories: filter special chars in folder name
