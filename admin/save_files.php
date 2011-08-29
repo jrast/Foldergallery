@@ -37,8 +37,8 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 
 
 	// Vorhandene POST Daten auswerten
-	if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
-		$cat_id = $_GET['cat_id'];
+	if(isset($_POST['cat_id']) && is_numeric($_POST['cat_id'])) {
+		$cat_id = $_POST['cat_id'];
 	} else {
 		$error['no_cat_id'] = 1;
 		$admin->print_error('lost cat', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);

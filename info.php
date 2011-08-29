@@ -15,6 +15,10 @@
   Ordnerstruktur auf dem Server. Im Backend kann zu jedem Bild/jeder Kategorie
   eine Beschreibung angegeben werden.
  
+  V1.22 (Juerg Rast)
+  + Supports now WB 2.8.2
+  ! Only tested with WB 2.8.2!
+
  -------------------------------------------------------------------------------
  * The Changelog of this Module can be found in the README.markdown file!
  -------------------------------------------------------------------------------

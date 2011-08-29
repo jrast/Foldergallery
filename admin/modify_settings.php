@@ -155,7 +155,7 @@ $t->set_var(array(
 
 // Links einsetzen
 $t->set_var(array(
-	'CANCEL_ONCLICK' 		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
+	'CANCEL_ONCLICK'        => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
 	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/admin/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
 ));
 
