@@ -23,6 +23,8 @@ This is a phplib-template for modify_thumb.php
     <br />
     <!-- This is the form that our event handler fills -->
     <form action="{WB_URL}/modules/foldergallery/admin/modify_thumb.php?page_id={PAGE_ID}&section_id={SECTION_ID}&cat_id={CAT_ID}&id={IMG_ID}" method="post" onsubmit="return checkCoords();">
+        <input type="hidden" name="section_id" value="{SECTION_ID}">
+        <input type="hidden" name="page_id" value="{PAGE_ID}">
         <input type="hidden" id="x1" name="x1" />
 	<input type="hidden" id="y1" name="y1" />
 	<input type="hidden" id="x2" name="x2" />

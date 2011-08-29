@@ -176,10 +176,10 @@ foreach($bilder as $bild) {
 		'CAPTION_VALUE'		=> $bild['caption'],
 		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],
 		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"".$MOD_FOLDERGALLERY['DELETE_ARE_YOU_SURE'] ."\", \"".WB_URL."/modules/foldergallery/admin/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
-		'COUNTER'		=> $bild['id']
+		'COUNTER'		=> $bild['id'],
 		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
 		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
-		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
+		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery/admin/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],
 		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter
 	));

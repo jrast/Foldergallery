@@ -49,6 +49,8 @@ This is a phplib-template for modify_cat.php
 <hr>
 <h3>{MODIFY_IMG_STRING} | <a href="modify_cat_sort.php?page_id={PAGE_ID_VALUE}&section_id={SECTION_ID_VALUE}&cat_id={CAT_ID_VALUE}">{SORT_IMAGES_STRING}</a></h3>
 <form action="{SAVE_FILES_LINK}" method="post" >
+    	<input type="hidden" name="section_id" value="{SECTION_ID_VALUE}">
+	<input type="hidden" name="page_id" value="{PAGE_ID_VALUE}">
 	<table width="100%" id="FG_table">
 		<tr>
 			<th align="center">{IMAGE_STRING}</th>
