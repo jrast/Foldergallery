@@ -17,13 +17,12 @@ include(WB_PATH .'/modules/foldergallery/backend.js');
 echo "</script>";
 }
 
+
+// include the default language
+require_once(WB_PATH .'/modules/foldergallery/languages/EN.php');
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
-// no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery/languages/DE.php');
-} else {
-// a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
+if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
+    require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
@@ -156,7 +155,7 @@ $t->set_var(array(
 // Links einsetzen
 $t->set_var(array(
 	'CANCEL_ONCLICK'        => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
-	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/admin/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
+	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery/admin/save_settings.php'
 ));
 
 //Tooltips einsetzen

@@ -3,13 +3,11 @@
 // Direkter Zugriff verhindern
 if (!defined('WB_PATH')) die (header('Location: index.php'));
 
+// include the default language
+require_once(WB_PATH .'/modules/foldergallery/languages/EN.php');
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
-    // no module language file exists for the language set by the user, include default module language file DE.php
-    require_once(WB_PATH . '/modules/foldergallery/languages/DE.php');
-} else {
-    // a module language file exists for the language defined by the user, load it
-    require_once(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
+if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
+    require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 }
 
 // check if frontend.css file needs to be included into the <body></body> of view.php

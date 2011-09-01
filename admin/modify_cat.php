@@ -16,13 +16,11 @@ include(WB_PATH .'/modules/foldergallery/backend.js');
 echo "</script>";
 }
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
-// no module language file exists for the language set by the user, include default module language file EN.php
+// include the default language
 require_once(WB_PATH .'/modules/foldergallery/languages/EN.php');
-} else {
-// a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
+// check if module language file exists for the language set by the user (e.g. DE, EN)
+if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
+    require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
