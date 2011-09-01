@@ -95,9 +95,7 @@ if($query->numRows()){
                 $file = $pathToFolder.$bildfilename;
 		$thumb = $pathToThumb.$bildfilename;			
 		if(!is_file($thumb)){
-                    $handle = new upload($file);
-                    FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
-                    $handle->process($pathToThumb);
+                    FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
 		}
 		
 		//Chio Ende

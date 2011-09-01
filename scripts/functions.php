@@ -431,4 +431,49 @@ function FG_updateFilename($catID, $path, $oldFilename, $newFilename) {
     rename($path.$oldFilename, $path.$newFilename);
 }
 
+/**
+ * Creates a thumbnail out of the given File/Image
+ *
+ * This function creates a thumbimage out of the File/Image given in $imagePath
+ * The settings which are given in $settings are applied during creation. Finaly
+ * the new image is saved in the $thumbPath-Folder with the Name $imageName.
+ * If it is not possible to create a thumbnail out of $imagePath, a Icon is used
+ * and transformed according the $settings.
+ *
+ * @param string $imagePath Image/File
+ * @param string $imageName Name of the Image/File which is created, inclusive extension
+ * @param string $thumbPath Path to the folder in which the created file is saved
+ * @param array $settings   Settings array with the configuration of the uploadclass
+ * @return boolean
+ */
+function FG_createThumb($imagePath, $imageName, $thumbPath, $settings)
+{
+    $handle = new upload($imagePath);
+    if(!$handle->file_is_image)
+    {
+        switch($handle->file_src_mime)
+        {
+            case 'application/x-shockwave-flash' :
+                $handle = new upload(WB_PATH.'/modules/foldergallery/images/swf_icon.png');
+                break;
+            case 'video/quicktime' :
+                $handle = new upload(WB_PATH.'/modules/foldergallery/images/quicktime_icon.png');
+                break;
+            default:
+                $handle = new upload(WB_PATH.'/modules/foldergallery/images/unknown_icon.png');
+         }
+    }
+
+    if($handle->file_is_image)
+    {
+        FG_appendThumbSettings($handle, $settings, $imageName);
+        $handle->process($thumbPath);
+        if($handle->processed)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 ?>

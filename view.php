@@ -149,12 +149,7 @@ if (count($ergebnisse) == 0) {
         $thumbImagePath = WB_PATH.$imageCrumb.$thumbdir.'/'.$imageName;
         $thumbImageURL = WB_URL.$imageCrumb.$thumbdir.'/'.$imageName;
         if(!is_file($thumbImagePath)) {
-            $handle = new upload($imagePath);
-            FG_appendThumbSettings($handle, $settings['tbSettings'], $imageName);
-            $handle->process($thumbPath);
-            if(!$handle->processed) {
-              $thumbImageURL = WB_URL . '/modules/foldergallery/images/broken-1.jpg';
-            }
+            FG_createThumb($imagePath, $imageName, $thumbPath, $settings['tbSettings']);
         }
 
         // Create a array for the template
@@ -357,12 +352,7 @@ if ($bilder) {
         }
         if (!is_file($thumb)) {
             $file = $pathToFolder . $bildfilename;
-            $handle = new upload($file);
-            FG_appendThumbSettings($handle, $settings['tbSettings'], $bildfilename);
-            $handle->process($pathToThumb);
-            if(!$handle->processed) {
-                $tumburl = WB_URL . '/modules/foldergallery/images/broken' . $terg . '.jpg';
-            }
+            FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
         }
 
         if ($settings['lightbox'] != 'contentFlow')
