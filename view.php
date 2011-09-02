@@ -371,7 +371,7 @@ if ($bilder) {
             $timeadd = '';
 
         $t->set_var(array(
-            'ORIGINAL' => $urlToFolder . $bildfilename . $timeadd,
+            'ORIGINAL' => $urlToFolder . $bildfilename,
             'THUMB' => $tumburl . '?t=' . time(),
             'CAPTION' => $bilder[$i]['caption'],
             'NUMBER' => $i
