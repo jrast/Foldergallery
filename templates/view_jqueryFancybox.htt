@@ -1,7 +1,7 @@
 <!-- Jquery Fancybox -->
-<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.mousewheel-3.0.2.pack.js"></script>
-<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.1.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.1.css" media="screen" />
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{WB_URL}/modules/foldergallery/scripts/jqfancybox/jquery.fancybox-1.3.4.css" media="screen" />
 <script type="text/javascript">
 	$(document).ready(function() {
 
