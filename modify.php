@@ -42,6 +42,10 @@ if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -129,4 +133,7 @@ echo '<script type="text/javascript">
 
 // Schluss vom else Teil ganz oben!
 }
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 ?>

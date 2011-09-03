@@ -351,7 +351,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
                         ."<td width='".(350-$padding)."px'><a href='".$url['edit'].$result['id']."' title='".$MOD_FOLDERGALLERY['EDIT_CATEGORIE']."'>"
                         .'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
                         .($result['cat_name'])."</a></td>"
-                        ."<td align='left'>".htmlentities($result['categorie'])."</td>"
+                        ."<td align='left'>".$result['categorie']."</td>"
                         .'<td width="30">';
 
                 // Active / Inactive Sign

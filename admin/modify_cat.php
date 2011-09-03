@@ -29,6 +29,10 @@ require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.ph
 require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
 require_once (WB_PATH.'/modules/foldergallery/class/validator.php');
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 $settings = getSettings($section_id);
 $root_dir = $settings['root_dir']; //Chio
 
@@ -79,22 +83,16 @@ if($query->numRows()){
 		//Chio Start
 		$bildfilename = $result['file_name'];
 		$file = $pathToFolder.$bildfilename;
-		if(!is_file($file)){	
+		if(!is_file(utf8_decode($file))){
 			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$result['id'];
 			$database->query($deletesql);
 			continue;
 		}
-		
-                // Santizise Filename
-                $validator = new Validator();
-                if(!$validator->checkSaveFilename($bildfilename)) {
-                    $newFilename = $validator->getSaveFilename($bildfilename);
-                    FG_updateFilename($parent_id, $pathToFolder, $bildfilename, $newFilename);
-                    $bildfilename = $newFilename;
-                }
+
+                
                 $file = $pathToFolder.$bildfilename;
 		$thumb = $pathToThumb.$bildfilename;			
-		if(!is_file($thumb)){
+		if(!is_file(utf8_decode($thumb))){
                     FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
 		}
 		
@@ -125,7 +123,7 @@ $t->set_var(array(
 	'MODIFY_CAT_TITLE'	=> $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE'],
 	'MODIFY_CAT_STRING'	=> $MOD_FOLDERGALLERY['MODIFY_CAT'],
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
-	'FOLDER_IN_FS_VALUE'	=> htmlentities($cat_path),
+	'FOLDER_IN_FS_VALUE'	=> $cat_path,
 	'CAT_ACTIVE_CHECKED'	=> $cat_active_checked,
         'CAT_ACTIVE_STRING'     => $MOD_FOLDERGALLERY['ACTIVE'],
 	'CAT_NAME_STRING'	=> $MOD_FOLDERGALLERY['CAT_NAME'],
@@ -179,6 +177,9 @@ foreach($bilder as $bild) {
 
 
 $t->pparse('output', 'modify_cat');
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 
 $admin->print_footer();
 ?>
