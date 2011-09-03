@@ -38,6 +38,11 @@ if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) 
 require_once(WB_PATH.'/modules/foldergallery/info.php');
 require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
+
 $settings = getSettings($section_id);
 
 $flag = false;
@@ -60,10 +65,9 @@ if(syncDB($settings)) {
 			$pathToFolder = $path.$folder;
 			if ($result['parent'] != -1) {; //nicht die roots;
 				//checken, ob es das Verzeichnis noch gibt:
-				if(!is_dir($pathToFolder)){
+				if(!is_dir(utf8_decode($pathToFolder))){
 					$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id="'.$result['id'].'";';
 					$database->query($delete_sql);
-					//echo '<p>DELETE: '.$pathToFolder. '</p>';
 					continue;
 				}
 			}
@@ -171,7 +175,8 @@ if(syncDB($settings)) {
         $admin->print_error( $MOD_FOLDERGALLERY['NO_CATEGORIES'], WB_URL.'/modules/foldergallery/admin/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
     }
 }
-
 // Print admin footer
 $admin->print_footer();
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 ?>

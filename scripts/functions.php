@@ -448,7 +448,7 @@ function FG_updateFilename($catID, $path, $oldFilename, $newFilename) {
  */
 function FG_createThumb($imagePath, $imageName, $thumbPath, $settings)
 {
-    $handle = new upload($imagePath);
+    $handle = new upload(utf8_decode($imagePath));
     if(!$handle->file_is_image)
     {
         switch($handle->file_src_mime)
@@ -466,8 +466,8 @@ function FG_createThumb($imagePath, $imageName, $thumbPath, $settings)
 
     if($handle->file_is_image)
     {
-        FG_appendThumbSettings($handle, $settings, $imageName);
-        $handle->process($thumbPath);
+        FG_appendThumbSettings($handle, $settings, utf8_decode($imageName));
+        $handle->process(utf8_decode($thumbPath));
         if($handle->processed)
         {
             return true;

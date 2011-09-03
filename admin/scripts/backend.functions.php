@@ -18,13 +18,15 @@ require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
 function scanDirectories($rootDir, $allowedExtensions = array (), $invisibleFileNames = array (),
 $modus = 1, $rekursiv = true, $allData = array ()) {
 	// run through content of root directory
-	$dirContent = scandir($rootDir);
+	$dirContent = scandir(utf8_decode($rootDir));
 	foreach ($dirContent as $content) {
+                // UTF-8 Codierung erzwingen
+                $content = utf8_encode($content);
 		// filter all files not accessible
 		$path = $rootDir.'/'.$content;
 		if (!in_array($content, $invisibleFileNames)) {
 			// if content is file & readable, add to array
-			if (is_file($path) && is_readable($path)) {
+			if (is_file(utf8_decode($path)) && is_readable(utf8_decode($path))) {
 				$content_chunks = explode(".", $content);
 				$ext = $content_chunks[count($content_chunks)-1];
 				$ext = strtolower($ext);
@@ -37,7 +39,7 @@ $modus = 1, $rekursiv = true, $allData = array ()) {
 				}
 				// if content is a directory and readable, add path and name
 			}
-			elseif (is_dir($path) && is_readable($path)) {
+			elseif (is_dir(utf8_decode($path)) && is_readable(utf8_decode ($path))) {
 				if ($modus > 0) {
 					$allData[] = $path;
 				}
@@ -48,7 +50,7 @@ $modus = 1, $rekursiv = true, $allData = array ()) {
 			}
 		}
 	}
-	return $allData;
+	return $allData;        
 }
 
 /**

@@ -25,6 +25,10 @@ if ((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JA
 }
 
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 $generatethumbscounter = 0;
 // Files includen
 require_once (WB_PATH . '/modules/foldergallery/info.php');
@@ -53,7 +57,8 @@ $title = PAGE_TITLE; // Page title of the actual page (WB Core)
 
 // Ist die angegebene Kategorie gültig? (erlaubter String)
 if (isset($_GET['cat'])) {
-    $aktuelleKat = FG_cleanCat($_GET['cat']);
+    $aktuelleKat = urldecode($_GET['cat']);
+    //$aktuelleKat = FG_cleanCat(urldecode($_GET['cat']));
 } else {
     $aktuelleKat = '';
     $FG_Error['CatNotValid'] = true;
@@ -136,19 +141,12 @@ if (count($ergebnisse) == 0) {
             $imageCrumb = $root_dir.$catCrumb;
         }
 
-        // Let's santizie the filename:
-        if(!$validator->checkSaveFilename($imageName)) {
-            $newImageName = $validator->getSaveFilename($imageName);
-            FG_updateFilename($imageParentID, WB_PATH.$imageCrumb.'/', $imageName, $newImageName);
-            $imageName = $newImageName;
-        }
-
         // Create the thumb for a categorie
         $imagePath = WB_PATH.$imageCrumb.'/'.$imageName;
         $thumbPath = WB_PATH.$imageCrumb.$thumbdir;
         $thumbImagePath = WB_PATH.$imageCrumb.$thumbdir.'/'.$imageName;
         $thumbImageURL = WB_URL.$imageCrumb.$thumbdir.'/'.$imageName;
-        if(!is_file($thumbImagePath)) {
+        if(!is_file(utf8_decode($thumbImagePath))) {
             FG_createThumb($imagePath, $imageName, $thumbPath, $settings['tbSettings']);
         }
 
@@ -334,23 +332,16 @@ if ($bilder) {
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
     for($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
-        // Check if the filename contains some special chars
-        // This is used because ther may exist files from a older Version of FG
-        if(!$validator->checkSaveFilename($bildfilename)) {
-            $newFilename = $validator->getSaveFilename($bildfilename);
-            FG_updateFilename($aktuelleKat_id,$pathToFolder, $bildfilename, $newFilename);
-            $bildfilename = $newFilename;
-        }
         $thumb = $pathToThumb. '/' . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
         $file = $pathToFolder . $bildfilename;
-        if (!is_file($file)) {
+        if (!is_file(utf8_decode($file))) {
             //echo '<h1>|'.$bildfilename.'|</h1>';
             $deletesql = 'DELETE FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE id=' . $bilder[$i]['id'];
             $database->query($deletesql);
             continue;
         }
-        if (!is_file($thumb)) {
+        if (!is_file(utf8_decode($thumb))) {
             $file = $pathToFolder . $bildfilename;
             FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
         }
@@ -431,4 +422,7 @@ ul.categories li a {
 </style>';
 
 $t->pparse('output', 'view');
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 ?>
