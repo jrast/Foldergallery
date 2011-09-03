@@ -22,7 +22,7 @@ function getSettings($section_id) {
  * @param string $file  Pfadangabe zum original File
  * @param string $thumb Pfadangabe zum Thumbfile
  * @param bool $showmessage Logging ein/aus
- * @param string $ratio Seitenverhältniss der Thumbs
+ * @param string $ratio SeitenverhÃ¤ltniss der Thumbs
  * @param int $fullpercent Prozentangabe, wie das Originalbild beschniten werden muss
  * @param string $bg_color Farbe des Hintergrunds, falls das Bild nicht das richtige Format hat
  * @param string $positionX Position X von jCrop ansonsten 0
@@ -32,7 +32,7 @@ function getSettings($section_id) {
  */
 function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpercent = 100, $bg_color = '999999', $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0) {
 
-    //Von Chio eingef�gt:
+    //Von Chio eingefï¿½gt:
     global $megapixel_limit;
     if ($megapixel_limit < 2) {
         $megapixel_limit = 5;
@@ -90,7 +90,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpe
 
     // Thumb erstellen
     if (!is_file($thumb)) {
-        //checken, ob megapixel über 5:
+        //checken, ob megapixel Ã¼ber 5:
         if (function_exists('getimagesize')) {
             list($width, $height, $type, $attr) = getimagesize($file);
             $fl = ceil(($width * $height) / 1000000);
@@ -210,13 +210,13 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpe
             $b = imagecolorallocate($small, $red, $green, $blue);
             imagefill($small, 0, 0, $b);
             if ($original) {
-                //Änderungen der Variablen die für JCrop Thumberstellung anderst sein müssen
+                //Ã„nderungen der Variablen die fÃ¼r JCrop Thumberstellung anderst sein mÃ¼ssen
                 if (!empty($positionW) && !empty($positionH)) {
                     $width = $positionW;
                     $height = $positionH;
 
                     //wenn ein Ratio eingestellt ist werden die small Atribute des Thumbs angepasst
-                    //die ist allerdings nur bei JCrop nötig normal wird die größe vom 0Punkt aus errechnet
+                    //die ist allerdings nur bei JCrop nÃ¶tig normal wird die grÃ¶ÃŸe vom 0Punkt aus errechnet
 
                     if ($ratio > 1) {
                         $smallwidth = $thumb_size;
@@ -259,7 +259,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $fullpe
  */
 function FG_cleanCat($string) {
     if (is_string($string)) {
-        if (!preg_match('~^(/([.a-zA-Z0-9_-]/{0,1})*[^/])$~', $string)) {
+        if (!preg_match('~^(/([.a-zA-Z0-9_-\s]/{0,1})*[^/])$~', $string)) {
             return '';
         } else {
             return $string;
@@ -270,7 +270,7 @@ function FG_cleanCat($string) {
 }
 
 /**
- * Gibt die Kategorie ID der Kategorie zurück
+ * Gibt die Kategorie ID der Kategorie zurÃ¼ck
  *
  * @global $database
  * @param int $sectionID WB section_id
