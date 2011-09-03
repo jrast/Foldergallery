@@ -98,13 +98,12 @@ if($handle->uploaded) {
     if(!$handle->processed) {
         exit;
     }
+    $handle->clean();
     // Create the thumb
-    FG_appendThumbSettings($handle, $settings['tbSettings'], $filename.'.'.$extension);
-    $handle->process($categoriePath.'fg-thumbs/');
-    if(!$handle->processed) {
+    $success = FG_createThumb($categoriePath.$filename.'.'.$extension, $filename.'.'.$extension, $categoriePath.'fg-thumbs/', $settings['tbSettings']);
+    if(!$success) {
         exit;
     }
-    $handle->clean();
 } else {
     exit;
 }

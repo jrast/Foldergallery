@@ -23,7 +23,7 @@ GNU General Public License for more details.
 + French language File added
 
 ###V1.32 (beta version) (Jürg Rast, 30.8.2011)
-+ Changes for WB 2.8.2
++ French translation
 + Different little Adjustements
 
 ###V1.31 (beta version) (Jürg Rast, 16.05.2011)
