@@ -27,6 +27,10 @@ if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 $settings = getSettings($section_id);
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
@@ -116,6 +120,9 @@ if($query->numRows()) {
 
 
 $t->pparse('output', 'modify_cat_sort');
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 
 $admin->print_footer();
 ?>

@@ -151,8 +151,8 @@ return 0;
  * @param string $path pfad zum files
  */
 function deleteFile($path) {
-	if(is_file($path)){
-		unlink($path);
+	if(is_file(utf8_decode($path))){
+		unlink(utf8_decode($path));
 		return true;
 	} else {
 		return false;

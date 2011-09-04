@@ -29,6 +29,10 @@ require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$settings = getSettings($section_id);
@@ -71,5 +75,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
 	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery/admin/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
+
 $admin->print_footer();
 ?>
