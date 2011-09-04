@@ -33,6 +33,11 @@ if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 require_once(WB_PATH.'/modules/foldergallery/info.php');
 require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
+
 $oldSettings = getSettings($section_id);
 $newSettings = array();
 
@@ -180,6 +185,9 @@ if($database->is_error()) {
 } else {
 	$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery/admin/sync.php?page_id='.$page_id.'&section_id='.$section_id);
 }
+
+// reset the mySQL encoding
+mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 
 // Print admin footer
 $admin->print_footer();
