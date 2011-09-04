@@ -35,17 +35,17 @@
 <!-- BEGIN images -->
 <!-- BEGIN invisiblePre -->
 	<li style="display:none;">
-		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto"></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]"></a>
 	</li>
 <!-- END invisiblePre -->
 <!-- BEGIN thumbnails -->
 	<li>
-		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]" target="_blank"><img src="{THUMB}" alt="{CAPTION}"/></a>
 	</li>
 <!-- END thumbnails -->
 <!-- BEGIN invisiblePost -->
 	<li style="display:none;">
-		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto"></a>
+		<a href="{ORIGINAL}" title="{CAPTION}" rel="prettyPhoto[gallery]"></a>
 	</li>
 <!-- END invisiblePost -->
 <!-- END images -->
