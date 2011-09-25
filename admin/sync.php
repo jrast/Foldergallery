@@ -37,6 +37,7 @@ if(!file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) 
 
 require_once(WB_PATH.'/modules/foldergallery/info.php');
 require_once(WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 //  Set the mySQL encoding to utf8
 $oldMysqlEncoding = mysql_client_encoding();
@@ -60,19 +61,29 @@ if(syncDB($settings)) {
 	if ( $query->numRows() > 0 ) {
 		
     	while($result = $query->fetchRow()) {
-			
-			$folder = $settings['root_dir'].'/'.$result['parent'].'/'.$result['categorie'];
-			$pathToFolder = $path.$folder;
-			if ($result['parent'] != -1) {; //nicht die roots;
-				//checken, ob es das Verzeichnis noch gibt:
-				if(!is_dir(utf8_decode($pathToFolder))){
-					$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id="'.$result['id'].'";';
-					$database->query($delete_sql);
-					continue;
-				}
-			}
-		
-    		$results[] = $result;
+            if($result['parent'] != -1) {
+                $folder = $settings['root_dir'].'/'.$result['parent'].'/'.$result['categorie'];
+                $pathToFolder = $path.$folder;
+                if(!is_dir(DirectoryHandler::DecodePath($pathToFolder))) {
+                    $delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id="'.$result['id'].'";';
+                    $database->query($delete_sql);
+                    continue;
+                }
+            }
+            $results[] = $result;
+
+//			$folder = $settings['root_dir'].'/'.$result['parent'].'/'.$result['categorie'];
+//			$pathToFolder = $path.$folder;
+//                        var_dump($pathToFolder);
+//			if ($result['parent'] != -1) {; //nicht die roots;
+//				//checken, ob es das Verzeichnis noch gibt:
+//				if(!is_dir(DirectoryHandler::DecodePath($pathToFolder))){
+//					$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id="'.$result['id'].'";';
+//					$database->query($delete_sql);
+//					continue;
+//				}
+//			}
+//    		$results[] = $result;
     	}
 
     	$niveau = 0;
@@ -132,7 +143,7 @@ if(syncDB($settings)) {
 			$childs = $results[$i]['childs'];
 			//$childs=substr($childs,1,strlen($childs-1)); //Führenden Beistrich belassen, der wird in view wieder benotigt
     		$sql = $updatesql." niveau=".$results[$i]['niveau'].", parent_id=".$results[$i]['parent_id'].", has_child=".$results[$i]['has_child'].", position=".$results[$i]['position'].", childs='".$childs."' WHERE id=".$results[$i]['id'].";";
-    		if($database->query($sql)){
+                if($database->query($sql)){
     			$flag = true;
     		} else {
     			break;

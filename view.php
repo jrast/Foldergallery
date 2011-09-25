@@ -35,6 +35,7 @@ require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
 require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
 require_once (WB_PATH . '/modules/foldergallery/class/validator.php');
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 $validator = new Validator();
 
@@ -146,7 +147,7 @@ if (count($ergebnisse) == 0) {
         $thumbPath = WB_PATH.$imageCrumb.$thumbdir;
         $thumbImagePath = WB_PATH.$imageCrumb.$thumbdir.'/'.$imageName;
         $thumbImageURL = WB_URL.$imageCrumb.$thumbdir.'/'.$imageName;
-        if(!is_file(utf8_decode($thumbImagePath))) {
+        if(!is_file(DirectoryHandler::DecodePath($thumbImagePath))) {
             FG_createThumb($imagePath, $imageName, $thumbPath, $settings['tbSettings']);
         }
 
@@ -335,13 +336,13 @@ if ($bilder) {
         $thumb = $pathToThumb. '/' . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
         $file = $pathToFolder . $bildfilename;
-        if (!is_file(utf8_decode($file))) {
+        if (!is_file(DirectoryHandler::DecodePath($file))) {
             //echo '<h1>|'.$bildfilename.'|</h1>';
             $deletesql = 'DELETE FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE id=' . $bilder[$i]['id'];
             $database->query($deletesql);
             continue;
         }
-        if (!is_file(utf8_decode($thumb))) {
+        if (!is_file(DirectoryHandler::DecodePath($thumb))) {
             $file = $pathToFolder . $bildfilename;
             FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
         }
@@ -422,6 +423,7 @@ ul.categories li a {
 </style>';
 
 $t->pparse('output', 'view');
+
 
 // reset the mySQL encoding
 mysql_set_charset($oldMysqlEncoding, $database->db_handle);

@@ -28,6 +28,7 @@ require_once (WB_PATH.'/modules/foldergallery/info.php');
 require_once (WB_PATH.'/modules/foldergallery/admin/scripts/backend.functions.php');
 require_once (WB_PATH.'/modules/foldergallery/class/class.upload.php');
 require_once (WB_PATH.'/modules/foldergallery/class/validator.php');
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 //  Set the mySQL encoding to utf8
 $oldMysqlEncoding = mysql_client_encoding();
@@ -83,7 +84,7 @@ if($query->numRows()){
 		//Chio Start
 		$bildfilename = $result['file_name'];
 		$file = $pathToFolder.$bildfilename;
-		if(!is_file(utf8_decode($file))){
+		if(!is_file(DirectoryHandler::DecodePath($file))){
 			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$result['id'];
 			$database->query($deletesql);
 			continue;
@@ -92,7 +93,7 @@ if($query->numRows()){
                 
                 $file = $pathToFolder.$bildfilename;
 		$thumb = $pathToThumb.$bildfilename;			
-		if(!is_file(utf8_decode($thumb))){
+		if(!is_file(DirectoryHandler::DecodePath($thumb))){
                     FG_createThumb($file, $bildfilename, $pathToThumb, $settings['tbSettings']);
 		}
 		

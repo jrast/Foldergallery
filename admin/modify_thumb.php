@@ -14,6 +14,7 @@ if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/admin/scripts/backend.functions.php');
 require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 //  Set the mySQL encoding to utf8
 $oldMysqlEncoding = mysql_client_encoding();
@@ -50,14 +51,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             deleteFile($thumb_file);
 
             //Create the new Thumb
-            $handle = new upload(utf8_decode($full_file));
-            FG_appendThumbSettings($handle, $settings['tbSettings'], utf8_decode($bildfilename));
+            $handle = new upload(DirectoryHandler::DecodePath($full_file));
+            FG_appendThumbSettings($handle, $settings['tbSettings'], DirectoryHandler::DecodePath($bildfilename));
             $topCrop = floor($_POST['y1']);
             $rightCrop = floor($handle->image_src_x - $_POST['x2']);
             $bottomCrop = floor($handle->image_src_y - $_POST['y2']);
             $leftCrop = floor($_POST['x1']);
             $handle->image_precrop = "$topCrop $rightCrop $bottomCrop $leftCrop";
-            $handle->process(utf8_decode($thumbFolder));
+            $handle->process(DirectoryHandler::DecodePath($thumbFolder));
             if($handle->processed) {
                 $admin->print_success($MOD_FOLDERGALLERY['UPDATED_THUMB'], WB_URL . '/modules/foldergallery/admin/modify_cat.php?page_id=' . $page_id . '&section_id=' . $section_id . '&cat_id=' . $cat_id);
             }
@@ -65,7 +66,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 $admin->print_error("Could not create a new thumbnail!", WB_URL . '/modules/foldergallery/admin/modify_cat.php?page_id=' . $page_id . '&section_id=' . $section_id . '&cat_id=' . $cat_id);
             }
         } else {
-            list($width, $height, $type, $attr) = getimagesize(utf8_decode($full_file));
+            list($width, $height, $type, $attr) = getimagesize(DirectoryHandler::DecodePath($full_file));
             $previewWidth = $settings['tbSettings']['image_x'];
             $previewHeight = $settings['tbSettings']['image_y'];
 

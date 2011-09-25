@@ -3,6 +3,8 @@
 if (!defined('WB_PATH'))
     die(header('Location: index.php'));
 
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
+
 function getSettings($section_id) {
     global $database;
     $sql = 'SELECT `s_name`, `s_value` FROM ' . TABLE_PREFIX . 'mod_foldergallery_settings WHERE '
@@ -17,6 +19,8 @@ function getSettings($section_id) {
 }
 
 /**
+ * @deprecated Use the class.upload instead!
+ *
  * Generiert ein Thumbnail $thumb aus $file, falls dieses noch nicht vorhanden ist
  * @return void or true
  * @param string $file  Pfadangabe zum original File
@@ -448,7 +452,7 @@ function FG_updateFilename($catID, $path, $oldFilename, $newFilename) {
  */
 function FG_createThumb($imagePath, $imageName, $thumbPath, $settings)
 {
-    $handle = new upload(utf8_decode($imagePath));
+    $handle = new upload(DirectoryHandler::DecodePath($imagePath));
     if(!$handle->file_is_image)
     {
         switch($handle->file_src_mime)
@@ -466,8 +470,8 @@ function FG_createThumb($imagePath, $imageName, $thumbPath, $settings)
 
     if($handle->file_is_image)
     {
-        FG_appendThumbSettings($handle, $settings, utf8_decode($imageName));
-        $handle->process(utf8_decode($thumbPath));
+        FG_appendThumbSettings($handle, $settings, DirectoryHandler::DecodePath($imageName));
+        $handle->process(DirectoryHandler::DecodePath($thumbPath));
         if($handle->processed)
         {
             return true;

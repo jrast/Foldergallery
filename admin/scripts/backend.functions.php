@@ -3,6 +3,7 @@
 if (!defined('WB_PATH')) die (header('Location: index.php'));
 
 require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
+require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 /**
  * Durchsucht einen Ordner rekursiv mit einigen Optionen
@@ -18,15 +19,15 @@ require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
 function scanDirectories($rootDir, $allowedExtensions = array (), $invisibleFileNames = array (),
 $modus = 1, $rekursiv = true, $allData = array ()) {
 	// run through content of root directory
-	$dirContent = scandir(utf8_decode($rootDir));
+	$dirContent = scandir(DirectoryHandler::DecodePath($rootDir));
 	foreach ($dirContent as $content) {
                 // UTF-8 Codierung erzwingen
-                $content = utf8_encode($content);
+                $content = DirectoryHandler::EncodePath($content);
 		// filter all files not accessible
 		$path = $rootDir.'/'.$content;
 		if (!in_array($content, $invisibleFileNames)) {
 			// if content is file & readable, add to array
-			if (is_file(utf8_decode($path)) && is_readable(utf8_decode($path))) {
+			if (is_file(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath($path))) {
 				$content_chunks = explode(".", $content);
 				$ext = $content_chunks[count($content_chunks)-1];
 				$ext = strtolower($ext);
@@ -39,7 +40,7 @@ $modus = 1, $rekursiv = true, $allData = array ()) {
 				}
 				// if content is a directory and readable, add path and name
 			}
-			elseif (is_dir(utf8_decode($path)) && is_readable(utf8_decode ($path))) {
+			elseif (is_dir(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath ($path))) {
 				if ($modus > 0) {
 					$allData[] = $path;
 				}
@@ -151,8 +152,8 @@ return 0;
  * @param string $path pfad zum files
  */
 function deleteFile($path) {
-	if(is_file(utf8_decode($path))){
-		unlink(utf8_decode($path));
+	if(is_file(DirectoryHandler::DecodePath($path))){
+		unlink(DirectoryHandler::DecodePath($path));
 		return true;
 	} else {
 		return false;
@@ -247,7 +248,6 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			}
 		}
 	}
-	
 	// Kategorien mit DB synchronisieren
 	// Neuer SQL vorbereiten
 	$notDeleteArray = array();
@@ -262,13 +262,14 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			.' parent="'.$cat['parent'].'"'
 			.' LIMIT 1;';
 		$query = $database->query($sql);
-		if($result = $query->fetchRow()) {
+		if($result = $query->fetchRow(MYSQLI_ASSOC)) {
 			if($result['is_empty'] == $cat['is_empty']){
 				$notDeleteArray[] = $result['id'];
 			} else {
-				// Falls die Kategorie schon existierte nehmen wir für die neuen Einträge diejenigen von der DB
+                            	// Falls die Kategorie schon existierte nehmen wir für die neuen Einträge diejenigen von der DB
 				$insertSQL .= " (".$result['section_id'].", '".$result['categorie']."', '".$result['parent']."', '".$result['cat_name']."', ".$cat['is_empty']."),";
 				// Diese Datensätze müssen aber zuerst gelöscht werden, da sie sonst doppelt vorkommen würden!
+                                var_dump($result, $cat);
 			}
 		} else {
 			// Sonst erstellen wir einfach einen neuen Standarddatensatz
@@ -293,7 +294,6 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 		$insertSQL = substr($insertSQL, 0, -1).";";
 		$database->query($insertSQL);
 	}
-	
 	// So, dass waren die Kategorien, nun sind die Bilder an der Reihe
 	
 	//Die Felder "file_link" und "thumb_link" sind obsolet

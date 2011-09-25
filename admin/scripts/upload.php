@@ -53,6 +53,10 @@ if (!file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.ph
     require_once(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
 }
 
+//  Set the mySQL encoding to utf8
+$oldMysqlEncoding = mysql_client_encoding();
+mysql_set_charset('utf8',$database->db_handle);
+
 // Get the settings for this section
 $settings = getSettings($section_id);
 if($settings['page_id'] != $page_id) {
@@ -94,8 +98,9 @@ if($handle->uploaded) {
     // Save the image in the right categorie
     $handle->file_new_name_body = $filename;
     $handle->file_new_name_ext  = $extension;
-    $handle->process($categoriePath);
+    $handle->process(DirectoryHandler::DecodePath($categoriePath));
     if(!$handle->processed) {
+        echo DirectoryHandler::DecodePath($categoriePath);
         exit;
     }
     $handle->clean();
