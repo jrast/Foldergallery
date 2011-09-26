@@ -26,9 +26,9 @@
 
 
 $module_directory 	= 'foldergallery';
-$module_name 		= 'Foldergallery 1.33 Beta';
+$module_name 		= 'Foldergallery 1.34 Beta';
 $module_function 	= 'page';
-$module_version 	= '1.33';
+$module_version 	= '1.34';
 $module_platform 	= '2.80';	
 
 $module_author 		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi';

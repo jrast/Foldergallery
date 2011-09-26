@@ -16,6 +16,11 @@ GNU General Public License for more details.
 
 ##Changelog
 
+###V1.34 (beta version) (Jürg Rast, 26.09.2011)
++ BugFix: Support for Special-Characters in File-/Foldernames
++ BugFix: Set default Thumb if thumbcreation fails
++ BugFix: PrettyPhoto Bug
+
 ###V1.33 (beta version) (Jürg Rast, 02.09.2011)
 + Updated: PrettyPoto, Colorbox, Fancybox
 + BugFix: Remove $timeadd from Filelink (this causes many Problems)

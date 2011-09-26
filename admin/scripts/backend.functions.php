@@ -1,9 +1,11 @@
 <?php
-// Direkter Zugriff verhindern
-if (!defined('WB_PATH')) die (header('Location: index.php'));
 
-require_once (WB_PATH.'/modules/foldergallery/scripts/functions.php');
-require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
+// Direkter Zugriff verhindern
+if (!defined('WB_PATH'))
+    die(header('Location: index.php'));
+
+require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
+require_once (WB_PATH . '/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 /**
  * Durchsucht einen Ordner rekursiv mit einigen Optionen
@@ -15,43 +17,40 @@ require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php')
  * @param bool $rekursiv[optional] default = true
  * @param array $allData[optional]
  */
-
-function scanDirectories($rootDir, $allowedExtensions = array (), $invisibleFileNames = array (),
-$modus = 1, $rekursiv = true, $allData = array ()) {
-	// run through content of root directory
-	$dirContent = scandir(DirectoryHandler::DecodePath($rootDir));
-	foreach ($dirContent as $content) {
-                // UTF-8 Codierung erzwingen
-                $content = DirectoryHandler::EncodePath($content);
-		// filter all files not accessible
-		$path = $rootDir.'/'.$content;
-		if (!in_array($content, $invisibleFileNames)) {
-			// if content is file & readable, add to array
-			if (is_file(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath($path))) {
-				$content_chunks = explode(".", $content);
-				$ext = $content_chunks[count($content_chunks)-1];
-				$ext = strtolower($ext);
-				// only include files with desired extensions
-				if (in_array($ext, $allowedExtensions)) {
-					// save file name with path
-					if ($modus < 2) {
-						$allData[] = $path;
-					}
-				}
-				// if content is a directory and readable, add path and name
-			}
-			elseif (is_dir(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath ($path))) {
-				if ($modus > 0) {
-					$allData[] = $path;
-				}
-				// recursive callback to open new directory
-				if ($rekursiv) {
-					$allData = scanDirectories($path, $allowedExtensions, $invisibleFileNames, $modus, $rekursiv, $allData);
-				}
-			}
-		}
-	}
-	return $allData;        
+function scanDirectories($rootDir, $allowedExtensions = array(), $invisibleFileNames = array(), $modus = 1, $rekursiv = true, $allData = array()) {
+    // run through content of root directory
+    $dirContent = scandir(DirectoryHandler::DecodePath($rootDir));
+    foreach ($dirContent as $content) {
+        // UTF-8 Codierung erzwingen
+        $content = DirectoryHandler::EncodePath($content);
+        // filter all files not accessible
+        $path = $rootDir . '/' . $content;
+        if (!in_array($content, $invisibleFileNames)) {
+            // if content is file & readable, add to array
+            if (is_file(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath($path))) {
+                $content_chunks = explode(".", $content);
+                $ext = $content_chunks[count($content_chunks) - 1];
+                $ext = strtolower($ext);
+                // only include files with desired extensions
+                if (in_array($ext, $allowedExtensions)) {
+                    // save file name with path
+                    if ($modus < 2) {
+                        $allData[] = $path;
+                    }
+                }
+                // if content is a directory and readable, add path and name
+            } elseif (is_dir(DirectoryHandler::DecodePath($path)) && is_readable(DirectoryHandler::DecodePath($path))) {
+                if ($modus > 0) {
+                    $allData[] = $path;
+                }
+                // recursive callback to open new directory
+                if ($rekursiv) {
+                    $allData = scanDirectories($path, $allowedExtensions, $invisibleFileNames, $modus, $rekursiv, $allData);
+                }
+            }
+        }
+    }
+    return $allData;
 }
 
 /**
@@ -64,12 +63,12 @@ $modus = 1, $rekursiv = true, $allData = array ()) {
  * @param bool $rekursiv[optional]
  */
 function getFolderData($rootDir, $allowedExtensions, $invisibleFileNames, $modus = 1, $rekursiv = true) {
-	$daten = array ();
-	$daten = scanDirectories($rootDir, $allowedExtensions, $invisibleFileNames, $modus, $rekursiv);
-	foreach ($daten as & $value) {
-		$value = str_replace($rootDir, '', $value);
-	}
-	return $daten;
+    $daten = array();
+    $daten = scanDirectories($rootDir, $allowedExtensions, $invisibleFileNames, $modus, $rekursiv);
+    foreach ($daten as & $value) {
+        $value = str_replace($rootDir, '', $value);
+    }
+    return $daten;
 }
 
 /**
@@ -79,71 +78,66 @@ function getFolderData($rootDir, $allowedExtensions, $invisibleFileNames, $modus
  * @param string $path Pfad zum Ornder
  */
 function deleteFolder($path) {
-	// schau' nach, ob das ueberhaupt ein Verzeichnis ist
-	if (!is_dir($path)) {
-		return -1;
-	}
-	// oeffne das Verzeichnis
-	$dir = @opendir($path);
+    // schau' nach, ob das ueberhaupt ein Verzeichnis ist
+    if (!is_dir($path)) {
+        return -1;
+    }
+    // oeffne das Verzeichnis
+    $dir = @opendir($path);
 
-	// Fehler?
-	if (!$dir) {
-		return -2;
-	}
+    // Fehler?
+    if (!$dir) {
+        return -2;
+    }
 
-	// gehe durch das Verzeichnis
-	while (($entry = @readdir($dir)) !== false) {
-		// wenn der Eintrag das aktuelle Verzeichnis oder das Elternverzeichnis
-		// ist, ignoriere es
-		if ($entry == '.' || $entry == '..')
-			continue ;
-		// wenn der Eintrag ein Verzeichnis ist, dann
-		if (is_dir($path.'/'.$entry)) {
-			// rufe mich selbst auf
-			$res = deleteFolder($path.'/'.$entry);
-		// wenn ein Fehler aufgetreten ist
-		if ($res == -1) { // dies duerfte gar nicht passieren
-			@closedir($dir); // Verzeichnis schliessen
-		return -2; // normalen Fehler melden
-}
-else if ($res == -2) { // Fehler?
-	@closedir($dir); // Verzeichnis schliessen
-return -2; // Fehler weitergeben
-}
-else if ($res == -3) { // nicht unterstuetzer Dateityp?
-	@closedir($dir); // Verzeichnis schliessen
-return -3; // Fehler weitergeben
-}
-else if ($res != 0) { // das duerfe auch nicht passieren...
-	@closedir($dir); // Verzeichnis schliessen
-return -2; // Fehler zurueck
-}
-}
-else if (is_file($path.'/'.$entry) || is_link($path.'/'.$entry)) {
-	// ansonsten loesche diese Datei / diesen Link
-	$res = @unlink($path.'/'.$entry);
+    // gehe durch das Verzeichnis
+    while (($entry = @readdir($dir)) !== false) {
+        // wenn der Eintrag das aktuelle Verzeichnis oder das Elternverzeichnis
+        // ist, ignoriere es
+        if ($entry == '.' || $entry == '..')
+            continue;
+        // wenn der Eintrag ein Verzeichnis ist, dann
+        if (is_dir($path . '/' . $entry)) {
+            // rufe mich selbst auf
+            $res = deleteFolder($path . '/' . $entry);
+            // wenn ein Fehler aufgetreten ist
+            if ($res == -1) { // dies duerfte gar nicht passieren
+                @closedir($dir); // Verzeichnis schliessen
+                return -2; // normalen Fehler melden
+            } else if ($res == -2) { // Fehler?
+                @closedir($dir); // Verzeichnis schliessen
+                return -2; // Fehler weitergeben
+            } else if ($res == -3) { // nicht unterstuetzer Dateityp?
+                @closedir($dir); // Verzeichnis schliessen
+                return -3; // Fehler weitergeben
+            } else if ($res != 0) { // das duerfe auch nicht passieren...
+                @closedir($dir); // Verzeichnis schliessen
+                return -2; // Fehler zurueck
+            }
+        } else if (is_file($path . '/' . $entry) || is_link($path . '/' . $entry)) {
+            // ansonsten loesche diese Datei / diesen Link
+            $res = @unlink($path . '/' . $entry);
 // Fehler?
-if (!$res) {
-	@closedir($dir); // Verzeichnis schliessen
-return -2; // melde ihn
-}
-}
-else {
-	// ein nicht unterstuetzer Dateityp
-	@closedir($dir); // Verzeichnis schliessen
-return -3; // tut mir schrecklich leid...
-}
-}
+            if (!$res) {
+                @closedir($dir); // Verzeichnis schliessen
+                return -2; // melde ihn
+            }
+        } else {
+            // ein nicht unterstuetzer Dateityp
+            @closedir($dir); // Verzeichnis schliessen
+            return -3; // tut mir schrecklich leid...
+        }
+    }
 // schliesse nun das Verzeichnis
-@closedir($dir);
+    @closedir($dir);
 // versuche nun, das Verzeichnis zu loeschen
-$res = @rmdir($path);
+    $res = @rmdir($path);
 // gab's einen Fehler?
-if (!$res) {
-	return -2; // melde ihn
-}
+    if (!$res) {
+        return -2; // melde ihn
+    }
 // alles ok
-return 0;
+    return 0;
 }
 
 /**
@@ -152,12 +146,12 @@ return 0;
  * @param string $path pfad zum files
  */
 function deleteFile($path) {
-	if(is_file(DirectoryHandler::DecodePath($path))){
-		unlink(DirectoryHandler::DecodePath($path));
-		return true;
-	} else {
-		return false;
-	}
+    if (is_file(DirectoryHandler::DecodePath($path))) {
+        unlink(DirectoryHandler::DecodePath($path));
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -174,224 +168,220 @@ function deleteFile($path) {
  */
 function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 
-	// Auf diese Variablen muss zugegriffen werden
-	global $database;
-	global $invisibleFileNames;
-	global $url;
-	global $path;
-	global $thumbdir;
-	
-	
-	// Daten Vorbereiten
-	$rootDir = $path.$galerie['root_dir'];
-	$searchFolder = $rootDir.$searchCategorie;
-	$extensions = explode(',', $galerie['extensions']);
-	$invisible = array_merge($invisibleFileNames, explode(',', $galerie['invisible']));
+    // Auf diese Variablen muss zugegriffen werden
+    global $database;
+    global $invisibleFileNames;
+    global $url;
+    global $path;
+    global $thumbdir;
 
-	//Alle Angaben aus dem Filesystem holen
-	$allData = getFolderData($searchFolder, $extensions, $invisible);
-	//natsort($allData); # ! Bringt es das?
-	
-	//Angaben auswerten
-	$categories = array ();
-	$files = array ();
-	foreach ($allData as $data) {
-		$einzelteile = explode('/', $data);
-		$letztesElement = count($einzelteile)-1;
-		if (substr_count($einzelteile[$letztesElement], '.') == 0) {
-			//Hier werden alle Kategorien angelegt
-			$catName = $einzelteile[$letztesElement];
-			unset ($einzelteile[$letztesElement]);
-			$catParents = implode('/', $einzelteile);
-			$catParents = $searchCategorie.$catParents;
-			$categories[] = array (
-				'categorie'=>$catName,
-				'parent'=>$catParents,
-				'is_empty'=>1
-			);
-		} else {
-			//Hier gehts um die Files
-			$fileName = $einzelteile[$letztesElement];
-			//if ($fileName == 'folderpreview.jpg') continue;
-			
-			unset ($einzelteile[$letztesElement]);
-			$parent = implode('/', $einzelteile);
-			$parent = $searchCategorie.$parent;			
-			$fileLink = $url.$galerie['root_dir'].$parent."/".$fileName; 
-			$fileLink = str_replace(WB_URL, '', $fileLink);
-		
-			$files[] = array (
-				'file_name'=>$fileName,
-				'file_link'=>$fileLink,				
-				'parent'=>$parent
-			);
-		}
-	}
-	// Kategorien mit Bildern finden
-	foreach ($categories as & $nameCat) {
-		$catString = $nameCat['parent']."/".$nameCat['categorie'];
-		foreach ($files as $file) {
-			if ($file['parent'] == $catString) {
-				$nameCat['is_empty'] = 0;
-				break;
-			}
-		}
-	}
 
-	// Falls Parents, diese finden
-	foreach ($categories as & $nameCat) {
-		$catName = $nameCat['categorie'];
-		foreach ($categories as $searchCat) {
-			if ((strpos($searchCat['parent'], $catName) !== false)AND(!$searchCat['is_empty'])) {
-				$nameCat['is_empty'] = 0;
-				break;
-			}
-		}
-	}
-	// Kategorien mit DB synchronisieren
-	// Neuer SQL vorbereiten
-	$notDeleteArray = array();
-	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_categories (section_id, categorie, parent, cat_name, is_empty) VALUES";
-	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE parent_id > '0' AND section_id=".$galerie['section_id'] ; 
-	$deleteLaenge = strlen($deleteSQL);
-	$insertLaenge = strlen($insertSQL);
-	foreach ($categories as $cat) {
-		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories'
-			.' WHERE section_id='.$galerie['section_id'].' AND'
-			.' categorie="'.$cat['categorie'].'" AND'
-			.' parent="'.$cat['parent'].'"'
-			.' LIMIT 1;';
-		$query = $database->query($sql);
-		if($result = $query->fetchRow(MYSQLI_ASSOC)) {
-			if($result['is_empty'] == $cat['is_empty']){
-				$notDeleteArray[] = $result['id'];
-			} else {
-                            	// Falls die Kategorie schon existierte nehmen wir für die neuen Einträge diejenigen von der DB
-				$insertSQL .= " (".$result['section_id'].", '".$result['categorie']."', '".$result['parent']."', '".$result['cat_name']."', ".$cat['is_empty']."),";
-				// Diese Datensätze müssen aber zuerst gelöscht werden, da sie sonst doppelt vorkommen würden!
-			}
-		} else {
-			// Sonst erstellen wir einfach einen neuen Standarddatensatz
-			$cat_name = str_replace('_', ' ',$cat['categorie']);
-			$cat_name = str_replace('-', ' ',$cat_name);
-			$insertSQL .= " (".$galerie['section_id'].", '".$cat['categorie']."', '".$cat['parent']."', '".$cat_name."', ".$cat['is_empty']."),";
-		}
-	}
-	// SQL zum löschen der alten Einträge
-	if(!empty($notDeleteArray)) {
-		$deleteSQL .= ' AND (id NOT IN( '.implode(',',$notDeleteArray).'))';		
-	}
-	if($searchCategorie != ''){
-		$deleteSQL.= ' AND (parent REGEXP("'.$searchCategorie.'"))';
-	}
-	if(strlen($deleteSQL) != $deleteLaenge){
-		$deleteSQL .= ';';	
-		$database->query($deleteSQL);
-	}
-	if(strlen($insertSQL) != $insertLaenge){
-		// Jetzt fügen wir die neuen Einträge hinzu
-		$insertSQL = substr($insertSQL, 0, -1).";";
-		$database->query($insertSQL);
-	}
-	// So, dass waren die Kategorien, nun sind die Bilder an der Reihe
-	
-	//Die Felder "file_link" und "thumb_link" sind obsolet
-	//Jetzt noch die Parents zu Ziffern umwandeln:
-	
-	//Wieder aus der Datenbank laden:	
-	$catpathArray = array();
-	$sql = 'SELECT id, categorie, parent FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$galerie['section_id'];
-	$query = $database->query($sql);
-	while($result = $query->fetchRow()) {		
-		$p = $result['parent'].'/'.$result['categorie'] ;
-		if ( $result['parent'] == -1) {$p = '';}
-    	$catpathArray[$p] =  $result['id'];
+    // Daten Vorbereiten
+    $rootDir = $path . $galerie['root_dir'];
+    $searchFolder = $rootDir . $searchCategorie;
+    $extensions = explode(',', $galerie['extensions']);
+    $invisible = array_merge($invisibleFileNames, explode(',', $galerie['invisible']));
+
+    //Alle Angaben aus dem Filesystem holen
+    $allData = getFolderData($searchFolder, $extensions, $invisible);
+    //natsort($allData); # ! Bringt es das?
+    //Angaben auswerten
+    $categories = array();
+    $files = array();
+    foreach ($allData as $data) {
+        $einzelteile = explode('/', $data);
+        $letztesElement = count($einzelteile) - 1;
+        if (substr_count($einzelteile[$letztesElement], '.') == 0) {
+            //Hier werden alle Kategorien angelegt
+            $catName = $einzelteile[$letztesElement];
+            unset($einzelteile[$letztesElement]);
+            $catParents = implode('/', $einzelteile);
+            $catParents = $searchCategorie . $catParents;
+            $categories[] = array(
+                'categorie' => $catName,
+                'parent' => $catParents,
+                'is_empty' => 1
+            );
+        } else {
+            //Hier gehts um die Files
+            $fileName = $einzelteile[$letztesElement];
+            //if ($fileName == 'folderpreview.jpg') continue;
+
+            unset($einzelteile[$letztesElement]);
+            $parent = implode('/', $einzelteile);
+            $parent = $searchCategorie . $parent;
+            $fileLink = $url . $galerie['root_dir'] . $parent . "/" . $fileName;
+            $fileLink = str_replace(WB_URL, '', $fileLink);
+
+            $files[] = array(
+                'file_name' => $fileName,
+                'file_link' => $fileLink,
+                'parent' => $parent
+            );
+        }
     }
-	
-	
-	$notDeleteArray = array();
-	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_files (file_name, parent_id, caption) VALUES";
-	
-	//-------------------------------------------------------------------------------------------------------
-	//Das Macht ein Problem, sobald es mehrere Seiten mit FG gibt.
-	//Das es keine Section_id mehr gibt, werden alle Einträge von anderen Sections ebenfalls gelöscht. 
-	//Das muss anders gelöst werden, ich weiß aber nicht wie.
-	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE (id NOT IN";
-	//Siehe unten, wird derzeit nicht ausgeführt
-	//-------------------------------------------------------------------------------------------------------
-	
-	$laenge = strlen($insertSQL);
-	$count = 0;
-	foreach($files as $file) {		
-		
-		
-		if (!isset($catpathArray[$file['parent']])) {
-			$parent_id = 0;
-			}else{
-			$parent_id = $catpathArray[$file['parent']];
-			//echo '|'.$file['parent'].'|';
-			//var_dump($file);
-			//die();
-		}
-	
-		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id ="'.$parent_id.'" AND file_name="'.$file['file_name'].'" LIMIT 1;';		
-		$query = $database->query($sql);
-		if($result = $query->fetchRow()){
-			//$notDeleteArray[] = $result['id'];
-		} else {
-			$count ++;
-			$insertSQL .= " ('".$file['file_name']."', '".$parent_id."', ''),";
-			//if ($count == 2) echo $insertSQL;
-		}
-	}
-	
-	// SQL für neue Einträge	
-	$insertSQL = substr($insertSQL, 0, -1).";";	
-	if($laenge != strlen($insertSQL)) {
-		echo "added ".$count." files";
-		$database->query($insertSQL);
-	}	
-	delete_files_with_no_cat();
-	return true;
+    // Kategorien mit Bildern finden
+    foreach ($categories as & $nameCat) {
+        $catString = $nameCat['parent'] . "/" . $nameCat['categorie'];
+        foreach ($files as $file) {
+            if ($file['parent'] == $catString) {
+                $nameCat['is_empty'] = 0;
+                break;
+            }
+        }
+    }
+
+    // Falls Parents, diese finden
+    foreach ($categories as & $nameCat) {
+        $catName = $nameCat['categorie'];
+        foreach ($categories as $searchCat) {
+            if ((strpos($searchCat['parent'], $catName) !== false) AND (!$searchCat['is_empty'])) {
+                $nameCat['is_empty'] = 0;
+                break;
+            }
+        }
+    }
+    // Kategorien mit DB synchronisieren
+    // Neuer SQL vorbereiten
+    $notDeleteArray = array();
+    $insertSQL = "INSERT INTO " . TABLE_PREFIX . "mod_foldergallery_categories (section_id, categorie, parent, cat_name, is_empty) VALUES";
+    $deleteSQL = "DELETE FROM " . TABLE_PREFIX . "mod_foldergallery_categories WHERE parent_id > '0' AND section_id=" . $galerie['section_id'];
+    $deleteLaenge = strlen($deleteSQL);
+    $insertLaenge = strlen($insertSQL);
+    foreach ($categories as $cat) {
+        $sql = 'SELECT * FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories'
+                . ' WHERE section_id=' . $galerie['section_id'] . ' AND'
+                . ' categorie="' . $cat['categorie'] . '" AND'
+                . ' parent="' . $cat['parent'] . '"'
+                . ' LIMIT 1;';
+        $query = $database->query($sql);
+        if ($result = $query->fetchRow(MYSQLI_ASSOC)) {
+            if ($result['is_empty'] == $cat['is_empty']) {
+                $notDeleteArray[] = $result['id'];
+            } else {
+                // Falls die Kategorie schon existierte nehmen wir für die neuen Einträge diejenigen von der DB
+                $insertSQL .= " (" . $result['section_id'] . ", '" . $result['categorie'] . "', '" . $result['parent'] . "', '" . $result['cat_name'] . "', " . $cat['is_empty'] . "),";
+                // Diese Datensätze müssen aber zuerst gelöscht werden, da sie sonst doppelt vorkommen würden!
+            }
+        } else {
+            // Sonst erstellen wir einfach einen neuen Standarddatensatz
+            $cat_name = str_replace('_', ' ', $cat['categorie']);
+            $cat_name = str_replace('-', ' ', $cat_name);
+            $insertSQL .= " (" . $galerie['section_id'] . ", '" . $cat['categorie'] . "', '" . $cat['parent'] . "', '" . $cat_name . "', " . $cat['is_empty'] . "),";
+        }
+    }
+    // SQL zum löschen der alten Einträge
+    if (!empty($notDeleteArray)) {
+        $deleteSQL .= ' AND (id NOT IN( ' . implode(',', $notDeleteArray) . '))';
+    }
+    if ($searchCategorie != '') {
+        $deleteSQL.= ' AND (parent REGEXP("' . $searchCategorie . '"))';
+    }
+    if (strlen($deleteSQL) != $deleteLaenge) {
+        $deleteSQL .= ';';
+        $database->query($deleteSQL);
+    }
+    if (strlen($insertSQL) != $insertLaenge) {
+        // Jetzt fügen wir die neuen Einträge hinzu
+        $insertSQL = substr($insertSQL, 0, -1) . ";";
+        $database->query($insertSQL);
+    }
+    // So, dass waren die Kategorien, nun sind die Bilder an der Reihe
+    //Die Felder "file_link" und "thumb_link" sind obsolet
+    //Jetzt noch die Parents zu Ziffern umwandeln:
+    //Wieder aus der Datenbank laden:
+    $catpathArray = array();
+    $sql = 'SELECT id, categorie, parent FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE section_id=' . $galerie['section_id'];
+    $query = $database->query($sql);
+    while ($result = $query->fetchRow()) {
+        $p = $result['parent'] . '/' . $result['categorie'];
+        if ($result['parent'] == -1) {
+            $p = '';
+        }
+        $catpathArray[$p] = $result['id'];
+    }
+
+
+    $notDeleteArray = array();
+    $insertSQL = "INSERT INTO " . TABLE_PREFIX . "mod_foldergallery_files (file_name, parent_id, caption) VALUES";
+
+    //-------------------------------------------------------------------------------------------------------
+    //Das Macht ein Problem, sobald es mehrere Seiten mit FG gibt.
+    //Das es keine Section_id mehr gibt, werden alle Einträge von anderen Sections ebenfalls gelöscht.
+    //Das muss anders gelöst werden, ich weiß aber nicht wie.
+    $deleteSQL = "DELETE FROM " . TABLE_PREFIX . "mod_foldergallery_files WHERE (id NOT IN";
+    //Siehe unten, wird derzeit nicht ausgeführt
+    //-------------------------------------------------------------------------------------------------------
+
+    $laenge = strlen($insertSQL);
+    $count = 0;
+    foreach ($files as $file) {
+
+
+        if (!isset($catpathArray[$file['parent']])) {
+            $parent_id = 0;
+        } else {
+            $parent_id = $catpathArray[$file['parent']];
+            //echo '|'.$file['parent'].'|';
+            //var_dump($file);
+            //die();
+        }
+
+        $sql = 'SELECT * FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE parent_id ="' . $parent_id . '" AND file_name="' . $file['file_name'] . '" LIMIT 1;';
+        $query = $database->query($sql);
+        if ($result = $query->fetchRow()) {
+            //$notDeleteArray[] = $result['id'];
+        } else {
+            $count++;
+            $insertSQL .= " ('" . $file['file_name'] . "', '" . $parent_id . "', ''),";
+            //if ($count == 2) echo $insertSQL;
+        }
+    }
+
+    // SQL für neue Einträge
+    $insertSQL = substr($insertSQL, 0, -1) . ";";
+    if ($laenge != strlen($insertSQL)) {
+        echo "added " . $count . " files";
+        $database->query($insertSQL);
+    }
+    delete_files_with_no_cat();
+    return true;
 }
-
-
 
 function delete_files_with_no_cat() {
-	global $database;
-	$sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_categories';
-	$query = $database->query($sql);
-	$notDeleteArray = array();
-	while($result = $query->fetchRow()) {		
-		$notDeleteArray[] = $result['id'];
+    global $database;
+    $sql = 'SELECT id FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories';
+    $query = $database->query($sql);
+    $notDeleteArray = array();
+    while ($result = $query->fetchRow()) {
+        $notDeleteArray[] = $result['id'];
     }
-	if(!empty($notDeleteArray)) {
-		$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE (parent_id NOT IN";
-		$deleteSQL .= '(0,'.implode(',',$notDeleteArray).'));';
-		$database->query($deleteSQL);		
-	}
+    if (!empty($notDeleteArray)) {
+        $deleteSQL = "DELETE FROM " . TABLE_PREFIX . "mod_foldergallery_files WHERE (parent_id NOT IN";
+        $deleteSQL .= '(0,' . implode(',', $notDeleteArray) . '));';
+        $database->query($deleteSQL);
+    }
 }
 
-
 function rek_db_delete($cat_id) {
-	global $database;
-	
-	$sql = 'SELECT section_id, categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.';';
-	$query = $database->query($sql);
-	if($result = $query->fetchRow()) {
-		$parent = $result['parent'].'/'.$result['categorie'];
-		$delete_file_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$cat_id.'";';
-		$database->query($delete_file_sql);
-		if($result['has_child']){
-			$select_sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$cat_id.';';
-			$query = $database->query($select_sql);
-			while($select_result = $query->fetchRow()) {
-				rek_db_delete($select_result['id']);
-			}
-		}
-	}
-	$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id;
-	$database->query($deletesql);
+    global $database;
+
+    $sql = 'SELECT section_id, categorie, parent, has_child FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE id=' . $cat_id . ';';
+    $query = $database->query($sql);
+    if ($result = $query->fetchRow()) {
+        $parent = $result['parent'] . '/' . $result['categorie'];
+        $delete_file_sql = 'DELETE FROM ' . TABLE_PREFIX . 'mod_foldergallery_files WHERE parent_id="' . $cat_id . '";';
+        $database->query($delete_file_sql);
+        if ($result['has_child']) {
+            $select_sql = 'SELECT id FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE parent_id=' . $cat_id . ';';
+            $query = $database->query($select_sql);
+            while ($select_result = $query->fetchRow()) {
+                rek_db_delete($select_result['id']);
+            }
+        }
+    }
+    $deletesql = 'DELETE FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories WHERE id=' . $cat_id;
+    $database->query($deletesql);
 }
 
 /**
@@ -404,23 +394,22 @@ function FG_getAdvancedThumbSettings($tbSettings) {
     $s = '';
     foreach ($tbSettings as $key => $value) {
         // filter default settings
-        if( $key == 'image_x'
-         || $key == 'image_y'
-         || $key == 'image_resize'
-         || $key == 'image_ratio_fill'
-         || $key == 'image_background_color'
-         || $key == 'image_ratio_crop')
-        {
+        if ($key == 'image_x'
+                || $key == 'image_y'
+                || $key == 'image_resize'
+                || $key == 'image_ratio_fill'
+                || $key == 'image_background_color'
+                || $key == 'image_ratio_crop') {
             continue;
         }
         // convert booleans
-        if(is_bool($value)) {
-            if($value == true) {
-                $s .= $key."=true;\n";
+        if (is_bool($value)) {
+            if ($value == true) {
+                $s .= $key . "=true;\n";
             } else {
-                $s .= $key."=false;\n";
+                $s .= $key . "=false;\n";
             }
-        } else if(is_int($value) || is_float($value)) {
+        } else if (is_int($value) || is_float($value)) {
             $s .= $key . "=" . $value . ";\n";
         } else {
             $s .= $key . "='" . $value . "';\n";
@@ -434,20 +423,20 @@ function FG_setAdvancedThumbSettings($advancedString) {
     $advancedString = preg_replace("/ |'|;/", '', $advancedString);
     $advancedArray = explode("\n", $advancedString);
     $returnArray = array();
-    foreach($advancedArray as $value) {
+    foreach ($advancedArray as $value) {
         $tmp = explode('=', $value);
         // skip if key/value is ''
-        if($tmp[0] == '' || $tmp[1] == '') {
+        if ($tmp[0] == '' || $tmp[1] == '') {
             continue;
         }
         // Check if it's a bool variable
-        if($tmp[1] == 'true' || $tmp[1] == 'True' || $tmp[1] == 'TRUE') {
+        if ($tmp[1] == 'true' || $tmp[1] == 'True' || $tmp[1] == 'TRUE') {
             $tmp[1] = true;
-        } else if($tmp[1] == 'false' || $tmp[1] == 'False' || $tmp[1] == 'FALSE') {
+        } else if ($tmp[1] == 'false' || $tmp[1] == 'False' || $tmp[1] == 'FALSE') {
             $tmp[1] = false;
-        } else if(is_numeric($tmp[1])) {
+        } else if (is_numeric($tmp[1])) {
             // is it a integer or a float?
-            if(ctype_digit($tmp[1])) {
+            if (ctype_digit($tmp[1])) {
                 $tmp[1] = (int) $tmp[1];
             } else {
                 $tmp[1] = (float) $tmp[1];
@@ -457,6 +446,5 @@ function FG_setAdvancedThumbSettings($advancedString) {
     }
     return $returnArray;
 }
-
 
 ?>

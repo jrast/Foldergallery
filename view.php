@@ -1,13 +1,14 @@
 <?php
 
 // Direkter Zugriff verhindern
-if (!defined('WB_PATH')) die (header('Location: index.php'));
+if (!defined('WB_PATH'))
+    die(header('Location: index.php'));
 
 // include the default language
-require_once(WB_PATH .'/modules/foldergallery/languages/EN.php');
+require_once(WB_PATH . '/modules/foldergallery/languages/EN.php');
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(file_exists(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
-    require_once(WB_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
+if (file_exists(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
+    require_once(WB_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
 }
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
@@ -27,7 +28,7 @@ if ((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JA
 
 //  Set the mySQL encoding to utf8
 $oldMysqlEncoding = mysql_client_encoding();
-mysql_set_charset('utf8',$database->db_handle);
+mysql_set_charset('utf8', $database->db_handle);
 
 $generatethumbscounter = 0;
 // Files includen
@@ -35,7 +36,7 @@ require_once (WB_PATH . '/modules/foldergallery/info.php');
 require_once (WB_PATH . '/modules/foldergallery/scripts/functions.php');
 require_once (WB_PATH . '/modules/foldergallery/class/class.upload.php');
 require_once (WB_PATH . '/modules/foldergallery/class/validator.php');
-require_once (WB_PATH.'/modules/foldergallery/class/DirectoryHandler.Class.php');
+require_once (WB_PATH . '/modules/foldergallery/class/DirectoryHandler.Class.php');
 
 $validator = new Validator();
 
@@ -43,7 +44,6 @@ $validator = new Validator();
 $settings = getSettings($section_id);
 $root_dir = $settings['root_dir']; //Chio
 $catpic = (int) $settings['catpic']; //Chio
-
 // Einstellungen 
 // Link zur Seite
 $query_pages = $database->query("SELECT link FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id' LIMIT 1");
@@ -55,7 +55,6 @@ $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeic
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
 $bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
 $title = PAGE_TITLE; // Page title of the actual page (WB Core)
-
 // Ist die angegebene Kategorie gültig? (erlaubter String)
 if (isset($_GET['cat'])) {
     $aktuelleKat = urldecode($_GET['cat']);
@@ -105,57 +104,57 @@ if (count($ergebnisse) == 0) {
             $catpicstring = 'RAND()';
     }
 
-    foreach($ergebnisse as $ergebnis) {
-        $catCrumb  = $ergebnis['parent'] . '/' .$ergebnis['categorie'];
-        $catLink   = $link.'?cat='.$catCrumb;
-        $catName   = $ergebnis['cat_name'];
-        $catID     = $ergebnis['id'];
+    foreach ($ergebnisse as $ergebnis) {
+        $catCrumb = $ergebnis['parent'] . '/' . $ergebnis['categorie'];
+        $catLink = $link . '?cat=' . $catCrumb;
+        $catName = $ergebnis['cat_name'];
+        $catID = $ergebnis['id'];
         $catChilds = $ergebnis['childs'];
 
         // OK, lets find a preview Image for this categorie
-        $sql = 'SELECT file_name, id, parent_id FROM '.TABLE_PREFIX.'mod_foldergallery_files '
-             . 'WHERE parent_id ='.$catID.' '
-             . 'ORDER BY '.$catpicstring
-             . ' LIMIT 1;';
+        $sql = 'SELECT file_name, id, parent_id FROM ' . TABLE_PREFIX . 'mod_foldergallery_files '
+                . 'WHERE parent_id =' . $catID . ' '
+                . 'ORDER BY ' . $catpicstring
+                . ' LIMIT 1;';
         $query = $database->query($sql);
-        if($query->numRows() == 0) {
+        if ($query->numRows() == 0) {
             // OK, Categorie itself contains no images
-            $sql = 'SELECT file_name, id, parent_id FROM '.TABLE_PREFIX.'mod_foldergallery_files '
-                 . 'WHERE parent_id IN ('.$catID.$catChilds.') '
-                 . 'ORDER BY parent_id ASC, '.$catpicstring
-                 . ' LIMIT 1;';
+            $sql = 'SELECT file_name, id, parent_id FROM ' . TABLE_PREFIX . 'mod_foldergallery_files '
+                    . 'WHERE parent_id IN (' . $catID . $catChilds . ') '
+                    . 'ORDER BY parent_id ASC, ' . $catpicstring
+                    . ' LIMIT 1;';
             $query = $database->query($sql);
         }
-        $imageData      = $query->fetchRow(MYSQL_ASSOC);
-        $imageID        = $imageData['id'];
-        $imageName      = $imageData['file_name'];
-        $imageParentID  = $imageData['parent_id'];
+        $imageData = $query->fetchRow(MYSQL_ASSOC);
+        $imageID = $imageData['id'];
+        $imageName = $imageData['file_name'];
+        $imageParentID = $imageData['parent_id'];
 
-        if($imageParentID != $catID) {
+        if ($imageParentID != $catID) {
             // OK, its a image of a subcat, so we need the folder of this cat
-            $sql = 'SELECT id, parent, categorie FROM '.TABLE_PREFIX.'mod_foldergallery_categories '
-                 . 'WHERE id='.$imageParentID.';';
+            $sql = 'SELECT id, parent, categorie FROM ' . TABLE_PREFIX . 'mod_foldergallery_categories '
+                    . 'WHERE id=' . $imageParentID . ';';
             $query = $database->query($sql);
             $result = $query->fetchRow(MYSQL_ASSOC);
-            $imageCrumb = $root_dir.$result['parent'].'/'.$result['categorie'];
+            $imageCrumb = $root_dir . $result['parent'] . '/' . $result['categorie'];
         } else {
-            $imageCrumb = $root_dir.$catCrumb;
+            $imageCrumb = $root_dir . $catCrumb;
         }
 
         // Create the thumb for a categorie
-        $imagePath = WB_PATH.$imageCrumb.'/'.$imageName;
-        $thumbPath = WB_PATH.$imageCrumb.$thumbdir;
-        $thumbImagePath = WB_PATH.$imageCrumb.$thumbdir.'/'.$imageName;
-        $thumbImageURL = WB_URL.$imageCrumb.$thumbdir.'/'.$imageName;
-        if(!is_file(DirectoryHandler::DecodePath($thumbImagePath))) {
+        $imagePath = WB_PATH . $imageCrumb . '/' . $imageName;
+        $thumbPath = WB_PATH . $imageCrumb . $thumbdir;
+        $thumbImagePath = WB_PATH . $imageCrumb . $thumbdir . '/' . $imageName;
+        $thumbImageURL = WB_URL . $imageCrumb . $thumbdir . '/' . $imageName;
+        if (!is_file(DirectoryHandler::DecodePath($thumbImagePath))) {
             FG_createThumb($imagePath, $imageName, $thumbPath, $settings['tbSettings']);
         }
 
         // Create a array for the template
         $unterKats[] = array(
-            'link'  => $catLink,
+            'link' => $catLink,
             'thumb' => $thumbImageURL,
-            'name'  => $catName
+            'name' => $catName
         );
     }
 }
@@ -186,7 +185,7 @@ if (count($bilder) != 0) {
     if (!empty($result['categorie']))
         $folder = $root_dir . $result['parent'] . '/' . $result['categorie'] . '/';
     else
-    $folder = $root_dir . $result['parent'] . '/';
+        $folder = $root_dir . $result['parent'] . '/';
     $pathToFolder = WB_PATH . $folder;
     $pathToThumb = WB_PATH . $folder . $thumbdir1;
     $urlToFolder = $url . $folder;
@@ -211,21 +210,16 @@ if ($aktuelleKat) {
 if (file_exists(dirname(__FILE__) . '/templates/view_' . $settings['lightbox'] . '.htt')) {
     $viewTemplate = 'view_' . $settings['lightbox'] . '.htt';
     $t = new Template(dirname(__FILE__) . '/templates', 'remove');
-}
-elseif( file_exists( WB_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
-{
-  $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(WB_PATH.'/modules/'.$settings['lightbox'], 'remove');
-	$parts = explode( '/', $settings['lightbox'] );
-	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
-}
-elseif( file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
-{
-  $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
-	echo "[[jQueryInclude?plugin=".$settings['lightbox']."]]";
-}
-else {
+} elseif (file_exists(WB_PATH . '/modules/' . $settings['lightbox'] . '/foldergallery_template.htt')) {
+    $viewTemplate = 'foldergallery_template.htt';
+    $t = new Template(WB_PATH . '/modules/' . $settings['lightbox'], 'remove');
+    $parts = explode('/', $settings['lightbox']);
+    echo "[[LibInclude?lib=" . $parts[0] . "&amp;plugin=" . $parts[2] . "]]";
+} elseif (file_exists(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'] . '/foldergallery_template.htt')) {
+    $viewTemplate = 'foldergallery_template.htt';
+    $t = new Template(WB_PATH . '/modules/jqueryadmin/plugins/' . $settings['lightbox'], 'remove');
+    echo "[[jQueryInclude?plugin=" . $settings['lightbox'] . "]]";
+} else {
     $viewTemplate = 'view.htt';
 // --- added by WebBird, 29.07.2010 ---
     $t = new Template(dirname(__FILE__) . '/templates', 'remove');
@@ -324,16 +318,15 @@ if ($bilder) {
                 )
         );
         $t->parse('PAGE_NAV', 'pagenav');
-    }
-    else {
+    } else {
         $t->clear_var('pagenav');
     }
 
 
     $offset = ( $settings['pics_pp'] * $current_page - $settings['pics_pp'] );
-    for($i = 0; $i < $anzahlBilder; $i++) {
+    for ($i = 0; $i < $anzahlBilder; $i++) {
         $bildfilename = $bilder[$i]['file_name'];
-        $thumb = $pathToThumb. '/' . $bildfilename;
+        $thumb = $pathToThumb . '/' . $bildfilename;
         $tumburl = $urlToThumb . $bildfilename;
         $file = $pathToFolder . $bildfilename;
         if (!is_file(DirectoryHandler::DecodePath($file))) {
@@ -360,7 +353,7 @@ if ($bilder) {
         ));
 
         // Bild sichtbar oder unsichtbar?
-        if( $i < $offset) {
+        if ($i < $offset) {
             $t->parse('INVISIBLEPRE', 'invisiblePre', true);
         } elseif ($i > ($offset + $settings['pics_pp'] - 1)) {
             $t->parse('INVISIBLEPOST', 'invisiblePost', true);
@@ -369,7 +362,6 @@ if ($bilder) {
         }
     }
     $t->parse('IMAGES', 'images', true);
-
 } else {
     $t->clear_var('thumbnails');
     $t->clear_var('images');
