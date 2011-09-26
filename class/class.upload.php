@@ -937,6 +937,7 @@ class upload {
     /**
      * Turns the image into greyscale
      *
+
      * Default value is FALSE
      *
      * @access public
@@ -2961,7 +2962,7 @@ class upload {
                 $this->file_dst_name_body = strtr($this->file_dst_name_body, 'ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy');
                 $this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
                 $this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
-                $this->log .= '- file name safe format<br />';
+                $this->log .= '- file name safe format <br />';
             }
 
             $this->log .= '- destination variables<br />';

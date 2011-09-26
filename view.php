@@ -424,7 +424,6 @@ ul.categories li a {
 
 $t->pparse('output', 'view');
 
-
 // reset the mySQL encoding
 mysql_set_charset($oldMysqlEncoding, $database->db_handle);
 ?>

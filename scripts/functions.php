@@ -409,6 +409,7 @@ function FG_appendThumbSettings(&$handle, $settings, $filename) {
             continue;
         }
         $handle->$option = $value;
+        $handle->file_safe_name = false;
         $handle->file_new_name_body = $filename;
         $handle->file_new_name_ext  = ''; // Else you have a filename like img.jpg.tmp
     }

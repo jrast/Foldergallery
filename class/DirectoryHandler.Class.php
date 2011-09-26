@@ -20,7 +20,7 @@ class DirectoryHandler {
                 self::$OS = self::OS_WIN;
             }
             else {
-                self::$OS = self::OS_WIN;
+                self::$OS = self::OS_UNIX;
             }
         }
         return self::$OS;

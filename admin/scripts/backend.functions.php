@@ -269,7 +269,6 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
                             	// Falls die Kategorie schon existierte nehmen wir für die neuen Einträge diejenigen von der DB
 				$insertSQL .= " (".$result['section_id'].", '".$result['categorie']."', '".$result['parent']."', '".$result['cat_name']."', ".$cat['is_empty']."),";
 				// Diese Datensätze müssen aber zuerst gelöscht werden, da sie sonst doppelt vorkommen würden!
-                                var_dump($result, $cat);
 			}
 		} else {
 			// Sonst erstellen wir einfach einen neuen Standarddatensatz
